@@ -1,71 +1,14 @@
-import { useState } from "react";
+import { useMemo, useState } from "react";
 import ProblemCard from "../components/ProblemCard";
-import SearchBar from "../components/SearchBar";
+import { CATEGORIES } from "../data/mockData";
 
-function Problems({problems, currentUser, onOpenProblem, onUpvote, onNavigate}) {
-    const [query, setQuery]=useState("");
-    const [category, setCategory]=useState("");
-    const [sortBy, setSortBy]=useState("newest");
-
-    const searchText=query.trim().toLowerCase();
-
-    const filteredProblems=problems.filter((problem) => {
-        const matchesCategory=category === "" || problem.category === category;
-        const matchesSearch=searchText === ""
-            || problem.title.toLowerCase().includes(searchText)
-            || problem.description.toLowerCase().includes(searchText)
-            || problem.tags.some((tag) => tag.includes(searchText));
-
-        return matchesCategory && matchesSearch;
-    });
-
-    const sortedProblems=[...filteredProblems].sort((a, b) => {
-        if (sortBy === "upvotes") return b.upvotes.length - a.upvotes.length;
-        if (sortBy === "solutions") return b.solutions.length - a.solutions.length;
-        return new Date(b.createdAt) - new Date(a.createdAt);
-    });
-
-    return (
-        <div>
-            <div className="page-header">
-                <div>
-                    <h1>Browse problems</h1>
-                    <p className="muted">Find a real problem worth solving.</p>
-                </div>
-                <button className="btn btn-primary" onClick={() => onNavigate("submit")}>Post a problem</button>
-            </div>
-
-            <SearchBar
-                query={query}
-                category={category}
-                sortBy={sortBy}
-                onQueryChange={setQuery}
-                onCategoryChange={setCategory}
-                onSortChange={setSortBy}
-            />
-
-            <p className="muted small">Showing {sortedProblems.length} of {problems.length} problems</p>
-
-            {sortedProblems.length === 0 ? (
-                <div className="empty">
-                    <h3>No problems match your search</h3>
-                    <p className="muted">Try another keyword or category.</p>
-                </div>
-            ) : (
-                <div className="problem-grid">
-                    {sortedProblems.map((problem) => (
-                        <ProblemCard
-                            key={problem._id}
-                            problem={problem}
-                            currentUser={currentUser}
-                            onOpen={onOpenProblem}
-                            onUpvote={onUpvote}
-                        />
-                    ))}
-                </div>
-            )}
-        </div>
-    );
+function Problems({ problems, currentUser, initialQuery = "", onOpenProblem, onUpvote, onNavigate }) {
+    const [query, setQuery] = useState(initialQuery); const [category, setCategory] = useState(""); const [status, setStatus] = useState(""); const [sortBy, setSortBy] = useState("trending");
+    const results = useMemo(() => problems.filter((p) => (!category || p.category === category) && (!status || p.status === status) && (!query.trim() || `${p.title} ${p.description} ${p.tags.join(" ")}`.toLowerCase().includes(query.trim().toLowerCase()))).sort((a, b) => sortBy === "newest" ? new Date(b.createdAt) - new Date(a.createdAt) : sortBy === "solutions" ? b.solutions.length - a.solutions.length : b.upvotes.length - a.upvotes.length), [problems, category, status, sortBy, query]);
+    return <div className="container-wide page-shell"><div className="page-title-row"><div><div className="eyebrow">COMMUNITY REQUESTS</div><h1>Explore problems</h1><p>Find a need you understand. Add your support or help shape a solution.</p></div><button className="btn btn-primary" onClick={() => onNavigate("submit")}>+ Share a problem</button></div>
+        <div className="explore-toolbar"><label className="search-control"><span aria-hidden="true">⌕</span><input value={query} onChange={(e) => setQuery(e.target.value)} placeholder="Search problems, needs, or technologies" aria-label="Search problems" /></label><label className="select-control"><span className="sr-only">Category</span><select value={category} onChange={(e) => setCategory(e.target.value)}><option value="">All categories</option>{CATEGORIES.map((item) => <option key={item}>{item}</option>)}</select></label><label className="select-control"><span className="sr-only">Status</span><select value={status} onChange={(e) => setStatus(e.target.value)}><option value="">Any status</option><option value="open">Open</option><option value="in-progress">In progress</option><option value="solved">Solved</option></select></label><label className="select-control"><span className="sr-only">Sort results</span><select value={sortBy} onChange={(e) => setSortBy(e.target.value)}><option value="trending">Trending</option><option value="newest">Newest</option><option value="solutions">Most solutions</option></select></label></div>
+        <div className="results-caption"><span><strong>{results.length}</strong> {results.length === 1 ? "request" : "requests"}</span><span>Community-powered opportunities</span></div>
+        {results.length ? <div className="problem-grid">{results.map((problem) => <ProblemCard key={problem._id} problem={problem} currentUser={currentUser} onOpen={onOpenProblem} onUpvote={onUpvote} />)}</div> : <div className="empty-state"><div className="empty-symbol">⌕</div><h2>No requests found</h2><p>Try another search or clear a filter to see more community needs.</p><button className="btn btn-outline" onClick={() => { setQuery(""); setCategory(""); setStatus(""); }}>Clear filters</button></div>}
+    </div>;
 }
-
 export default Problems;

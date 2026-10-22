@@ -1,56 +1,7 @@
 import { useState } from "react";
-
-function Login({message, onLogin, onNavigate}) {
-    const [form, setForm]=useState({email:"",password:""});
-    const [error, setError]=useState("");
-
-    function handleChange(event) {
-        setForm({...form,[event.target.name]:event.target.value});
-    }
-
-    function handleSubmit(event) {
-        event.preventDefault();
-
-        if (form.email === "" || form.password === "") {
-            setError("Please enter your email and password.");
-            return;
-        }
-
-        const loginError=onLogin(form.email, form.password);
-        setError(loginError);
-    }
-
-    return (
-        <div className="auth-page">
-            <form className="card form auth-card" onSubmit={handleSubmit}>
-                <h1>Login</h1>
-                {message && <p className="notice">{message}</p>}
-
-                <label>
-                    Email
-                    <input type="email" name="email" value={form.email} onChange={handleChange} />
-                </label>
-
-                <label>
-                    Password
-                    <input type="password" name="password" value={form.password} onChange={handleChange} />
-                </label>
-
-                {error && <p className="error">{error}</p>}
-
-                <button type="submit" className="btn btn-primary btn-full">Login</button>
-
-                <p className="muted small center">
-                    New here? <button type="button" className="link-button" onClick={() => onNavigate("register")}>Create an account</button>
-                </p>
-
-                <p className="demo-box small">
-                    Demo accounts: <strong>riya@devbridge.com / riya123</strong> (user),{" "}
-                    <strong>arjun@devbridge.com / arjun123</strong> (developer)
-                </p>
-            </form>
-        </div>
-    );
+function Login({ onDemo, onNavigate }) {
+    const [email, setEmail] = useState(""); const [password, setPassword] = useState(""); const [notice, setNotice] = useState("");
+    function submit(event) { event.preventDefault(); setNotice("Sign-in is a preview only. Connect the future Python API to enable real accounts."); setPassword(""); }
+    return <div className="auth-layout"><div className="auth-aside"><div className="brand-lockup"><span className="brand-mark">d<span>.</span></span> devbridge</div><div><div className="eyebrow">BUILD AROUND WHAT MATTERS</div><h2>Useful software starts with listening.</h2><p>Join the people sharing real needs and the developers working toward practical answers.</p></div><span className="auth-caption">A community demonstration · no account required</span></div><div className="auth-main"><div className="auth-form"><div className="eyebrow">DEMO WORKSPACE</div><h1>Step into DevBridge</h1><p>Explore the product with a sample developer profile. No email or password needed.</p><div className="demo-entry"><div className="demo-entry-top"><span className="avatar avatar-large">A</span><span><strong>Arjun Mehta</strong><small>Full stack developer · Demo profile</small></span><span className="demo-indicator">READY</span></div><button className="btn btn-primary btn-full" onClick={onDemo}>Continue as Demo User <span>→</span></button><p className="auth-legal">This creates a temporary in-memory demo session. It is not a real account.</p></div><details className="preview-auth"><summary>Preview the sign-in form</summary><form onSubmit={submit}><label className="field-label">Email address<input type="email" autoComplete="off" value={email} onChange={(e) => setEmail(e.target.value)} placeholder="you@example.com" /></label><label className="field-label">Password<input type="password" autoComplete="new-password" value={password} onChange={(e) => setPassword(e.target.value)} placeholder="Not connected" /></label><button className="btn btn-outline btn-full">Preview sign in</button>{notice && <p className="notice" role="status">{notice}</p>}</form></details><div className="auth-switch">New to DevBridge? <button type="button" className="text-link" onClick={() => onNavigate("register")}>Create a demo profile →</button></div></div></div></div>;
 }
-
 export default Login;

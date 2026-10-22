@@ -1,123 +1,20 @@
-import { useState } from "react";
-import { CATEGORIES, STATUSES } from "../data/mockData";
-import { splitList, statusLabel } from "../utils/helpers";
+import { useMemo, useState } from "react";
+import { CATEGORIES } from "../data/mockData";
+import { splitList } from "../utils/helpers";
 
-function ProblemForm({initialProblem, submitLabel, showStatus, onSubmit, onCancel}) {
-    const [form, setForm]=useState({
-        title:initialProblem ? initialProblem.title : "",
-        description:initialProblem ? initialProblem.description : "",
-        category:initialProblem ? initialProblem.category : CATEGORIES[0],
-        tags:initialProblem ? initialProblem.tags.join(", ") : "",
-        status:initialProblem ? initialProblem.status : "open"
-    });
-    const [errors, setErrors]=useState({});
-
-    function handleChange(event) {
-        setForm({...form,[event.target.name]:event.target.value});
-    }
-
-    function validate() {
-        const newErrors={};
-
-        if (form.title.trim().length < 10) {
-            newErrors.title="Title should be at least 10 characters.";
-        }
-
-        if (form.description.trim().length < 30) {
-            newErrors.description="Description should be at least 30 characters.";
-        }
-
-        return newErrors;
-    }
-
-    function handleSubmit(event) {
-        event.preventDefault();
-
-        const newErrors=validate();
-        setErrors(newErrors);
-
-        if (Object.keys(newErrors).length > 0) {
-            return;
-        }
-
-        const problemData={
-            title:form.title.trim(),
-            description:form.description.trim(),
-            category:form.category,
-            tags:splitList(form.tags.toLowerCase())
-        };
-
-        if (showStatus) {
-            problemData.status=form.status;
-        }
-
-        onSubmit(problemData);
-    }
-
-    return (
-        <form className="card form" onSubmit={handleSubmit}>
-            <label>
-                Title
-                <input
-                    name="title"
-                    value={form.title}
-                    onChange={handleChange}
-                    placeholder="e.g. Students cannot find teammates for projects"
-                />
-                {errors.title && <span className="error">{errors.title}</span>}
-            </label>
-
-            <label>
-                Description
-                <textarea
-                    name="description"
-                    rows="6"
-                    value={form.description}
-                    onChange={handleChange}
-                    placeholder="Who faces this problem? What happens today? Why is it a problem?"
-                />
-                <span className="hint">{form.description.length} characters</span>
-                {errors.description && <span className="error">{errors.description}</span>}
-            </label>
-
-            <div className="form-row">
-                <label>
-                    Category
-                    <select name="category" value={form.category} onChange={handleChange}>
-                        {CATEGORIES.map((item) => (
-                            <option key={item} value={item}>{item}</option>
-                        ))}
-                    </select>
-                </label>
-
-                {showStatus && (
-                    <label>
-                        Status
-                        <select name="status" value={form.status} onChange={handleChange}>
-                            {STATUSES.map((item) => (
-                                <option key={item} value={item}>{statusLabel(item)}</option>
-                            ))}
-                        </select>
-                    </label>
-                )}
-            </div>
-
-            <label>
-                Tags
-                <input
-                    name="tags"
-                    value={form.tags}
-                    onChange={handleChange}
-                    placeholder="Comma separated, e.g. hostel, booking"
-                />
-            </label>
-
-            <div className="form-actions">
-                {onCancel && <button type="button" className="btn btn-outline" onClick={onCancel}>Cancel</button>}
-                <button type="submit" className="btn btn-primary">{submitLabel}</button>
-            </div>
-        </form>
-    );
+function ProblemForm({ problems = [], submitLabel = "Publish request", onSubmit, onCancel, onOpenProblem }) {
+    const [form, setForm] = useState({ title: "", description: "", category: "Education", tags: "", outcome: "", constraints: "", paid: false, budget: "" });
+    const [errors, setErrors] = useState({}); const [showMatches, setShowMatches] = useState(false); const [confirmed, setConfirmed] = useState(false);
+    const matches = useMemo(() => { const terms = `${form.title} ${form.description} ${form.tags}`.toLowerCase().split(/[^a-z0-9]+/).filter((word) => word.length > 3); return problems.map((p) => ({ problem: p, score: terms.filter((word) => `${p.title} ${p.description} ${p.tags.join(" ")}`.toLowerCase().includes(word)).length })).filter((item) => item.score >= 2).sort((a, b) => b.score - a.score).slice(0, 3); }, [problems, form.title, form.description, form.tags]);
+    function update(event) { const { name, value, type, checked } = event.target; setForm((current) => ({ ...current, [name]: type === "checkbox" ? checked : value })); setErrors((current) => ({ ...current, [name]: "" })); }
+    function publish() { onSubmit({ ...form, title: form.title.trim(), description: form.description.trim(), outcome: form.outcome.trim(), constraints: form.constraints.trim(), budget: form.paid ? form.budget.trim() || "To be discussed" : "", tags: splitList(form.tags.toLowerCase()) }); }
+    function submit(event) { event.preventDefault(); const next = {}; if (form.title.trim().length < 12) next.title = "Use at least 12 characters so people can understand the request."; if (form.description.trim().length < 40) next.description = "Add a little more context (at least 40 characters)."; if (form.outcome.trim().length < 12) next.outcome = "Describe what a useful outcome would look like."; if (form.paid && !form.budget.trim()) next.budget = "Add an indicative range or write ‘To be discussed’."; setErrors(next); if (Object.keys(next).length) return; if (matches.length && !confirmed) { setShowMatches(true); return; } publish(); }
+    return <form className="problem-form" onSubmit={submit}>
+        <section className="form-section"><div className="form-section-heading"><span>01</span><div><h2>Describe the problem</h2><p>Write in everyday language. Start with the people affected and what is hard today.</p></div></div><label className="field-label">Problem title <span>Required</span><input name="title" value={form.title} onChange={update} placeholder="e.g. Students cannot tell when the campus bus will arrive" aria-invalid={Boolean(errors.title)} />{errors.title && <small className="field-error">{errors.title}</small>}</label><label className="field-label">What is happening today? <span>Required</span><textarea name="description" rows="6" value={form.description} onChange={update} placeholder="Who runs into this problem? What do they do today? Where does the current approach fall short?" aria-invalid={Boolean(errors.description)} />{errors.description && <small className="field-error">{errors.description}</small>}<small className="field-help">{form.description.length} characters · Specific examples help developers understand the need.</small></label><div className="form-row"><label className="field-label">Category <span>Required</span><select name="category" value={form.category} onChange={update}>{CATEGORIES.map((item) => <option key={item}>{item}</option>)}</select></label><label className="field-label">Tags <span>Optional</span><input name="tags" value={form.tags} onChange={update} placeholder="bus, commute, tracking" /><small className="field-help">Separate tags with commas.</small></label></div></section>
+        <section className="form-section"><div className="form-section-heading"><span>02</span><div><h2>Define a better outcome</h2><p>What would be meaningfully easier if this problem were solved?</p></div></div><label className="field-label">Desired outcome <span>Required</span><textarea name="outcome" rows="3" value={form.outcome} onChange={update} placeholder="A simple way for students to see the bus’s last reported stop and estimated arrival." />{errors.outcome && <small className="field-error">{errors.outcome}</small>}</label><label className="field-label">Constraints or requirements <span>Optional</span><textarea name="constraints" rows="3" value={form.constraints} onChange={update} placeholder="Mobile-friendly, low data use, accessible to first-time users…" /></label></section>
+        <section className="form-section"><div className="form-section-heading"><span>03</span><div><h2>Opportunity details</h2><p>Let developers know whether there is a budget attached.</p></div></div><label className="check-field"><input type="checkbox" name="paid" checked={form.paid} onChange={update} /><span><strong>This is a paid opportunity</strong><small>Share an indicative range. It can be refined with interested developers.</small></span></label>{form.paid && <label className="field-label">Indicative budget range <span>Required</span><input name="budget" value={form.budget} onChange={update} placeholder="e.g. ₹5,000–₹15,000" />{errors.budget && <small className="field-error">{errors.budget}</small>}</label>}</section>
+        {showMatches && <section className="duplicate-check"><div className="duplicate-head"><span className="note-icon">↗</span><div><strong>Some requests may be related</strong><p>These are keyword matches from the demo data, not an AI duplicate check.</p></div></div>{matches.map(({ problem }) => <button type="button" className="duplicate-row" key={problem._id} onClick={() => onOpenProblem?.(problem._id)}><span><strong>{problem.title}</strong><small>{problem.category} · {problem.upvotes.length} supporters</small></span><span>View →</span></button>)}<label className="check-field"><input type="checkbox" checked={confirmed} onChange={(e) => setConfirmed(e.target.checked)} /><span><strong>My request adds a distinct perspective</strong><small>Continue and publish it as a separate request.</small></span></label></section>}
+        <div className="form-actions"><span className="form-footnote">Your request will be visible to the DevBridge community.</span><div>{onCancel && <button type="button" className="btn btn-outline" onClick={onCancel}>Cancel</button>}<button type="submit" className="btn btn-primary" disabled={showMatches && !confirmed}>{showMatches ? submitLabel : "Check for related requests"} <span>→</span></button></div></div>
+    </form>;
 }
-
 export default ProblemForm;

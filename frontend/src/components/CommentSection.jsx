@@ -16,7 +16,7 @@ function CommentSection({comments, currentUser, onAddComment, onNavigate}) {
     }
 
     return (
-        <section className="card section">
+        <section className="comment-section">
             <h2>Discussion ({comments.length})</h2>
 
             {comments.length === 0 && <p className="muted">No comments yet. Start the discussion.</p>}

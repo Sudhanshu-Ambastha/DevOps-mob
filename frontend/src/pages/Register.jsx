@@ -1,84 +1,8 @@
 import { useState } from "react";
-
-function Register({onRegister, onNavigate}) {
-    const [form, setForm]=useState({
-        name:"",
-        email:"",
-        password:"",
-        role:"user"
-    });
-    const [error, setError]=useState("");
-
-    function handleChange(event) {
-        setForm({...form,[event.target.name]:event.target.value});
-    }
-
-    function handleSubmit(event) {
-        event.preventDefault();
-
-        if (form.name.trim().length < 2) {
-            setError("Please enter your name.");
-            return;
-        }
-
-        if (!form.email.includes("@")) {
-            setError("Please enter a valid email.");
-            return;
-        }
-
-        if (form.password.length < 6) {
-            setError("Password should be at least 6 characters.");
-            return;
-        }
-
-        const registerError=onRegister(form);
-        setError(registerError);
-    }
-
-    return (
-        <div className="auth-page">
-            <form className="card form auth-card" onSubmit={handleSubmit}>
-                <h1>Create account</h1>
-
-                <label>
-                    Full name
-                    <input name="name" value={form.name} onChange={handleChange} />
-                </label>
-
-                <label>
-                    Email
-                    <input type="email" name="email" value={form.email} onChange={handleChange} />
-                </label>
-
-                <label>
-                    Password
-                    <input type="password" name="password" value={form.password} onChange={handleChange} />
-                </label>
-
-                <div className="role-options">
-                    <label className={form.role === "user" ? "role-option selected" : "role-option"}>
-                        <input type="radio" name="role" value="user" checked={form.role === "user"} onChange={handleChange} />
-                        <strong>I have problems</strong>
-                        <span className="muted small">Post, upvote and discuss</span>
-                    </label>
-
-                    <label className={form.role === "developer" ? "role-option selected" : "role-option"}>
-                        <input type="radio" name="role" value="developer" checked={form.role === "developer"} onChange={handleChange} />
-                        <strong>I am a developer</strong>
-                        <span className="muted small">Also publish solutions</span>
-                    </label>
-                </div>
-
-                {error && <p className="error">{error}</p>}
-
-                <button type="submit" className="btn btn-primary btn-full">Register</button>
-
-                <p className="muted small center">
-                    Already have an account? <button type="button" className="link-button" onClick={() => onNavigate("login")}>Login</button>
-                </p>
-            </form>
-        </div>
-    );
+function Register({ onRegister, onNavigate }) {
+    const [form, setForm] = useState({ name: "", email: "", role: "user" }); const [error, setError] = useState("");
+    function change(event) { setForm({ ...form, [event.target.name]: event.target.value }); }
+    function submit(event) { event.preventDefault(); if (form.name.trim().length < 2) return setError("Enter your name."); if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(form.email)) return setError("Enter a valid email address."); onRegister(form); }
+    return <div className="auth-layout"><div className="auth-aside"><div className="brand-lockup"><span className="brand-mark">d<span>.</span></span> devbridge</div><div><div className="eyebrow">GOOD TO HAVE YOU</div><h2>Make your expertise useful to someone.</h2><p>Support a problem, share your own, or publish a solution shaped by real community feedback.</p></div><span className="auth-caption">Demo profile · no password or account required</span></div><div className="auth-main"><form className="auth-form" onSubmit={submit}><div className="eyebrow">CREATE A LOCAL DEMO PROFILE</div><h1>Join the community</h1><p>This profile exists only in this browser session.</p><label className="field-label">Full name<input name="name" required autoComplete="name" value={form.name} onChange={change} placeholder="Your name" /></label><label className="field-label">Email address<input type="email" name="email" required autoComplete="email" value={form.email} onChange={change} placeholder="you@example.com" /></label><fieldset className="role-picker"><legend>How would you like to participate?</legend><label className={form.role === "user" ? "role-card selected" : "role-card"}><input type="radio" name="role" value="user" checked={form.role === "user"} onChange={change} /><strong>I have a problem</strong><small>Share, support, and discuss requests</small></label><label className={form.role === "developer" ? "role-card selected" : "role-card"}><input type="radio" name="role" value="developer" checked={form.role === "developer"} onChange={change} /><strong>I'm a developer</strong><small>Also publish and discuss solutions</small></label></fieldset>{error && <p className="field-error" role="alert">{error}</p>}<button className="btn btn-primary btn-full">Create demo profile <span>→</span></button><p className="auth-legal">No password is collected. Real account registration will be added with backend authentication.</p><div className="auth-switch">Already exploring? <button type="button" className="text-link" onClick={() => onNavigate("login")}>Continue as demo →</button></div></form></div></div>;
 }
-
 export default Register;

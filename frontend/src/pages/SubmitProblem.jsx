@@ -1,22 +1,5 @@
 import ProblemForm from "../components/ProblemForm";
-
-function SubmitProblem({onSubmit, onNavigate}) {
-    return (
-        <div className="narrow">
-            <div className="page-header">
-                <div>
-                    <h1>Submit a problem</h1>
-                    <p className="muted">Explain the problem clearly. Developers will take it from there.</p>
-                </div>
-            </div>
-
-            <ProblemForm
-                submitLabel="Submit problem"
-                onSubmit={onSubmit}
-                onCancel={() => onNavigate("problems")}
-            />
-        </div>
-    );
+function SubmitProblem({ problems, onSubmit, onNavigate }) {
+    return <div className="container-wide page-shell submit-layout"><div className="page-title-row"><div><div className="eyebrow">START WITH THE NEED</div><h1>Bring a problem to DevBridge</h1><p>A clear request helps the right people understand the need and decide if they can help.</p></div></div><div className="submit-grid"><ProblemForm problems={problems} onSubmit={onSubmit} onCancel={() => onNavigate("problems")} onOpenProblem={(id) => onNavigate("details", id)} /><aside className="submit-aside"><div className="aside-panel"><div className="eyebrow">A GOOD REQUEST INCLUDES</div><ul className="request-checklist"><li><span>✓</span><div><strong>Who is affected</strong><small>Describe the people and context.</small></div></li><li><span>✓</span><div><strong>What happens now</strong><small>Explain today's workaround or gap.</small></div></li><li><span>✓</span><div><strong>What better looks like</strong><small>Focus on the outcome, not a specific app.</small></div></li></ul></div><div className="aside-note panel-note"><span className="note-icon">i</span><span>New requests are added to this demo session's community feed.</span></div></aside></div></div>;
 }
-
 export default SubmitProblem;

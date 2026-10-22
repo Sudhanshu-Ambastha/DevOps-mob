@@ -1,233 +1,121 @@
-import { useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import Navbar from "./components/Navbar";
 import Footer from "./components/Footer";
 import Home from "./pages/Home";
 import Problems from "./pages/Problems";
 import ProblemDetails from "./pages/ProblemDetails";
 import SubmitProblem from "./pages/SubmitProblem";
-import EditProblem from "./pages/EditProblem";
-import MyProblems from "./pages/MyProblems";
 import Login from "./pages/Login";
 import Register from "./pages/Register";
 import Profile from "./pages/Profile";
+import Solutions from "./pages/Solutions";
+import SolutionDetails from "./pages/SolutionDetails";
 import { mockProblems, mockUsers } from "./data/mockData";
 import { createId } from "./utils/helpers";
 
-const protectedPages=["submit","edit","my-problems","profile"];
+function readRoute() {
+    const path = window.location.pathname.split("/").filter(Boolean);
+    const query = new URLSearchParams(window.location.search).get("q") || "";
+    if (!path.length) return { page: "home", id: null, query };
+    if (path[0] === "problems" && path[1]) return { page: "details", id: path[1], query };
+    if (path[0] === "problems") return { page: "problems", id: null, query };
+    if (path[0] === "solutions" && path[1]) return { page: "solution-details", id: path[1], query };
+    if (path[0] === "solutions") return { page: "solutions", id: null, query };
+    if (path[0] === "submit") return { page: "submit", id: null, query };
+    if (path[0] === "dashboard") return { page: "dashboard", id: path[1] || "overview", query };
+    if (path[0] === "profile") return { page: "dashboard", id: "profile", query };
+    if (path[0] === "login" || path[0] === "register") return { page: path[0], id: null, query };
+    return { page: "home", id: null, query };
+}
+
+function routePath(page, id) {
+    if (page === "profile") return "/dashboard/profile";
+    if (page === "details") return `/problems/${encodeURIComponent(id)}`;
+    if (page === "solution-details") return `/solutions/${encodeURIComponent(id)}`;
+    if (page === "dashboard") return `/dashboard/${encodeURIComponent(id || "overview")}`;
+    return ({ home: "/", problems: "/problems", submit: "/submit", solutions: "/solutions", login: "/login", register: "/register" })[page] || "/";
+}
 
 function App() {
-    const [problems, setProblems]=useState(mockProblems);
-    const [users, setUsers]=useState(mockUsers);
-    const [currentUser, setCurrentUser]=useState(null);
-    const [page, setPage]=useState("home");
-    const [selectedId, setSelectedId]=useState(null);
+    const [problems, setProblems] = useState(mockProblems);
+    const [currentUser, setCurrentUser] = useState(null);
+    const [route, setRoute] = useState(readRoute);
+    const [followed, setFollowed] = useState([]);
+    const [theme, setTheme] = useState(() => {
+        try { return localStorage.getItem("devbridge-theme") === "light" ? "light" : "dark"; }
+        catch { return "dark"; }
+    });
+    const selectedProblem = problems.find((problem) => problem._id === route.id);
+    const allSolutions = useMemo(() => problems.flatMap((problem) => problem.solutions.map((solution) => ({ ...solution, problemId: problem._id, problemTitle: problem.title }))), [problems]);
+    const selectedSolution = allSolutions.find((solution) => solution._id === route.id);
 
-    const selectedProblem=problems.find((problem) => problem._id === selectedId);
+    useEffect(() => {
+        const syncRoute = () => setRoute(readRoute());
+        window.addEventListener("popstate", syncRoute);
+        return () => window.removeEventListener("popstate", syncRoute);
+    }, []);
+    useEffect(() => {
+        document.documentElement.dataset.theme = theme;
+        try { localStorage.setItem("devbridge-theme", theme); } catch { /* Theme still works for this session. */ }
+    }, [theme]);
 
-    function navigate(nextPage, problemId=null) {
-        setPage(nextPage);
-        setSelectedId(problemId);
-        window.scrollTo(0, 0);
+    function navigate(nextPage, id = null) {
+        const path = routePath(nextPage, id);
+        const queryString = nextPage === "problems" && typeof id === "string" && id ? `?q=${encodeURIComponent(id)}` : "";
+        window.history.pushState({}, "", `${path}${queryString}`);
+        setRoute({ page: nextPage === "profile" ? "dashboard" : nextPage, id: nextPage === "profile" ? "profile" : nextPage === "dashboard" ? id || "overview" : nextPage === "problems" && typeof id === "string" ? null : id, query: nextPage === "problems" && typeof id === "string" ? id : "" });
+        window.scrollTo({ top: 0, behavior: "smooth" });
     }
 
-    function openProblem(problemId) {
-        navigate("details", problemId);
+    function changeProblem(id, mutate) {
+        setProblems((current) => current.map((item) => item._id === id ? mutate(item) : item));
     }
-
-    // ---------- Auth ----------
-
-    function login(email, password) {
-        const user=users.find((item) => item.email === email.toLowerCase() && item.password === password);
-
-        if (!user) {
-            return "Invalid email or password.";
-        }
-
-        setCurrentUser(user);
-
-        if (page === "login" || page === "register") {
-            navigate("problems");
-        }
-
-        return "";
+    function enterDemo() {
+        setCurrentUser({ ...mockUsers[1], demo: true });
+        navigate("dashboard", "overview");
     }
-
     function register(form) {
-        const email=form.email.trim().toLowerCase();
-
-        if (users.some((user) => user.email === email)) {
-            return "An account with this email already exists.";
-        }
-
-        const newUser={
-            _id:createId(),
-            name:form.name.trim(),
-            email,
-            password:form.password,
-            role:form.role,
-            bio:"",
-            skills:[],
-            createdAt:new Date().toISOString()
-        };
-
-        setUsers([...users, newUser]);
-        setCurrentUser(newUser);
-        navigate("problems");
-        return "";
+        setCurrentUser({ _id: createId(), name: form.name.trim(), email: form.email.trim().toLowerCase(), role: form.role, bio: "", skills: [], demo: true });
+        navigate("dashboard", "overview");
     }
-
-    function logout() {
-        setCurrentUser(null);
-        navigate("home");
-    }
-
-    function updateProfile(data) {
-        const updatedUser={...currentUser,...data};
-
-        setUsers(users.map((user) => user._id === updatedUser._id ? updatedUser : user));
-        setCurrentUser(updatedUser);
-    }
-
-    // ---------- Problems ----------
-
-    function changeProblem(problemId, getChanges) {
-        setProblems(problems.map((problem) => {
-            return problem._id === problemId ? {...problem,...getChanges(problem)} : problem;
-        }));
-    }
-
     function addProblem(data) {
-        const now=new Date().toISOString();
-
-        const newProblem={
-            _id:createId(),
-            ...data,
-            author:{_id:currentUser._id,name:currentUser.name},
-            status:"open",
-            upvotes:[],
-            comments:[],
-            solutions:[],
-            similarProblems:[],
-            embeddingStatus:"not-processed",
-            createdAt:now,
-            updatedAt:now
-        };
-
-        setProblems([newProblem, ...problems]);
-        openProblem(newProblem._id);
+        const id = createId();
+        const item = { _id: id, ...data, author: { _id: currentUser?._id ?? "guest", name: currentUser?.name ?? "Community member" }, status: "open", upvotes: [], comments: [], solutions: [], similarProblems: [], createdAt: new Date().toISOString(), updatedAt: new Date().toISOString() };
+        setProblems((current) => [item, ...current]);
+        navigate("details", id);
     }
-
-    function updateProblem(problemId, data) {
-        changeProblem(problemId, () => ({...data,updatedAt:new Date().toISOString()}));
-        openProblem(problemId);
+    function upvote(id) {
+        if (!currentUser) return navigate("login");
+        changeProblem(id, (item) => ({ ...item, upvotes: item.upvotes.includes(currentUser._id) ? item.upvotes.filter((uid) => uid !== currentUser._id) : [...item.upvotes, currentUser._id] }));
     }
-
-    function deleteProblem(problemId) {
-        setProblems(problems.filter((problem) => problem._id !== problemId));
-        navigate("my-problems");
+    function addComment(id, text) {
+        if (!currentUser) return navigate("login");
+        changeProblem(id, (item) => ({ ...item, comments: [...item.comments, { _id: createId(), author: { _id: currentUser._id, name: currentUser.name }, text, createdAt: new Date().toISOString() }] }));
     }
-
-    function toggleUpvote(problemId) {
-        if (!currentUser) {
-            navigate("login");
-            return;
-        }
-
-        changeProblem(problemId, (problem) => {
-            const hasUpvoted=problem.upvotes.includes(currentUser._id);
-
-            return {
-                upvotes:hasUpvoted
-                    ? problem.upvotes.filter((userId) => userId !== currentUser._id)
-                    : [...problem.upvotes, currentUser._id]
-            };
-        });
+    function toggleFollow(id) {
+        if (!currentUser) return navigate("login");
+        setFollowed((ids) => ids.includes(id) ? ids.filter((value) => value !== id) : [...ids, id]);
     }
-
-    function addComment(problemId, text) {
-        const comment={
-            _id:createId(),
-            author:{_id:currentUser._id,name:currentUser.name},
-            text,
-            createdAt:new Date().toISOString()
-        };
-
-        changeProblem(problemId, (problem) => ({comments:[...problem.comments, comment]}));
+    function addSolution(id, data) {
+        if (!currentUser) return navigate("login");
+        const solution = { _id: createId(), author: { _id: currentUser._id, name: currentUser.name }, ...data, techStack: data.techStack ?? [], features: data.features ?? [], createdAt: new Date().toISOString() };
+        changeProblem(id, (item) => ({ ...item, solutions: [...item.solutions, solution], status: "in-progress" }));
     }
+    function updateProfile(data) { setCurrentUser((user) => ({ ...user, ...data })); }
+    function signOut() { setCurrentUser(null); setFollowed([]); navigate("home"); }
 
-    function addSolution(problemId, data) {
-        const solution={
-            _id:createId(),
-            author:{_id:currentUser._id,name:currentUser.name},
-            ...data,
-            createdAt:new Date().toISOString()
-        };
+    let content;
+    if (route.page === "problems") content = <Problems problems={problems} currentUser={currentUser} initialQuery={route.query} onOpenProblem={(id) => navigate("details", id)} onUpvote={upvote} onNavigate={navigate} />;
+    else if (route.page === "details") content = <ProblemDetails problem={selectedProblem} allProblems={problems} currentUser={currentUser} followed={followed.includes(route.id)} onNavigate={navigate} onUpvote={upvote} onAddComment={addComment} onAddSolution={addSolution} onFollow={toggleFollow} />;
+    else if (route.page === "submit") content = <SubmitProblem problems={problems} onSubmit={addProblem} onNavigate={navigate} />;
+    else if (route.page === "solutions") content = <Solutions solutions={allSolutions} onNavigate={navigate} />;
+    else if (route.page === "solution-details") content = <SolutionDetails solution={selectedSolution} onNavigate={navigate} />;
+    else if (route.page === "dashboard") content = currentUser ? <Profile currentUser={currentUser} problems={problems} followed={followed} section={route.id} onNavigate={navigate} onUpdateProfile={updateProfile} onSignOut={signOut} /> : <Login onDemo={enterDemo} onNavigate={navigate} />;
+    else if (route.page === "login") content = <Login onDemo={enterDemo} onNavigate={navigate} />;
+    else if (route.page === "register") content = <Register onRegister={register} onNavigate={navigate} />;
+    else content = <Home problems={problems} currentUser={currentUser} onNavigate={navigate} onOpenProblem={(id) => navigate("details", id)} onUpvote={upvote} />;
 
-        changeProblem(problemId, (problem) => ({
-            solutions:[...problem.solutions, solution],
-            status:problem.status === "open" ? "in-progress" : problem.status
-        }));
-    }
-
-    // ---------- Pages ----------
-
-    function renderPage() {
-        if (protectedPages.includes(page) && !currentUser) {
-            return <Login message="Please log in to continue." onLogin={login} onNavigate={navigate} />;
-        }
-
-        if (page === "problems") {
-            return <Problems problems={problems} currentUser={currentUser} onOpenProblem={openProblem} onUpvote={toggleUpvote} onNavigate={navigate} />;
-        }
-
-        if (page === "details") {
-            return (
-                <ProblemDetails
-                    problem={selectedProblem}
-                    currentUser={currentUser}
-                    onNavigate={navigate}
-                    onUpvote={toggleUpvote}
-                    onDelete={deleteProblem}
-                    onAddComment={addComment}
-                    onAddSolution={addSolution}
-                />
-            );
-        }
-
-        if (page === "submit") {
-            return <SubmitProblem onSubmit={addProblem} onNavigate={navigate} />;
-        }
-
-        if (page === "edit") {
-            return <EditProblem problem={selectedProblem} currentUser={currentUser} onUpdate={updateProblem} onNavigate={navigate} />;
-        }
-
-        if (page === "my-problems") {
-            return <MyProblems problems={problems} currentUser={currentUser} onNavigate={navigate} onOpenProblem={openProblem} onDelete={deleteProblem} />;
-        }
-
-        if (page === "profile") {
-            return <Profile currentUser={currentUser} problems={problems} onUpdateProfile={updateProfile} />;
-        }
-
-        if (page === "login") {
-            return <Login onLogin={login} onNavigate={navigate} />;
-        }
-
-        if (page === "register") {
-            return <Register onRegister={register} onNavigate={navigate} />;
-        }
-
-        return <Home problems={problems} currentUser={currentUser} onNavigate={navigate} onOpenProblem={openProblem} onUpvote={toggleUpvote} />;
-    }
-
-    return (
-        <div className="app">
-            <Navbar currentUser={currentUser} currentPage={page} onNavigate={navigate} onLogout={logout} />
-            <main className="container main">{renderPage()}</main>
-            <Footer />
-        </div>
-    );
+    return <div className={`app theme-${theme}`}><Navbar currentUser={currentUser} currentPage={route.page} onNavigate={navigate} onLogout={signOut} theme={theme} onToggleTheme={() => setTheme((current) => current === "dark" ? "light" : "dark")} followedCount={followed.length} /><main className="main" key={`${route.page}-${route.id || ""}`}>{content}</main><Footer onNavigate={navigate} /></div>;
 }
 
 export default App;

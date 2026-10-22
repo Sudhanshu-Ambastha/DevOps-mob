@@ -1,71 +1,27 @@
+import { useState } from "react";
 import ProblemCard from "../components/ProblemCard";
 
-const steps=[
-    {title:"Post a problem",text:"Describe a real problem you or your campus faces."},
-    {title:"Discuss and upvote",text:"Others upvote and comment so the important problems rise up."},
-    {title:"Developers build",text:"Developers publish solutions that anyone can use or improve."}
-];
-
-function Home({problems, currentUser, onNavigate, onOpenProblem, onUpvote}) {
-    const solutionCount=problems.reduce((total, problem) => total + problem.solutions.length, 0);
-    const solvedCount=problems.filter((problem) => problem.status === "solved").length;
-
-    const topProblems=[...problems]
-        .sort((a, b) => b.upvotes.length - a.upvotes.length)
-        .slice(0, 3);
-
-    return (
-        <div>
-            <section className="hero">
-                <h1>Real problems. Real developers. Real solutions.</h1>
-                <p>
-                    DevBridge connects people who face everyday problems with developers
-                    who can turn them into working projects.
-                </p>
-                <div className="hero-actions">
-                    <button className="btn btn-primary" onClick={() => onNavigate("submit")}>Post a problem</button>
-                    <button className="btn btn-outline" onClick={() => onNavigate("problems")}>Browse problems</button>
-                </div>
-            </section>
-
-            <section className="stats">
-                <div className="stat"><strong>{problems.length}</strong><span>Problems posted</span></div>
-                <div className="stat"><strong>{solutionCount}</strong><span>Solutions published</span></div>
-                <div className="stat"><strong>{solvedCount}</strong><span>Problems solved</span></div>
-            </section>
-
-            <section className="section-block">
-                <h2>How it works</h2>
-                <div className="steps">
-                    {steps.map((step, index) => (
-                        <div key={step.title} className="card step">
-                            <span className="step-number">{index + 1}</span>
-                            <h3>{step.title}</h3>
-                            <p className="muted">{step.text}</p>
-                        </div>
-                    ))}
-                </div>
-            </section>
-
-            <section className="section-block">
-                <div className="section-title">
-                    <h2>Most upvoted problems</h2>
-                    <button className="link-button" onClick={() => onNavigate("problems")}>See all &rarr;</button>
-                </div>
-                <div className="problem-grid">
-                    {topProblems.map((problem) => (
-                        <ProblemCard
-                            key={problem._id}
-                            problem={problem}
-                            currentUser={currentUser}
-                            onOpen={onOpenProblem}
-                            onUpvote={onUpvote}
-                        />
-                    ))}
-                </div>
-            </section>
-        </div>
-    );
+function Home({ problems, currentUser, onNavigate, onOpenProblem, onUpvote }) {
+    const [query, setQuery] = useState("");
+    const trending = [...problems].sort((a, b) => b.upvotes.length - a.upvotes.length).slice(0, 3);
+    const recent = [...problems].sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt)).slice(0, 3);
+    const solutions = problems.flatMap((problem) => problem.solutions.map((solution) => ({ ...solution, problemId: problem._id, problemTitle: problem.title }))).slice(0, 3);
+    function search(event) { event.preventDefault(); onNavigate("problems", query); }
+    return <div>
+        <section className="hero container-wide">
+            <div className="hero-copy"><div className="eyebrow"><span className="live-dot" /> COMMUNITY-POWERED BUILDING</div>
+                <h1>Real problems deserve<br /><em>thoughtful solutions.</em></h1>
+                <p>DevBridge brings the people who need something together with the developers ready to build it. Start with a problem. Find your people. Make it real.</p>
+                <form className="hero-search" onSubmit={search}><span aria-hidden="true">⌕</span><input aria-label="Search problems" value={query} onChange={(event) => setQuery(event.target.value)} placeholder="What problem are you trying to solve?" /><button className="btn btn-primary">Explore</button></form>
+                <div className="hero-actions"><button className="text-link" onClick={() => onNavigate("problems")}>Browse all problems <span>→</span></button><span className="hero-note">No idea is too small to start.</span></div>
+            </div>
+            <aside className="hero-aside"><div className="signal-card"><div className="signal-head"><span className="signal-label">COMMUNITY SIGNAL</span><span className="signal-status">OPEN TO BUILD</span></div><h3>Students need a better way to find project teammates</h3><p>Connect across departments by skills, interests, and availability.</p><div className="signal-foot"><div className="avatar-stack"><span>R</span><span>A</span><span>N</span><span>+8</span></div><span><strong>11</strong> people need this</span></div></div><div className="aside-note"><span className="note-icon">↗</span><span>One shared need.<br /><strong>Many better possibilities.</strong></span></div></aside>
+        </section>
+        <section className="container-wide proof-strip"><div><strong>{problems.length}</strong><span>community problems</span></div><i /><div><strong>{problems.reduce((sum, p) => sum + p.solutions.length, 0)}</strong><span>solutions in progress</span></div><i /><div><strong>{new Set(problems.flatMap((p) => p.upvotes)).size}</strong><span>people contributing</span></div><span className="proof-caption">A small community, building with purpose.</span></section>
+        <section className="container-wide content-section"><div className="section-heading"><div><div className="eyebrow">WHERE DEMAND IS GROWING</div><h2>Problems worth solving</h2><p>Real requests, made stronger by the people who share them.</p></div><button className="text-link" onClick={() => onNavigate("problems")}>Explore all problems <span>→</span></button></div><div className="problem-grid">{trending.map((problem) => <ProblemCard key={problem._id} problem={problem} currentUser={currentUser} onOpen={onOpenProblem} onUpvote={onUpvote} />)}</div></section>
+        <section className="container-wide split-section"><div className="section-heading"><div><div className="eyebrow">FRESH FROM THE COMMUNITY</div><h2>Recently submitted</h2></div><button className="text-link" onClick={() => onNavigate("problems")}>See all requests →</button></div><div className="compact-list">{recent.map((problem, i) => <button key={problem._id} className="compact-row" onClick={() => onOpenProblem(problem._id)}><span className="row-index">0{i + 1}</span><span className="row-main"><strong>{problem.title}</strong><small>{problem.category} · {problem.author.name}</small></span><span className="row-demand">↑ {problem.upvotes.length}<small>supporters</small></span><span className="row-arrow">↗</span></button>)}</div></section>
+        <section className="solutions-band"><div className="container-wide solution-band-inner"><div><div className="eyebrow">BUILT BY THE COMMUNITY</div><h2>Solutions with a reason to exist.</h2><p>Every build starts with a real need. Explore prototypes and projects made to answer one.</p><button className="btn btn-dark" onClick={() => onNavigate("solutions")}>Discover solutions <span>→</span></button></div><div className="solution-preview">{solutions.map((solution) => <button className="solution-preview-row" key={solution._id} onClick={() => onNavigate("solution-details", solution._id)}><span className="solution-glyph">{solution.title.charAt(0)}</span><span><strong>{solution.title}</strong><small>For: {solution.problemTitle}</small></span><span className="row-arrow">↗</span></button>)}</div></div></section>
+        <section className="container-wide how-section" id="how-it-works"><div className="eyebrow">A BETTER WAY TO BUILD</div><h2>From “I wish this existed”<br />to “we built it.”</h2><div className="steps"><article><span>01</span><h3>Describe the need</h3><p>Share what is difficult today, who it affects, and what a better outcome looks like.</p></article><article><span>02</span><h3>Find common ground</h3><p>People support related requests. Shared demand helps developers focus on what matters.</p></article><article><span>03</span><h3>Build in the open</h3><p>Developers publish approaches, collect feedback, and shape useful solutions together.</p></article></div><button className="btn btn-primary" onClick={() => onNavigate("submit")}>Bring a problem to DevBridge <span>→</span></button></section>
+    </div>;
 }
-
 export default Home;
