@@ -1,56 +1,23 @@
 # DevBridge
 
-DevBridge connects people who have real-world problems with developers who can build solutions.
+DevBridge is a crowdsourced, unified problem-solving platform connecting real-world user problems with developers, featuring automated Software Requirement Specification (SRS) translation and semantic duplicate detection using Hugging Face NLP models.
 
-## Current phase: frontend only
+## Repository Architecture & Multi-Branch Workflow
 
-The project is being built in phases. This phase contains only the React frontend, which uses local mock data.
+To keep our college project clean, avoid backend conflicts, and allow separate sub-teams to work simultaneously without merge hell, we use an isolated multi-branch architecture:
 
 ```
 DevBridge/
-    frontend/       React + Vite (this phase)
-    backend/        Express + Node + MongoDB (later)
-    ai-service/     NLP + Deep Learning (later)
-    networking/     Computer Networks work (later)
-    coa/            COA work (later)
-    devops/         Docker, Nginx, CI/CD (later)
-    docs/           Documentation (later)
+├── main          (Shared Core: Python + Hugging Face /ml/ pipeline)
+├── web-dev       (Web Team: Express + React + Vite + shared /ml/)
+└── mob-dev       (Mobile Team: Native Android Java/XML + shared /ml/)
 ```
 
-## Run the frontend
+## How the Shared AI Core Syncs
 
-```
-cd frontend
-npm install
-npm run dev
-```
+The shared `ml/` folder on `main` contains our core NLP models (for semantic duplicate detection and text-to-SRS translation).
 
-Open http://localhost:5173
+- **Automated Sync:** An automated GitHub Action script (`scripts/sync.sh`) runs daily (or can be triggered manually in the Actions tab) to copy the latest updates from the `ml/` folder on `main` directly into `web-dev` and `mob-dev`.
+- **Zero Overwrites:** This sync process **only** updates the `ml/` directory. It never touches or overrides the web or mobile frontend code, ensuring team members can work safely on their respective platforms.
 
-Other commands: `npm run build` (production build) and `npm run lint`.
-
-Demo accounts:
-
-| Email | Password | Role |
-| --- | --- | --- |
-| riya@devbridge.com | riya123 | user |
-| arjun@devbridge.com | arjun123 | developer |
-
-## Frontend structure
-
-```
-frontend/src/
-    App.jsx           all app state, page switching and data-changing functions
-    data/mockData.js  mock users and problems (same shape as the future MongoDB models)
-    utils/helpers.js  small helper functions
-    components/       Navbar, Footer, ProblemCard, SearchBar, ProblemForm, UpvoteButton,
-                      CommentSection, SolutionCard, SolutionForm
-    pages/            Home, Problems, ProblemDetails, SubmitProblem, EditProblem,
-                      MyProblems, Login, Register, Profile
-```
-
-## Connecting the backend later
-
-Pages and components never read the mock data directly. They receive data through props from `App.jsx`, and every change goes through a function in `App.jsx` (`addProblem`, `updateProblem`, `deleteProblem`, `toggleUpvote`, `addComment`, `addSolution`, `login`, `register`).
-
-When the Express API is ready, only `App.jsx` needs to change: load `problems` from `GET /api/problems` instead of `mockProblems`, and make those functions call the matching API routes. The components stay the same.
+---

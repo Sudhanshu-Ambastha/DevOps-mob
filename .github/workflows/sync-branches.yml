@@ -1,0 +1,23 @@
+name: Run Fork Sync Script
+
+on:
+  schedule:
+    - cron: "0 0 * * *" # Runs automatically once a day
+  workflow_dispatch: # Allows manual trigger anytime from your fork's Actions tab
+
+jobs:
+  run-sync:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write # CRITICAL for forks: allows the bot to push updates and create branches
+    steps:
+      - name: Checkout forked repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+          token: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Make script executable and run it
+        run: |
+          chmod +x scripts/sync.sh
+          ./scripts/sync.sh
