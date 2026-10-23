@@ -5,6 +5,8 @@ echo "Starting Fork-Side Dual-Mobile & ML-Core Sync..."
 git config --global user.name "DevBridge Mobile Sync Bot"
 git config --global user.email "bot@devbridge.fork"
 
+git stash --include-untracked || true
+
 git fetch origin --prune
 
 TARGET_MOB1="mob-dev1"
@@ -17,7 +19,6 @@ if ! git ls-remote --exit-code --heads origin $TARGET_MOB1; then
 fi
 
 git checkout -b temp-mob1-sync origin/$TARGET_MOB1 || git checkout -b temp-mob1-sync origin/$TARGET_MOB1 2>/dev/null || git checkout -b temp-mob1-sync
-
 git checkout main -- ml/ 2>/dev/null || true
 
 git add ml/ mobile/ 2>/dev/null || true
