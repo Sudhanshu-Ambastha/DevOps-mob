@@ -1,29 +1,46 @@
 set -e
 
-echo "Starting Main Repo ML-Core to Web Sync..."
+echo "Starting Fork-Side Dual-Mobile & ML-Core Sync..."
 
-git config --global user.name "DevBridge Main Sync Bot"
-git config --global user.email "bot@devbridge.main"
+git config --global user.name "DevBridge Mobile Sync Bot"
+git config --global user.email "bot@devbridge.fork"
 
 git fetch origin
 
-TARGET_WEB="web-dev"
+TARGET_MOB1="mob-dev1"
 
-if ! git ls-remote --exit-code --heads origin $TARGET_WEB; then
-  git checkout -b $TARGET_WEB
-  git push origin $TARGET_WEB
+if ! git ls-remote --exit-code --heads origin $TARGET_MOB1; then
+  git checkout main
+  git checkout -b $TARGET_MOB1
+  git push origin $TARGET_MOB1
 fi
 
 git checkout main
-git checkout -b temp-web-sync origin/$TARGET_WEB || git checkout -b temp-web-sync
+git checkout -b temp-mob1-sync origin/$TARGET_MOB1 || git checkout -b temp-mob1-sync
+git checkout main -- ml/ 2>/dev/null || true
+
+git add ml/ mobile/ 2>/dev/null || true
+git commit -m "chore(sync): updated shared ml/ core for mob-dev1" || echo "No changes for mob-dev1"
+git push origin temp-mob1-sync:$TARGET_MOB1 --force
+
+TARGET_MOB2="mob-dev2"
+
+if ! git ls-remote --exit-code --heads origin $TARGET_MOB2; then
+  git checkout mob-dev1
+  git checkout -b $TARGET_MOB2
+  git push origin $TARGET_MOB2
+fi
+
+git checkout main
+git checkout -b temp-mob2-sync origin/$TARGET_MOB2 || git checkout -b temp-mob2-sync
 
 git checkout main -- ml/ 2>/dev/null || true
 
-git add ml/ web/ 2>/dev/null || true
-git commit -m "chore(sync): updated shared ml/ core for Web Team" || echo "No changes for web"
-git push origin temp-web-sync:$TARGET_WEB --force
+git add ml/ mobile/ 2>/dev/null || true
+git commit -m "chore(sync): updated shared ml/ core for mob-dev2 (preserving unique UI & features)" || echo "No changes for mob-dev2"
+git push origin temp-mob2-sync:$TARGET_MOB2 --force
 
 git checkout main
-git branch -D temp-web-sync 2>/dev/null || true
+git branch -D temp-mob1-sync temp-mob2-sync 2>/dev/null || true
 
-echo "Main repo web sync completed successfully!"
+echo "Fork-side dual-mobile sync completed successfully!"
