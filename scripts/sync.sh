@@ -1,6 +1,6 @@
 set -e
 
-echo "Starting Fork-Side Dual-Mobile & ML-Core Sync..."
+echo "Starting Fork-Side Mobile Sync (mob-dev & mob-dev2)..."
 
 git config --global user.name "DevBridge Mobile Sync Bot"
 git config --global user.email "bot@devbridge.fork"
@@ -9,27 +9,27 @@ git stash --include-untracked || true
 
 git fetch origin --prune
 
-TARGET_MOB1="mob-dev1"
+TARGET_MOB="mob-dev"
 
-if ! git ls-remote --exit-code --heads origin $TARGET_MOB1; then
-  echo "Creating remote $TARGET_MOB1 from main..."
+if ! git ls-remote --exit-code --heads origin $TARGET_MOB; then
+  echo "Creating remote $TARGET_MOB from main..."
   git checkout main
-  git checkout -b $TARGET_MOB1
-  git push origin $TARGET_MOB1
+  git checkout -b $TARGET_MOB
+  git push origin $TARGET_MOB
 fi
 
-git checkout -b temp-mob1-sync origin/$TARGET_MOB1 || git checkout -b temp-mob1-sync origin/$TARGET_MOB1 2>/dev/null || git checkout -b temp-mob1-sync
+git checkout -b temp-mob-sync origin/$TARGET_MOB || git checkout -b temp-mob-sync origin/$TARGET_MOB 2>/dev/null || git checkout -b temp-mob-sync
 git checkout main -- ml/ 2>/dev/null || true
 
 git add ml/ mobile/ 2>/dev/null || true
-git commit -m "chore(sync): updated shared ml/ core for mob-dev1" || echo "No changes for mob-dev1"
-git push origin temp-mob1-sync:$TARGET_MOB1 --force
+git commit -m "chore(sync): updated shared ml/ core for mob-dev" || echo "No changes for mob-dev"
+git push origin temp-mob-sync:$TARGET_MOB --force
 
 TARGET_MOB2="mob-dev2"
 
 if ! git ls-remote --exit-code --heads origin $TARGET_MOB2; then
-  echo "Creating remote $TARGET_MOB2 from $TARGET_MOB1..."
-  git checkout -b $TARGET_MOB1 origin/$TARGET_MOB1 || git checkout $TARGET_MOB1
+  echo "Creating remote $TARGET_MOB2 from $TARGET_MOB..."
+  git checkout -b $TARGET_MOB origin/$TARGET_MOB || git checkout $TARGET_MOB
   git checkout -b $TARGET_MOB2
   git push origin $TARGET_MOB2
 fi
@@ -42,6 +42,6 @@ git commit -m "chore(sync): updated shared ml/ core for mob-dev2 (preserving uni
 git push origin temp-mob2-sync:$TARGET_MOB2 --force
 
 git checkout main
-git branch -D temp-mob1-sync temp-mob2-sync 2>/dev/null || true
+git branch -D temp-mob-sync temp-mob2-sync 2>/dev/null || true
 
-echo "Fork-side dual-mobile sync completed successfully!"
+echo "Fork-side sync completed successfully! Only mob-dev and mob-dev2 are active."
