@@ -1,0 +1,33 @@
+name: Sync Branches & Directories
+
+on:
+  push:
+    branches: [main, mob-dev]
+  workflow_dispatch:
+
+concurrency:
+  group: sync-branches-workspace
+  cancel-in-progress: false
+
+jobs:
+  run-sync:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Run sync script from temporary directory
+        env:
+          SRC_REF: origin/main
+          SYNC_DIR: ml
+          TARGETS: "web-dev mob-dev mob-dev2"
+          BRIDGE_FROM: "mob-dev"
+          BRIDGE_TO: "mob-dev2"
+          BRIDGE_DIR: "devbridge"
+        run: |
+          cp scripts/sync.sh "$RUNNER_TEMP/sync.sh"
+          chmod +x "$RUNNER_TEMP/sync.sh"
+          "$RUNNER_TEMP/sync.sh"
