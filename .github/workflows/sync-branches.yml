@@ -26,7 +26,7 @@ jobs:
           TARGETS: "web-dev mob-dev mob-dev2"
           BRIDGE_FROM: "mob-dev"
           BRIDGE_TO: "mob-dev2"
-          BRIDGE_DIR: "devbridge"
+          BRIDGE_DIR: "DevBridge"
         run: |
           cp scripts/sync.sh "$RUNNER_TEMP/sync.sh"
           chmod +x "$RUNNER_TEMP/sync.sh"
