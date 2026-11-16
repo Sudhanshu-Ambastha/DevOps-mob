@@ -1,3 +1,10 @@
+.env
+.env.*
+!.env.example
+*.pem
+*.key
+.pytest_cache/
+
 node_modules/
 dist/
 *.env
@@ -7,4 +14,3 @@ Thumbs.db
 .vscode/
 venv/
 __pycache__/
-

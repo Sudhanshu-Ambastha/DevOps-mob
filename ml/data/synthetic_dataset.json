@@ -1,0 +1,4339 @@
+{
+  "version": "1.0.0",
+  "description": "Synthetic demonstration data. Every person, problem and figure here is invented.",
+  "notes": "Upvote counts and dates were produced by a seeded generator from hand-written content.",
+  "users": [
+    {
+      "id": "syn-user-01",
+      "name": "Riya Sharma",
+      "email": "riya.sharma@example.com",
+      "role": "user",
+      "bio": "BCA student who notices too many small campus problems.",
+      "skills": [],
+      "demo_profile": true,
+      "created_at": "2026-02-14T09:00:00Z"
+    },
+    {
+      "id": "syn-user-02",
+      "name": "Arjun Mehta",
+      "email": "arjun.mehta@example.com",
+      "role": "developer",
+      "bio": "Full stack developer. I like building tools for students.",
+      "skills": [
+        "React",
+        "Node.js",
+        "MongoDB"
+      ],
+      "demo_profile": true,
+      "created_at": "2026-02-15T09:00:00Z"
+    },
+    {
+      "id": "syn-user-03",
+      "name": "Neha Verma",
+      "email": "neha.verma@example.com",
+      "role": "developer",
+      "bio": "Frontend developer and UI enthusiast.",
+      "skills": [
+        "JavaScript",
+        "CSS",
+        "Figma"
+      ],
+      "demo_profile": false,
+      "created_at": "2026-02-16T09:00:00Z"
+    },
+    {
+      "id": "syn-user-04",
+      "name": "Kabir Singh",
+      "email": "kabir.singh@example.com",
+      "role": "user",
+      "bio": "Hostel resident and daily bus commuter.",
+      "skills": [],
+      "demo_profile": false,
+      "created_at": "2026-02-17T09:00:00Z"
+    },
+    {
+      "id": "syn-user-05",
+      "name": "Ananya Iyer",
+      "email": "ananya.iyer@example.com",
+      "role": "user",
+      "bio": "Runs a small tiffin service from home in Pune.",
+      "skills": [],
+      "demo_profile": false,
+      "created_at": "2026-02-18T09:00:00Z"
+    },
+    {
+      "id": "syn-user-06",
+      "name": "Farhan Qureshi",
+      "email": "farhan.qureshi@example.com",
+      "role": "developer",
+      "bio": "Backend developer interested in civic technology.",
+      "skills": [
+        "Python",
+        "FastAPI",
+        "PostgreSQL"
+      ],
+      "demo_profile": false,
+      "created_at": "2026-02-19T09:00:00Z"
+    },
+    {
+      "id": "syn-user-07",
+      "name": "Meera Nair",
+      "email": "meera.nair@example.com",
+      "role": "user",
+      "bio": "Nurse at a community clinic.",
+      "skills": [],
+      "demo_profile": false,
+      "created_at": "2026-02-20T09:00:00Z"
+    },
+    {
+      "id": "syn-user-08",
+      "name": "Rohit Das",
+      "email": "rohit.das@example.com",
+      "role": "user",
+      "bio": "Shares a flat with three colleagues and tracks every rupee.",
+      "skills": [],
+      "demo_profile": false,
+      "created_at": "2026-02-21T09:00:00Z"
+    },
+    {
+      "id": "syn-user-09",
+      "name": "Sana Khan",
+      "email": "sana.khan@example.com",
+      "role": "developer",
+      "bio": "Mobile developer who cares about accessibility.",
+      "skills": [
+        "Kotlin",
+        "Flutter"
+      ],
+      "demo_profile": false,
+      "created_at": "2026-02-22T09:00:00Z"
+    },
+    {
+      "id": "syn-user-10",
+      "name": "Vikram Rao",
+      "email": "vikram.rao@example.com",
+      "role": "user",
+      "bio": "Owns a two-person hardware repair shop.",
+      "skills": [],
+      "demo_profile": false,
+      "created_at": "2026-02-23T09:00:00Z"
+    },
+    {
+      "id": "syn-user-11",
+      "name": "Pooja Bhatt",
+      "email": "pooja.bhatt@example.com",
+      "role": "user",
+      "bio": "Secondary school teacher in a government school.",
+      "skills": [],
+      "demo_profile": false,
+      "created_at": "2026-02-24T09:00:00Z"
+    },
+    {
+      "id": "syn-user-12",
+      "name": "Dev Malhotra",
+      "email": "dev.malhotra@example.com",
+      "role": "developer",
+      "bio": "Data engineer who volunteers with environmental groups.",
+      "skills": [
+        "Python",
+        "SQL",
+        "Maps"
+      ],
+      "demo_profile": false,
+      "created_at": "2026-02-25T09:00:00Z"
+    },
+    {
+      "id": "syn-user-13",
+      "name": "Lakshmi Menon",
+      "email": "lakshmi.menon@example.com",
+      "role": "user",
+      "bio": "Retired, and helps run her residents' welfare association.",
+      "skills": [],
+      "demo_profile": false,
+      "created_at": "2026-02-26T09:00:00Z"
+    },
+    {
+      "id": "syn-user-14",
+      "name": "Imran Sheikh",
+      "email": "imran.sheikh@example.com",
+      "role": "user",
+      "bio": "Delivery rider who spends all day on city roads.",
+      "skills": [],
+      "demo_profile": false,
+      "created_at": "2026-02-27T09:00:00Z"
+    }
+  ],
+  "problems": [
+    {
+      "id": "syn-prob-001",
+      "title": "Flatmates lose track of who owes what for shared bills",
+      "description": "Four of us share rent, electricity, groceries and the internet bill. Someone always pays first and we try to settle at the end of the month from memory and WhatsApp messages. We regularly argue about small amounts because nobody has a clear record of who paid for what.",
+      "category": "Expense management",
+      "tags": [
+        "expenses",
+        "shared-bills",
+        "flatmates"
+      ],
+      "outcome": "A shared ledger where each person can see what they owe and settle up with one payment.",
+      "constraints": "Must work with UPI and should not require everyone to link a bank account.",
+      "is_paid": false,
+      "budget_range": "",
+      "status": "in-progress",
+      "author_id": "syn-user-08",
+      "ai_processing_allowed": true,
+      "created_at": "2026-07-07T17:22:48Z",
+      "updated_at": "2026-07-07T17:22:48Z"
+    },
+    {
+      "id": "syn-prob-002",
+      "title": "Small monthly subscriptions quietly drain my salary",
+      "description": "I pay for music, cloud storage, two streaming apps and a gym app, all on different dates and different cards. I only notice how much is going out when my account runs low near the end of the month, and I often forget free trials until they have already renewed.",
+      "category": "Expense management",
+      "tags": [
+        "subscriptions",
+        "budgeting",
+        "reminders"
+      ],
+      "outcome": "One view of every recurring payment, with a reminder before each renewal.",
+      "constraints": "I do not want to give an app my banking password.",
+      "is_paid": false,
+      "budget_range": "",
+      "status": "open",
+      "author_id": "syn-user-08",
+      "ai_processing_allowed": true,
+      "created_at": "2026-04-30T15:28:36Z",
+      "updated_at": "2026-04-30T15:28:36Z"
+    },
+    {
+      "id": "syn-prob-003",
+      "title": "Employees wait weeks for travel expense reimbursement",
+      "description": "At our company of forty people, field staff submit paper bills to the office once a month. Receipts get lost, managers approve them late and accounts re-enters everything by hand. Staff end up carrying thousands of rupees of company costs on their own cards for weeks.",
+      "category": "Expense management",
+      "tags": [
+        "reimbursement",
+        "receipts",
+        "small-teams"
+      ],
+      "outcome": "Staff can photograph a receipt on the day and track approval until the money is paid.",
+      "constraints": "Accounts needs an export that works with Tally.",
+      "is_paid": true,
+      "budget_range": "₹40,000–₹80,000",
+      "status": "open",
+      "author_id": "syn-user-10",
+      "ai_processing_allowed": true,
+      "created_at": "2026-10-13T15:58:26Z",
+      "updated_at": "2026-10-13T15:58:26Z"
+    },
+    {
+      "id": "syn-prob-004",
+      "title": "Students have no simple way to budget a monthly allowance",
+      "description": "My parents send a fixed amount each month for food, travel and books. By the third week it is mostly gone and I cannot say where it went. Finance apps assume salaries and investments, which is not how a student's money works.",
+      "category": "Expense management",
+      "tags": [
+        "budgeting",
+        "students",
+        "allowance"
+      ],
+      "outcome": "A very simple weekly spending limit that tells me what is safe to spend today.",
+      "constraints": "Should work without linking a bank account.",
+      "is_paid": false,
+      "budget_range": "",
+      "status": "open",
+      "author_id": "syn-user-01",
+      "ai_processing_allowed": true,
+      "created_at": "2026-06-22T08:44:16Z",
+      "updated_at": "2026-06-22T08:44:16Z"
+    },
+    {
+      "id": "syn-prob-005",
+      "title": "Tracking cash spending is impossible in budgeting apps",
+      "description": "Most of my daily spending at vegetable markets, autos and tea stalls is in cash. Budgeting apps read SMS or bank data, so a large part of my real spending never appears and the totals are wrong.",
+      "category": "Expense management",
+      "tags": [
+        "cash",
+        "budgeting",
+        "offline"
+      ],
+      "outcome": "A fast way to log a cash expense in a few seconds, even with no signal.",
+      "constraints": "Must work offline and in Hindi.",
+      "is_paid": false,
+      "budget_range": "",
+      "status": "open",
+      "author_id": "syn-user-14",
+      "ai_processing_allowed": true,
+      "created_at": "2026-09-23T00:06:57Z",
+      "updated_at": "2026-09-23T00:06:57Z"
+    },
+    {
+      "id": "syn-prob-006",
+      "title": "Students struggle to find teammates for college projects",
+      "description": "Every semester we have to form teams for projects and hackathons. Most students only know people from their own section, so teams are formed randomly and skilled students from other sections never meet. There is no place to see who is looking for a team and what skills they have.",
+      "category": "Education",
+      "tags": [
+        "teamwork",
+        "projects",
+        "hackathon"
+      ],
+      "outcome": "A searchable directory where students can share skills, project ideas, and find collaborators across departments.",
+      "constraints": "Should work well on mobile and let students control which contact details are visible.",
+      "is_paid": true,
+      "budget_range": "₹5,000–₹15,000",
+      "status": "in-progress",
+      "author_id": "syn-user-01",
+      "ai_processing_allowed": true,
+      "created_at": "2026-08-14T17:51:13Z",
+      "updated_at": "2026-08-14T17:51:13Z"
+    },
+    {
+      "id": "syn-prob-007",
+      "title": "Seniors' books and notes go to waste every year",
+      "description": "Each year final-year students throw away or sell textbooks and carefully written notes to scrap dealers, while juniors buy the same books new at full price. There is no reliable way for juniors to find what seniors are giving away.",
+      "category": "Education",
+      "tags": [
+        "books",
+        "notes",
+        "reuse"
+      ],
+      "outcome": "A simple campus exchange where seniors list books and notes and juniors can claim them.",
+      "constraints": "Should not involve shipping. Handover happens on campus.",
+      "is_paid": false,
+      "budget_range": "",
+      "status": "open",
+      "author_id": "syn-user-04",
+      "ai_processing_allowed": true,
+      "created_at": "2026-09-05T22:10:50Z",
+      "updated_at": "2026-09-05T22:10:50Z"
+    },
+    {
+      "id": "syn-prob-008",
+      "title": "Teachers spend hours every week making attendance registers",
+      "description": "In our government school each teacher marks paper registers, then copies totals into monthly statements for the office. It takes hours, mistakes are common and parents only hear about a child's long absence weeks later.",
+      "category": "Education",
+      "tags": [
+        "attendance",
+        "schools",
+        "teachers"
+      ],
+      "outcome": "Quick attendance marking that produces the monthly statement and flags long absences.",
+      "constraints": "Many teachers have basic phones and patchy internet.",
+      "is_paid": false,
+      "budget_range": "",
+      "status": "open",
+      "author_id": "syn-user-11",
+      "ai_processing_allowed": true,
+      "created_at": "2026-07-27T04:33:10Z",
+      "updated_at": "2026-07-27T04:33:10Z"
+    },
+    {
+      "id": "syn-prob-009",
+      "title": "Rural students cannot find scholarships they qualify for",
+      "description": "Scholarship information is spread across government portals, trusts and college notices. Students from villages usually hear about a scheme after its deadline, and the eligibility rules are hard to understand.",
+      "category": "Education",
+      "tags": [
+        "scholarships",
+        "rural",
+        "deadlines"
+      ],
+      "outcome": "One place where a student answers a few questions and sees scholarships they can apply for, with deadlines.",
+      "constraints": "Must be available in regional languages.",
+      "is_paid": false,
+      "budget_range": "",
+      "status": "open",
+      "author_id": "syn-user-11",
+      "ai_processing_allowed": true,
+      "created_at": "2026-05-25T17:23:52Z",
+      "updated_at": "2026-05-25T17:23:52Z"
+    },
+    {
+      "id": "syn-prob-010",
+      "title": "Parents cannot follow what their child is learning at school",
+      "description": "Homework and notices reach us through a child's diary and several WhatsApp groups. Working parents miss messages and only learn about a test or a missing assignment when it is too late to help.",
+      "category": "Education",
+      "tags": [
+        "parents",
+        "homework",
+        "notices"
+      ],
+      "outcome": "A single daily summary of homework, tests and notices for each child.",
+      "constraints": "Keep it simple enough for parents who are not comfortable with apps.",
+      "is_paid": false,
+      "budget_range": "",
+      "status": "open",
+      "author_id": "syn-user-11",
+      "ai_processing_allowed": true,
+      "created_at": "2026-10-09T14:08:21Z",
+      "updated_at": "2026-10-09T14:08:21Z"
+    },
+    {
+      "id": "syn-prob-011",
+      "title": "Elderly patients forget medicines and doses at home",
+      "description": "Many of the older patients at our clinic take five or more medicines at different times. They forget doses or take them twice, and family members who live elsewhere have no way of knowing. We see the results when they come back unwell.",
+      "category": "Healthcare",
+      "tags": [
+        "medicine",
+        "elderly",
+        "reminders"
+      ],
+      "outcome": "Simple dose reminders, with a way for a family member to see if a dose was missed.",
+      "constraints": "Large text, and voice reminders for people who cannot read well.",
+      "is_paid": false,
+      "budget_range": "",
+      "status": "in-progress",
+      "author_id": "syn-user-07",
+      "ai_processing_allowed": true,
+      "created_at": "2026-08-10T04:18:50Z",
+      "updated_at": "2026-08-10T04:18:50Z"
+    },
+    {
+      "id": "syn-prob-012",
+      "title": "Patients wait for hours with no idea of their turn at the clinic",
+      "description": "At our community clinic people arrive at 7 am to get a token and then wait the whole morning in a crowded room. Nobody knows how long it will take, and daily wage workers lose a full day's income for a ten-minute consultation.",
+      "category": "Healthcare",
+      "tags": [
+        "queues",
+        "clinics",
+        "waiting"
+      ],
+      "outcome": "Patients can see their place in the queue and an estimated time from wherever they are.",
+      "constraints": "Many patients do not have smartphones, so SMS must work too.",
+      "is_paid": true,
+      "budget_range": "₹20,000–₹50,000",
+      "status": "open",
+      "author_id": "syn-user-07",
+      "ai_processing_allowed": true,
+      "created_at": "2026-04-08T03:28:07Z",
+      "updated_at": "2026-04-08T03:28:07Z"
+    },
+    {
+      "id": "syn-prob-013",
+      "title": "Medical records are scattered across hospitals and paper files",
+      "description": "My father has seen four hospitals in three years. Every new doctor asks for old reports, and we carry a plastic bag of papers that are often incomplete. Tests get repeated because nobody can find the earlier result.",
+      "category": "Healthcare",
+      "tags": [
+        "records",
+        "hospitals",
+        "families"
+      ],
+      "outcome": "A family-controlled place to keep and share reports with any doctor.",
+      "constraints": "Patients must control who can see what.",
+      "is_paid": false,
+      "budget_range": "",
+      "status": "open",
+      "author_id": "syn-user-13",
+      "ai_processing_allowed": true,
+      "created_at": "2026-09-01T13:36:40Z",
+      "updated_at": "2026-09-01T13:36:40Z"
+    },
+    {
+      "id": "syn-prob-014",
+      "title": "Hard to find which pharmacy has a medicine in stock",
+      "description": "When a less common medicine is prescribed, family members go from one pharmacy to the next asking if it is available. For urgent medicines at night this can take hours and there is no way to check beforehand.",
+      "category": "Healthcare",
+      "tags": [
+        "pharmacy",
+        "stock",
+        "availability"
+      ],
+      "outcome": "A way to check nearby pharmacies for a medicine before travelling.",
+      "constraints": "Pharmacies are small shops without inventory software.",
+      "is_paid": false,
+      "budget_range": "",
+      "status": "open",
+      "author_id": "syn-user-07",
+      "ai_processing_allowed": true,
+      "created_at": "2026-09-27T04:40:15Z",
+      "updated_at": "2026-09-27T04:40:15Z"
+    },
+    {
+      "id": "syn-prob-015",
+      "title": "Blood donors are hard to reach in an emergency",
+      "description": "When someone needs a rare blood group, families post frantic messages in every group they know. The messages get forwarded for days after the need has passed, and willing donors often do not see them in time.",
+      "category": "Healthcare",
+      "tags": [
+        "blood-donation",
+        "emergency",
+        "volunteers"
+      ],
+      "outcome": "A way to reach nearby eligible donors quickly and close the request once it is met.",
+      "constraints": "Donor phone numbers must stay private.",
+      "is_paid": false,
+      "budget_range": "",
+      "status": "solved",
+      "author_id": "syn-user-13",
+      "ai_processing_allowed": true,
+      "created_at": "2026-03-16T09:00:00Z",
+      "updated_at": "2026-03-16T09:00:00Z"
+    },
+    {
+      "id": "syn-prob-016",
+      "title": "College bus timings are unpredictable",
+      "description": "Students wait at the stop every morning with no idea whether the bus has already left or is running late. Some miss the first lecture, others leave home far too early. The drivers are helpful but nobody can tell us where the bus is.",
+      "category": "Transportation",
+      "tags": [
+        "bus",
+        "commute",
+        "tracking"
+      ],
+      "outcome": "Students can see the last reported location of the bus and a rough arrival time.",
+      "constraints": "Should use very little mobile data.",
+      "is_paid": false,
+      "budget_range": "",
+      "status": "in-progress",
+      "author_id": "syn-user-04",
+      "ai_processing_allowed": true,
+      "created_at": "2026-10-01T08:30:37Z",
+      "updated_at": "2026-10-01T08:30:37Z"
+    },
+    {
+      "id": "syn-prob-017",
+      "title": "Commuters cannot find safe shared rides at night",
+      "description": "After late shifts many women in our office have no safe way to get home. Cabs are expensive and refuse short trips, and informal car pools are arranged in chat groups with no way to know who you are travelling with.",
+      "category": "Transportation",
+      "tags": [
+        "ride-sharing",
+        "safety",
+        "night-shift"
+      ],
+      "outcome": "Verified colleagues can share rides along similar routes after late shifts.",
+      "constraints": "Identity checks must not expose personal details to strangers.",
+      "is_paid": false,
+      "budget_range": "",
+      "status": "open",
+      "author_id": "syn-user-05",
+      "ai_processing_allowed": true,
+      "created_at": "2026-03-29T21:55:56Z",
+      "updated_at": "2026-03-29T21:55:56Z"
+    },
+    {
+      "id": "syn-prob-018",
+      "title": "Auto drivers refuse trips and there is no fair fare reference",
+      "description": "Auto drivers regularly refuse short trips or quote double the fare, especially near stations. Tourists and new residents have no idea what a fair price is and no quick way to check.",
+      "category": "Transportation",
+      "tags": [
+        "auto-rickshaw",
+        "fares",
+        "commute"
+      ],
+      "outcome": "A quick fair-fare estimate for a route that both sides can look at.",
+      "constraints": "Should be usable without signing up.",
+      "is_paid": false,
+      "budget_range": "",
+      "status": "open",
+      "author_id": "syn-user-14",
+      "ai_processing_allowed": true,
+      "created_at": "2026-07-31T21:43:46Z",
+      "updated_at": "2026-07-31T21:43:46Z"
+    },
+    {
+      "id": "syn-prob-019",
+      "title": "Finding parking near the market wastes half an hour",
+      "description": "On weekends people circle the market area for twenty to thirty minutes looking for a spot, which adds to the traffic. Paid lots exist but nobody knows which ones have space.",
+      "category": "Transportation",
+      "tags": [
+        "parking",
+        "traffic",
+        "markets"
+      ],
+      "outcome": "Live availability for the main parking lots near the market.",
+      "constraints": "Lot attendants only have basic phones.",
+      "is_paid": false,
+      "budget_range": "",
+      "status": "open",
+      "author_id": "syn-user-10",
+      "ai_processing_allowed": true,
+      "created_at": "2026-06-17T01:35:32Z",
+      "updated_at": "2026-06-17T01:35:32Z"
+    },
+    {
+      "id": "syn-prob-020",
+      "title": "Wheelchair users cannot tell which bus routes are accessible",
+      "description": "Only some city buses have low floors and ramps, and the schedule does not say which ones. A wheelchair user can wait an hour and still not be able to board, and many stops have broken pavements.",
+      "category": "Transportation",
+      "tags": [
+        "accessibility",
+        "bus",
+        "public-transport"
+      ],
+      "outcome": "Route information that shows accessible buses and stops before a trip.",
+      "constraints": "The product itself must work with screen readers.",
+      "is_paid": false,
+      "budget_range": "",
+      "status": "open",
+      "author_id": "syn-user-09",
+      "ai_processing_allowed": true,
+      "created_at": "2026-10-05T11:39:31Z",
+      "updated_at": "2026-10-05T11:39:31Z"
+    },
+    {
+      "id": "syn-prob-021",
+      "title": "Small shops have no easy way to track credit given to customers",
+      "description": "Our neighbourhood kirana store keeps a notebook of customers who pay at the end of the month. Pages get lost, amounts are disputed and customers forget what they bought. Chasing payments is awkward for everyone.",
+      "category": "Small business",
+      "tags": [
+        "credit",
+        "khata",
+        "retail"
+      ],
+      "outcome": "A simple digital khata that records credit and sends polite reminders.",
+      "constraints": "Must be usable by shop owners who are not comfortable typing.",
+      "is_paid": true,
+      "budget_range": "₹10,000–₹25,000",
+      "status": "in-progress",
+      "author_id": "syn-user-10",
+      "ai_processing_allowed": true,
+      "created_at": "2026-06-06T03:37:31Z",
+      "updated_at": "2026-06-06T03:37:31Z"
+    },
+    {
+      "id": "syn-prob-022",
+      "title": "Home food businesses take orders across chats and lose track",
+      "description": "I run a tiffin service from home. Orders arrive through WhatsApp, calls and Instagram. I miss changes, forget who has paid and sometimes cook the wrong number of meals, which wastes food and money.",
+      "category": "Small business",
+      "tags": [
+        "orders",
+        "home-business",
+        "food"
+      ],
+      "outcome": "All orders in one daily list, with who has paid and how many meals to cook.",
+      "constraints": "Customers should not need to install anything.",
+      "is_paid": true,
+      "budget_range": "₹8,000–₹20,000",
+      "status": "open",
+      "author_id": "syn-user-05",
+      "ai_processing_allowed": true,
+      "created_at": "2026-06-27T13:37:52Z",
+      "updated_at": "2026-06-27T13:37:52Z"
+    },
+    {
+      "id": "syn-prob-023",
+      "title": "Repair shops cannot tell customers when a device is ready",
+      "description": "People call our shop several times a day asking whether their phone is ready. We write jobs on paper slips, and sometimes a customer turns up for a device that is still waiting for a part.",
+      "category": "Small business",
+      "tags": [
+        "repairs",
+        "customer-updates",
+        "retail"
+      ],
+      "outcome": "Customers get an automatic update when the status of their repair changes.",
+      "constraints": "Sending updates must be nearly free.",
+      "is_paid": false,
+      "budget_range": "",
+      "status": "open",
+      "author_id": "syn-user-10",
+      "ai_processing_allowed": true,
+      "created_at": "2026-06-11T15:58:30Z",
+      "updated_at": "2026-06-11T15:58:30Z"
+    },
+    {
+      "id": "syn-prob-024",
+      "title": "Local artisans cannot reach customers beyond their own town",
+      "description": "Weavers and potters in our district sell only at weekly markets and to middlemen who take most of the margin. Big marketplaces are complicated, charge high fees and need photographs and listings they do not know how to make.",
+      "category": "Small business",
+      "tags": [
+        "artisans",
+        "marketplace",
+        "rural"
+      ],
+      "outcome": "A simple way to show products and take orders directly.",
+      "constraints": "Sellers may have low literacy, so voice and photos matter more than text.",
+      "is_paid": false,
+      "budget_range": "",
+      "status": "open",
+      "author_id": "syn-user-13",
+      "ai_processing_allowed": true,
+      "created_at": "2026-07-17T14:02:46Z",
+      "updated_at": "2026-07-17T14:02:46Z"
+    },
+    {
+      "id": "syn-prob-025",
+      "title": "Small restaurants throw away food because demand is a guess",
+      "description": "We prepare based on feeling. Some days we run out by 2 pm, other days a third of the food goes in the bin. We have no record of what sold on similar days.",
+      "category": "Small business",
+      "tags": [
+        "food-waste",
+        "forecasting",
+        "restaurants"
+      ],
+      "outcome": "A daily suggestion for how much to prepare, based on past sales.",
+      "constraints": "Our only record today is the billing machine.",
+      "is_paid": false,
+      "budget_range": "",
+      "status": "open",
+      "author_id": "syn-user-05",
+      "ai_processing_allowed": true,
+      "created_at": "2026-10-21T17:47:13Z",
+      "updated_at": "2026-10-21T17:47:13Z"
+    },
+    {
+      "id": "syn-prob-026",
+      "title": "Meeting decisions disappear and nobody remembers action items",
+      "description": "Our small team has plenty of meetings, but a week later nobody remembers what was decided or who agreed to do what. Notes end up in personal notebooks, and the same discussion happens again.",
+      "category": "Productivity",
+      "tags": [
+        "meetings",
+        "action-items",
+        "teams"
+      ],
+      "outcome": "A shared record of decisions and owners, with follow-up reminders.",
+      "constraints": "It must take less than a minute to record after a meeting.",
+      "is_paid": false,
+      "budget_range": "",
+      "status": "open",
+      "author_id": "syn-user-06",
+      "ai_processing_allowed": true,
+      "created_at": "2026-08-19T06:18:12Z",
+      "updated_at": "2026-08-19T06:18:12Z"
+    },
+    {
+      "id": "syn-prob-027",
+      "title": "Freelancers lose track of hours across several clients",
+      "description": "I work with four clients and switch between them all day. At the end of the month I rebuild my hours from memory and calendar entries, so I undercharge and clients question my invoices.",
+      "category": "Productivity",
+      "tags": [
+        "freelancing",
+        "time-tracking",
+        "invoices"
+      ],
+      "outcome": "Simple time tracking per client that turns directly into an invoice.",
+      "constraints": "Must handle GST on invoices.",
+      "is_paid": true,
+      "budget_range": "₹5,000–₹12,000",
+      "status": "open",
+      "author_id": "syn-user-03",
+      "ai_processing_allowed": true,
+      "created_at": "2026-08-05T13:37:36Z",
+      "updated_at": "2026-08-05T13:37:36Z"
+    },
+    {
+      "id": "syn-prob-028",
+      "title": "Too many group chats bury the messages that matter",
+      "description": "Work, college and family information all arrive in the same chat apps. Important notices get buried under forwards and jokes, and I miss deadlines because I muted a group that also carried the one message I needed.",
+      "category": "Productivity",
+      "tags": [
+        "notifications",
+        "focus",
+        "messaging"
+      ],
+      "outcome": "Important messages are picked out and collected in one place.",
+      "constraints": "Should not need to read private messages on a server.",
+      "is_paid": false,
+      "budget_range": "",
+      "status": "open",
+      "author_id": "syn-user-01",
+      "ai_processing_allowed": true,
+      "created_at": "2026-07-22T10:01:12Z",
+      "updated_at": "2026-07-22T10:01:12Z"
+    },
+    {
+      "id": "syn-prob-029",
+      "title": "Household chores are unfairly split and always forgotten",
+      "description": "In our flat nobody remembers whose turn it is to clean, buy gas or pay the maid. One person ends up doing everything and resentment builds until there is an argument.",
+      "category": "Productivity",
+      "tags": [
+        "chores",
+        "flatmates",
+        "reminders"
+      ],
+      "outcome": "A shared rota with reminders so that chores rotate fairly.",
+      "constraints": "No points or games, just a clear list.",
+      "is_paid": false,
+      "budget_range": "",
+      "status": "open",
+      "author_id": "syn-user-08",
+      "ai_processing_allowed": true,
+      "created_at": "2026-10-17T17:11:00Z",
+      "updated_at": "2026-10-17T17:11:00Z"
+    },
+    {
+      "id": "syn-prob-030",
+      "title": "Students cannot plan revision across many exam deadlines",
+      "description": "During exam season, assignments and tests from six subjects overlap. I make a plan on paper, fall behind on day two and then have no idea what to drop. I end up revising whatever feels most urgent.",
+      "category": "Productivity",
+      "tags": [
+        "exams",
+        "planning",
+        "students"
+      ],
+      "outcome": "A revision plan that adjusts itself when I miss a day.",
+      "constraints": "Works on a phone, no account needed.",
+      "is_paid": false,
+      "budget_range": "",
+      "status": "open",
+      "author_id": "syn-user-01",
+      "ai_processing_allowed": true,
+      "created_at": "2026-05-19T18:38:50Z",
+      "updated_at": "2026-05-19T18:38:50Z"
+    },
+    {
+      "id": "syn-prob-031",
+      "title": "Residents do not know when waste collection will come",
+      "description": "The garbage truck in our area comes at different times each day and sometimes skips a day. People either miss it or leave bags on the road, where dogs tear them open.",
+      "category": "Environment",
+      "tags": [
+        "waste",
+        "municipal",
+        "notifications"
+      ],
+      "outcome": "Residents get a notice when the truck is nearby or a route is cancelled.",
+      "constraints": "Municipal staff can only do something very simple on their side.",
+      "is_paid": false,
+      "budget_range": "",
+      "status": "open",
+      "author_id": "syn-user-13",
+      "ai_processing_allowed": true,
+      "created_at": "2026-05-31T12:13:43Z",
+      "updated_at": "2026-05-31T12:13:43Z"
+    },
+    {
+      "id": "syn-prob-032",
+      "title": "Nobody knows where to recycle e-waste safely",
+      "description": "Old phones, chargers and batteries pile up in drawers because the local scrap dealer will not take them and there is no information about authorised collection points. A lot of it ends up in ordinary rubbish.",
+      "category": "Environment",
+      "tags": [
+        "e-waste",
+        "recycling",
+        "maps"
+      ],
+      "outcome": "A map of authorised e-waste collection points and what each one accepts.",
+      "constraints": "Information must be kept up to date by the community.",
+      "is_paid": false,
+      "budget_range": "",
+      "status": "in-progress",
+      "author_id": "syn-user-12",
+      "ai_processing_allowed": true,
+      "created_at": "2026-08-23T17:42:53Z",
+      "updated_at": "2026-08-23T17:42:53Z"
+    },
+    {
+      "id": "syn-prob-033",
+      "title": "Local lakes are polluted and complaints go nowhere",
+      "description": "Residents around our lake keep seeing sewage inflows and dumped debris. Complaints are made by phone, then nothing is visible and nobody can show how long the problem has been going on.",
+      "category": "Environment",
+      "tags": [
+        "lakes",
+        "pollution",
+        "civic-reporting"
+      ],
+      "outcome": "Geotagged reports with photos that build a public history for each lake.",
+      "constraints": "Reports should be possible without creating an account.",
+      "is_paid": false,
+      "budget_range": "",
+      "status": "open",
+      "author_id": "syn-user-12",
+      "ai_processing_allowed": true,
+      "created_at": "2026-05-07T06:40:46Z",
+      "updated_at": "2026-05-07T06:40:46Z"
+    },
+    {
+      "id": "syn-prob-034",
+      "title": "Housing societies cannot measure how much water they waste",
+      "description": "Our society of 120 flats runs out of water every summer and pays for tankers. We have one bill and no idea which blocks are using the most or where leaks are.",
+      "category": "Environment",
+      "tags": [
+        "water",
+        "housing-societies",
+        "leaks"
+      ],
+      "outcome": "Simple tracking of usage by block, and an alert for unusual use.",
+      "constraints": "Should work with manual meter readings first.",
+      "is_paid": true,
+      "budget_range": "₹30,000–₹60,000",
+      "status": "open",
+      "author_id": "syn-user-13",
+      "ai_processing_allowed": true,
+      "created_at": "2026-04-16T05:41:07Z",
+      "updated_at": "2026-04-16T05:41:07Z"
+    },
+    {
+      "id": "syn-prob-035",
+      "title": "Trees planted in drives die because nobody looks after them",
+      "description": "Every monsoon our area has a planting drive with photographs. A few months later most saplings are dead because nobody was responsible for watering them.",
+      "category": "Environment",
+      "tags": [
+        "trees",
+        "volunteers",
+        "community"
+      ],
+      "outcome": "Each sapling has a named caretaker and a simple record of its survival.",
+      "constraints": "Must suit volunteers with no technical experience.",
+      "is_paid": false,
+      "budget_range": "",
+      "status": "open",
+      "author_id": "syn-user-12",
+      "ai_processing_allowed": true,
+      "created_at": "2026-09-14T12:45:03Z",
+      "updated_at": "2026-09-14T12:45:03Z"
+    },
+    {
+      "id": "syn-prob-036",
+      "title": "Residents never hear about local government services they can use",
+      "description": "Many older people and migrant workers in our ward do not know about ration changes, pension camps or free health check-ups. Notices are put on one wall, and by the time word spreads the camp is over.",
+      "category": "Community services",
+      "tags": [
+        "government-services",
+        "notices",
+        "ward"
+      ],
+      "outcome": "Timely, plain-language notices about local services that actually reach people.",
+      "constraints": "Must work in local languages and over basic phones.",
+      "is_paid": false,
+      "budget_range": "",
+      "status": "open",
+      "author_id": "syn-user-13",
+      "ai_processing_allowed": true,
+      "created_at": "2026-07-12T16:32:07Z",
+      "updated_at": "2026-07-12T16:32:07Z"
+    },
+    {
+      "id": "syn-prob-037",
+      "title": "Food donors and shelters cannot find each other in time",
+      "description": "After weddings and events, good food is left over and hosts would gladly donate it, but they do not know who can collect it within a couple of hours. Shelters want the food but only hear about it too late.",
+      "category": "Community services",
+      "tags": [
+        "food-donation",
+        "shelters",
+        "volunteers"
+      ],
+      "outcome": "Hosts can post surplus food and nearby groups can claim it quickly.",
+      "constraints": "Food safety guidance has to be part of it.",
+      "is_paid": false,
+      "budget_range": "",
+      "status": "in-progress",
+      "author_id": "syn-user-13",
+      "ai_processing_allowed": true,
+      "created_at": "2026-10-29T17:15:00Z",
+      "updated_at": "2026-10-29T17:15:00Z"
+    },
+    {
+      "id": "syn-prob-038",
+      "title": "Volunteers sign up for causes but are never contacted",
+      "description": "Our NGO collects volunteer forms at every event. The sheets sit in a file, coordinators do not know who is free or skilled at what, and people lose interest when they never hear back.",
+      "category": "Community services",
+      "tags": [
+        "volunteers",
+        "ngos",
+        "coordination"
+      ],
+      "outcome": "One list of volunteers with skills and availability that coordinators can search.",
+      "constraints": "Must be free for small NGOs.",
+      "is_paid": false,
+      "budget_range": "",
+      "status": "open",
+      "author_id": "syn-user-06",
+      "ai_processing_allowed": true,
+      "created_at": "2026-09-18T18:49:07Z",
+      "updated_at": "2026-09-18T18:49:07Z"
+    },
+    {
+      "id": "syn-prob-039",
+      "title": "Elderly residents living alone have no daily check-in",
+      "description": "Several elderly neighbours live alone. If one of them falls or becomes unwell, nobody may know for a day or more. Neighbours want to help but there is no routine or shared responsibility.",
+      "category": "Community services",
+      "tags": [
+        "elderly",
+        "safety",
+        "neighbours"
+      ],
+      "outcome": "A simple daily check-in that alerts a neighbour if it is missed.",
+      "constraints": "Must work for people with no smartphone.",
+      "is_paid": false,
+      "budget_range": "",
+      "status": "open",
+      "author_id": "syn-user-13",
+      "ai_processing_allowed": true,
+      "created_at": "2026-09-10T05:52:56Z",
+      "updated_at": "2026-09-10T05:52:56Z"
+    },
+    {
+      "id": "syn-prob-040",
+      "title": "Apartment residents cannot track complaints to the society office",
+      "description": "Lift faults, leaks and security issues are reported in a paper register or the residents' WhatsApp group. Nothing shows whether anyone has taken action, and the same complaint gets raised several times.",
+      "category": "Community services",
+      "tags": [
+        "complaints",
+        "housing-societies",
+        "maintenance"
+      ],
+      "outcome": "Residents can raise a complaint and see its status until it is closed.",
+      "constraints": "The committee are volunteers with little spare time.",
+      "is_paid": false,
+      "budget_range": "",
+      "status": "open",
+      "author_id": "syn-user-13",
+      "ai_processing_allowed": true,
+      "created_at": "2026-08-28T04:08:10Z",
+      "updated_at": "2026-08-28T04:08:10Z"
+    },
+    {
+      "id": "syn-prob-041",
+      "title": "No single place to find campus events and workshops",
+      "description": "Club events, workshops and seminars are announced in different WhatsApp groups and notice boards. Students regularly miss useful events because they are not in the right group or see the notice too late.",
+      "category": "Campus life",
+      "tags": [
+        "events",
+        "clubs",
+        "notifications"
+      ],
+      "outcome": "One reliable calendar with filters and reminders for campus activities.",
+      "constraints": "",
+      "is_paid": false,
+      "budget_range": "",
+      "status": "open",
+      "author_id": "syn-user-04",
+      "ai_processing_allowed": true,
+      "created_at": "2026-07-02T16:27:30Z",
+      "updated_at": "2026-07-02T16:27:30Z"
+    },
+    {
+      "id": "syn-prob-042",
+      "title": "Broken classroom projectors take weeks to get repaired",
+      "description": "When a projector or fan stops working, students tell the teacher, who tells the office, and then nothing happens. There is no way to report the fault or see whether anyone is working on it, so we sit through lectures without slides for weeks.",
+      "category": "Campus life",
+      "tags": [
+        "maintenance",
+        "classrooms",
+        "reporting"
+      ],
+      "outcome": "A quick way to report a classroom fault and follow it until it is fixed.",
+      "constraints": "Scanning a code in the room would be ideal.",
+      "is_paid": false,
+      "budget_range": "",
+      "status": "solved",
+      "author_id": "syn-user-01",
+      "ai_processing_allowed": true,
+      "created_at": "2026-04-23T16:02:50Z",
+      "updated_at": "2026-04-23T16:02:50Z"
+    },
+    {
+      "id": "syn-prob-043",
+      "title": "Hostel laundry machines are always occupied",
+      "description": "Our hostel has six machines for three hundred students. People carry heavy baskets down four floors only to find them all busy, and clothes get left in machines for hours.",
+      "category": "Campus life",
+      "tags": [
+        "hostel",
+        "laundry",
+        "queues"
+      ],
+      "outcome": "Students can see which machines are free and be told when their cycle ends.",
+      "constraints": "Machines cannot be modified.",
+      "is_paid": false,
+      "budget_range": "",
+      "status": "open",
+      "author_id": "syn-user-04",
+      "ai_processing_allowed": true,
+      "created_at": "2026-10-25T17:48:12Z",
+      "updated_at": "2026-10-25T17:48:12Z"
+    },
+    {
+      "id": "syn-prob-044",
+      "title": "Library seats fill up and students walk across campus for nothing",
+      "description": "During exams the reading room fills by 9 am. Students walk across campus only to find no seats, and some people hold a place with a bag for hours.",
+      "category": "Campus life",
+      "tags": [
+        "library",
+        "seats",
+        "exams"
+      ],
+      "outcome": "Live seat availability, and a fair rule for holding seats.",
+      "constraints": "No new hardware if possible.",
+      "is_paid": false,
+      "budget_range": "",
+      "status": "open",
+      "author_id": "syn-user-01",
+      "ai_processing_allowed": true,
+      "created_at": "2026-05-13T15:21:06Z",
+      "updated_at": "2026-05-13T15:21:06Z"
+    }
+  ],
+  "community_reports": [
+    {
+      "id": "syn-report-001",
+      "problem_id": "syn-prob-001",
+      "title": "Roommate bill splitting is a nightmare",
+      "description": "There are three of us in a rented flat. Every month we fight about electricity and groceries because one person pays and the others forget. I keep a note on my phone but nobody trusts it, and small debts just pile up.",
+      "outcome": "",
+      "constraints": "",
+      "tags": [
+        "expenses",
+        "shared-bills"
+      ],
+      "category": "Expense management",
+      "author_id": "syn-user-04",
+      "ai_processing_allowed": true,
+      "created_at": "2026-11-02T13:24:45Z"
+    },
+    {
+      "id": "syn-report-002",
+      "problem_id": "syn-prob-001",
+      "title": "Need a way to settle shared flat costs",
+      "description": "Whoever pays the gas and wifi never gets paid back on time. We have tried a spreadsheet but stopped updating it after a month. It would be great to see the balance between us at any time.",
+      "outcome": "",
+      "constraints": "",
+      "tags": [
+        "expenses",
+        "shared-bills"
+      ],
+      "category": "Expense management",
+      "author_id": "syn-user-09",
+      "ai_processing_allowed": true,
+      "created_at": "2026-09-25T00:37:47Z"
+    },
+    {
+      "id": "syn-report-003",
+      "problem_id": "syn-prob-001",
+      "title": "Friends never pay me back for group expenses",
+      "description": "I keep paying for trips and dinners with friends and then have to send awkward reminders. It is impossible to remember who paid what across a whole month.",
+      "outcome": "",
+      "constraints": "",
+      "tags": [
+        "expenses",
+        "shared-bills"
+      ],
+      "category": "Expense management",
+      "author_id": "syn-user-02",
+      "ai_processing_allowed": true,
+      "created_at": "2026-10-04T03:37:11Z"
+    },
+    {
+      "id": "syn-report-004",
+      "problem_id": "syn-prob-002",
+      "title": "Forgot to cancel a free trial again",
+      "description": "I signed up for a free trial and it silently charged me for a whole year. I have no list of what I am subscribed to and what is about to renew.",
+      "outcome": "",
+      "constraints": "",
+      "tags": [
+        "subscriptions",
+        "budgeting"
+      ],
+      "category": "Expense management",
+      "author_id": "syn-user-01",
+      "ai_processing_allowed": true,
+      "created_at": "2026-10-28T13:42:39Z"
+    },
+    {
+      "id": "syn-report-005",
+      "problem_id": "syn-prob-003",
+      "title": "Getting paid back for work travel takes forever",
+      "description": "Our sales team has to keep paper bills and hand them in at month end. Half of them fade or get lost, and I am still waiting for money from August.",
+      "outcome": "",
+      "constraints": "",
+      "tags": [
+        "reimbursement",
+        "receipts"
+      ],
+      "category": "Expense management",
+      "author_id": "syn-user-14",
+      "ai_processing_allowed": true,
+      "created_at": "2026-10-26T07:57:49Z"
+    },
+    {
+      "id": "syn-report-006",
+      "problem_id": "syn-prob-006",
+      "title": "Can't find project partners outside my class",
+      "description": "I have an idea for the hackathon but I only know people in my own batch. I need a designer and a backend developer, and there is no way of finding them.",
+      "outcome": "",
+      "constraints": "",
+      "tags": [
+        "teamwork",
+        "projects"
+      ],
+      "category": "Education",
+      "author_id": "syn-user-04",
+      "ai_processing_allowed": true,
+      "created_at": "2026-11-05T06:59:23Z"
+    },
+    {
+      "id": "syn-report-007",
+      "problem_id": "syn-prob-006",
+      "title": "Group projects always end up with random teams",
+      "description": "Teachers ask us to form teams and we end up with whoever sits nearby. Some teams have no one who can code. A board showing who needs a team would really help.",
+      "outcome": "",
+      "constraints": "",
+      "tags": [
+        "teamwork",
+        "projects"
+      ],
+      "category": "Education",
+      "author_id": "syn-user-08",
+      "ai_processing_allowed": true,
+      "created_at": "2026-10-21T19:32:29Z"
+    },
+    {
+      "id": "syn-report-008",
+      "problem_id": "syn-prob-007",
+      "title": "Juniors keep buying books seniors are throwing out",
+      "description": "I sold all of my second-year textbooks for almost nothing to the scrap shop. A week later I saw a junior paying full price for the same book.",
+      "outcome": "",
+      "constraints": "",
+      "tags": [
+        "books",
+        "notes"
+      ],
+      "category": "Education",
+      "author_id": "syn-user-01",
+      "ai_processing_allowed": true,
+      "created_at": "2026-10-13T13:52:23Z"
+    },
+    {
+      "id": "syn-report-009",
+      "problem_id": "syn-prob-011",
+      "title": "My grandmother keeps missing her tablets",
+      "description": "She takes tablets three times a day and gets confused about whether she has taken them. I live in another city and only find out when she feels ill.",
+      "outcome": "",
+      "constraints": "",
+      "tags": [
+        "medicine",
+        "elderly"
+      ],
+      "category": "Healthcare",
+      "author_id": "syn-user-13",
+      "ai_processing_allowed": true,
+      "created_at": "2026-08-29T00:19:35Z"
+    },
+    {
+      "id": "syn-report-010",
+      "problem_id": "syn-prob-011",
+      "title": "No way to know if my mother took her medicine",
+      "description": "Mum has diabetes and high blood pressure. I call her every day to ask about her tablets, but she often says yes without being sure.",
+      "outcome": "",
+      "constraints": "",
+      "tags": [
+        "medicine",
+        "elderly"
+      ],
+      "category": "Healthcare",
+      "author_id": "syn-user-05",
+      "ai_processing_allowed": true,
+      "created_at": "2026-08-16T20:33:50Z"
+    },
+    {
+      "id": "syn-report-011",
+      "problem_id": "syn-prob-012",
+      "title": "Whole day lost in the hospital OPD line",
+      "description": "I took leave and stood in the OPD line from early morning. The token number barely moved and nobody could tell me if it would be one hour or five.",
+      "outcome": "",
+      "constraints": "",
+      "tags": [
+        "queues",
+        "clinics"
+      ],
+      "category": "Healthcare",
+      "author_id": "syn-user-14",
+      "ai_processing_allowed": true,
+      "created_at": "2026-07-20T01:41:19Z"
+    },
+    {
+      "id": "syn-report-012",
+      "problem_id": "syn-prob-016",
+      "title": "Never know if the campus bus has left",
+      "description": "I reach the stop at 7:40 and sometimes wait thirty minutes. Other days the bus has gone early. Just knowing where it is right now would save so much time.",
+      "outcome": "",
+      "constraints": "",
+      "tags": [
+        "bus",
+        "commute"
+      ],
+      "category": "Transportation",
+      "author_id": "syn-user-01",
+      "ai_processing_allowed": true,
+      "created_at": "2026-10-06T00:20:20Z"
+    },
+    {
+      "id": "syn-report-013",
+      "problem_id": "syn-prob-016",
+      "title": "Shuttle arrival time is a mystery",
+      "description": "The university shuttle has no fixed schedule that it follows. We stand in the sun guessing. Can there be something showing where it has reached?",
+      "outcome": "",
+      "constraints": "",
+      "tags": [
+        "bus",
+        "commute"
+      ],
+      "category": "Transportation",
+      "author_id": "syn-user-09",
+      "ai_processing_allowed": true,
+      "created_at": "2026-10-11T07:53:08Z"
+    },
+    {
+      "id": "syn-report-014",
+      "problem_id": "syn-prob-016",
+      "title": "Missed my first lecture again because of the bus",
+      "description": "There is no information about delays, so I either get to class late or leave an hour earlier than needed.",
+      "outcome": "",
+      "constraints": "",
+      "tags": [
+        "bus",
+        "commute"
+      ],
+      "category": "Transportation",
+      "author_id": "syn-user-03",
+      "ai_processing_allowed": true,
+      "created_at": "2026-10-13T06:16:34Z"
+    },
+    {
+      "id": "syn-report-015",
+      "problem_id": "syn-prob-021",
+      "title": "Tired of keeping customer dues in a notebook",
+      "description": "I own a small stationery shop and give credit to regular customers. I keep it all in a diary and lost one last year, along with everything customers owed me.",
+      "outcome": "",
+      "constraints": "",
+      "tags": [
+        "credit",
+        "khata"
+      ],
+      "category": "Small business",
+      "author_id": "syn-user-05",
+      "ai_processing_allowed": true,
+      "created_at": "2026-07-31T15:32:23Z"
+    },
+    {
+      "id": "syn-report-016",
+      "problem_id": "syn-prob-022",
+      "title": "Tiffin orders get mixed up on WhatsApp",
+      "description": "Customers change their orders by message at the last minute, and I lose track while cooking. Last week I sent ten meals to the wrong addresses.",
+      "outcome": "",
+      "constraints": "",
+      "tags": [
+        "orders",
+        "home-business"
+      ],
+      "category": "Small business",
+      "author_id": "syn-user-10",
+      "ai_processing_allowed": true,
+      "created_at": "2026-09-11T01:05:16Z"
+    },
+    {
+      "id": "syn-report-017",
+      "problem_id": "syn-prob-026",
+      "title": "Nobody remembers what we decided in the meeting",
+      "description": "We spend an hour talking, everyone agrees, and two weeks later the same topic comes up because nothing was written down or assigned.",
+      "outcome": "",
+      "constraints": "",
+      "tags": [
+        "meetings",
+        "action-items"
+      ],
+      "category": "Productivity",
+      "author_id": "syn-user-02",
+      "ai_processing_allowed": true,
+      "created_at": "2026-10-31T20:12:41Z"
+    },
+    {
+      "id": "syn-report-018",
+      "problem_id": "syn-prob-031",
+      "title": "Garbage truck timing changes every day",
+      "description": "I leave for work at 8 and the truck may come at 7 or 11. I have no way of knowing, so the waste sits at home for days.",
+      "outcome": "",
+      "constraints": "",
+      "tags": [
+        "waste",
+        "municipal"
+      ],
+      "category": "Environment",
+      "author_id": "syn-user-08",
+      "ai_processing_allowed": true,
+      "created_at": "2026-06-05T01:26:54Z"
+    },
+    {
+      "id": "syn-report-019",
+      "problem_id": "syn-prob-032",
+      "title": "What do I do with old batteries and chargers?",
+      "description": "I have a box of dead batteries, old chargers and a broken phone. The waste collector refused them, and I cannot find any official place to drop them off.",
+      "outcome": "",
+      "constraints": "",
+      "tags": [
+        "e-waste",
+        "recycling"
+      ],
+      "category": "Environment",
+      "author_id": "syn-user-06",
+      "ai_processing_allowed": true,
+      "created_at": "2026-09-20T23:58:57Z"
+    },
+    {
+      "id": "syn-report-020",
+      "problem_id": "syn-prob-037",
+      "title": "Leftover wedding food goes in the bin",
+      "description": "We had food for a hundred more guests left after a function. We called two NGOs but nobody could come that night, and it all went to waste.",
+      "outcome": "",
+      "constraints": "",
+      "tags": [
+        "food-donation",
+        "shelters"
+      ],
+      "category": "Community services",
+      "author_id": "syn-user-13",
+      "ai_processing_allowed": true,
+      "created_at": "2026-10-30T18:25:15Z"
+    },
+    {
+      "id": "syn-report-021",
+      "problem_id": "syn-prob-038",
+      "title": "Signed up to volunteer and heard nothing",
+      "description": "I filled out a volunteer form at a college event months ago. Nobody ever contacted me, though I am still happy to help on weekends.",
+      "outcome": "",
+      "constraints": "",
+      "tags": [
+        "volunteers",
+        "ngos"
+      ],
+      "category": "Community services",
+      "author_id": "syn-user-01",
+      "ai_processing_allowed": true,
+      "created_at": "2026-09-19T23:15:32Z"
+    },
+    {
+      "id": "syn-report-022",
+      "problem_id": "syn-prob-040",
+      "title": "Society ignores complaints about the lift",
+      "description": "We have complained about the lift three times in the group and the register. Nobody can say whether anyone has called the technician.",
+      "outcome": "",
+      "constraints": "",
+      "tags": [
+        "complaints",
+        "housing-societies"
+      ],
+      "category": "Community services",
+      "author_id": "syn-user-08",
+      "ai_processing_allowed": true,
+      "created_at": "2026-09-11T07:15:35Z"
+    },
+    {
+      "id": "syn-report-023",
+      "problem_id": "syn-prob-041",
+      "title": "Keep missing workshops because I'm not in the right group",
+      "description": "I found out about a really useful machine learning workshop the day after it finished, because it was only posted in a club's WhatsApp group.",
+      "outcome": "",
+      "constraints": "",
+      "tags": [
+        "events",
+        "clubs"
+      ],
+      "category": "Campus life",
+      "author_id": "syn-user-08",
+      "ai_processing_allowed": true,
+      "created_at": "2026-10-12T22:07:09Z"
+    },
+    {
+      "id": "syn-report-024",
+      "problem_id": "syn-prob-043",
+      "title": "Hostel washing machines are never free",
+      "description": "I have gone down three times today with my laundry and every machine was taken. Someone's wet clothes had been sitting in one for hours.",
+      "outcome": "",
+      "constraints": "",
+      "tags": [
+        "hostel",
+        "laundry"
+      ],
+      "category": "Campus life",
+      "author_id": "syn-user-01",
+      "ai_processing_allowed": true,
+      "created_at": "2026-11-02T06:11:56Z"
+    }
+  ],
+  "relationships": [
+    {
+      "id": "syn-rel-001",
+      "source_problem_id": "syn-prob-029",
+      "target_problem_id": "syn-prob-001",
+      "type": "related",
+      "reason": "Both come from living in a shared flat, but one is about money and the other about chores.",
+      "created_by": "synthetic",
+      "created_at": "2026-10-17T17:11:00Z"
+    },
+    {
+      "id": "syn-rel-002",
+      "source_problem_id": "syn-prob-004",
+      "target_problem_id": "syn-prob-002",
+      "type": "related",
+      "reason": "Both concern personal budgeting, but subscriptions and student allowances need different tools.",
+      "created_by": "synthetic",
+      "created_at": "2026-06-22T08:44:16Z"
+    },
+    {
+      "id": "syn-rel-003",
+      "source_problem_id": "syn-prob-005",
+      "target_problem_id": "syn-prob-004",
+      "type": "related",
+      "reason": "Both are budgeting needs, but one is about limits and the other about capturing cash.",
+      "created_by": "synthetic",
+      "created_at": "2026-09-23T00:06:57Z"
+    },
+    {
+      "id": "syn-rel-004",
+      "source_problem_id": "syn-prob-006",
+      "target_problem_id": "syn-prob-041",
+      "type": "related",
+      "reason": "Both help students find people and activities across campus, but they are different products.",
+      "created_by": "synthetic",
+      "created_at": "2026-08-14T17:51:13Z"
+    },
+    {
+      "id": "syn-rel-005",
+      "source_problem_id": "syn-prob-010",
+      "target_problem_id": "syn-prob-008",
+      "type": "related",
+      "reason": "Both connect schools with families, but attendance records and homework summaries differ.",
+      "created_by": "synthetic",
+      "created_at": "2026-10-09T14:08:21Z"
+    },
+    {
+      "id": "syn-rel-006",
+      "source_problem_id": "syn-prob-039",
+      "target_problem_id": "syn-prob-011",
+      "type": "related",
+      "reason": "Both concern older people's safety at home, one for medicines and one for daily wellbeing.",
+      "created_by": "synthetic",
+      "created_at": "2026-09-10T05:52:56Z"
+    },
+    {
+      "id": "syn-rel-007",
+      "source_problem_id": "syn-prob-043",
+      "target_problem_id": "syn-prob-044",
+      "type": "related",
+      "reason": "Both are about seeing whether a shared campus resource is free, for machines and for seats.",
+      "created_by": "synthetic",
+      "created_at": "2026-10-25T17:48:12Z"
+    },
+    {
+      "id": "syn-rel-008",
+      "source_problem_id": "syn-prob-014",
+      "target_problem_id": "syn-prob-013",
+      "type": "related",
+      "reason": "Both help families manage health care, but records and stock are separate problems.",
+      "created_by": "synthetic",
+      "created_at": "2026-09-27T04:40:15Z"
+    },
+    {
+      "id": "syn-rel-009",
+      "source_problem_id": "syn-prob-020",
+      "target_problem_id": "syn-prob-016",
+      "type": "related",
+      "reason": "Both concern knowing about buses before travelling, but with different users and data.",
+      "created_by": "synthetic",
+      "created_at": "2026-10-05T11:39:31Z"
+    },
+    {
+      "id": "syn-rel-010",
+      "source_problem_id": "syn-prob-022",
+      "target_problem_id": "syn-prob-021",
+      "type": "related",
+      "reason": "Both are small business record-keeping problems, for credit and for orders.",
+      "created_by": "synthetic",
+      "created_at": "2026-06-27T13:37:52Z"
+    },
+    {
+      "id": "syn-rel-011",
+      "source_problem_id": "syn-prob-037",
+      "target_problem_id": "syn-prob-025",
+      "type": "related",
+      "reason": "Both reduce food waste, one by preparing less and one by redistributing surplus.",
+      "created_by": "synthetic",
+      "created_at": "2026-10-29T17:15:00Z"
+    },
+    {
+      "id": "syn-rel-012",
+      "source_problem_id": "syn-prob-032",
+      "target_problem_id": "syn-prob-031",
+      "type": "related",
+      "reason": "Both concern household waste, but regular collection and e-waste disposal differ.",
+      "created_by": "synthetic",
+      "created_at": "2026-08-23T17:42:53Z"
+    },
+    {
+      "id": "syn-rel-013",
+      "source_problem_id": "syn-prob-038",
+      "target_problem_id": "syn-prob-035",
+      "type": "related",
+      "reason": "Both depend on organising volunteers, but for very different work.",
+      "created_by": "synthetic",
+      "created_at": "2026-09-18T18:49:07Z"
+    },
+    {
+      "id": "syn-rel-014",
+      "source_problem_id": "syn-prob-040",
+      "target_problem_id": "syn-prob-034",
+      "type": "related",
+      "reason": "Both concern housing societies, but one tracks complaints and the other water use.",
+      "created_by": "synthetic",
+      "created_at": "2026-08-28T04:08:10Z"
+    }
+  ],
+  "comments": [
+    {
+      "id": "syn-comment-001",
+      "problem_id": "syn-prob-006",
+      "author_id": "syn-user-04",
+      "text": "Same problem in our department. Seniors would also like to mentor teams.",
+      "created_at": "2026-08-28T07:59:08Z"
+    },
+    {
+      "id": "syn-comment-002",
+      "problem_id": "syn-prob-006",
+      "author_id": "syn-user-03",
+      "text": "Should teams be matched by skills, or should students just browse profiles?",
+      "created_at": "2026-10-20T21:44:43Z"
+    },
+    {
+      "id": "syn-comment-003",
+      "problem_id": "syn-prob-041",
+      "author_id": "syn-user-01",
+      "text": "A weekly calendar view would already help a lot.",
+      "created_at": "2026-09-28T16:30:18Z"
+    },
+    {
+      "id": "syn-comment-004",
+      "problem_id": "syn-prob-016",
+      "author_id": "syn-user-01",
+      "text": "Even the last stop the bus passed would be enough. It doesn't need to be exact.",
+      "created_at": "2026-10-06T03:34:18Z"
+    },
+    {
+      "id": "syn-comment-005",
+      "problem_id": "syn-prob-016",
+      "author_id": "syn-user-02",
+      "text": "Could one student on each bus share location, instead of adding a tracker?",
+      "created_at": "2026-11-05T06:13:51Z"
+    },
+    {
+      "id": "syn-comment-006",
+      "problem_id": "syn-prob-001",
+      "author_id": "syn-user-06",
+      "text": "Do you settle up monthly or after each bill?",
+      "created_at": "2026-08-04T13:41:12Z"
+    },
+    {
+      "id": "syn-comment-007",
+      "problem_id": "syn-prob-001",
+      "author_id": "syn-user-08",
+      "text": "Monthly, but we would pay sooner if the amount was clear.",
+      "created_at": "2026-10-07T20:45:20Z"
+    },
+    {
+      "id": "syn-comment-008",
+      "problem_id": "syn-prob-012",
+      "author_id": "syn-user-09",
+      "text": "An SMS when you are five patients away would solve most of this.",
+      "created_at": "2026-04-08T22:40:45Z"
+    },
+    {
+      "id": "syn-comment-009",
+      "problem_id": "syn-prob-012",
+      "author_id": "syn-user-07",
+      "text": "The clinic staff would need something extremely quick to update.",
+      "created_at": "2026-08-23T14:40:32Z"
+    },
+    {
+      "id": "syn-comment-010",
+      "problem_id": "syn-prob-011",
+      "author_id": "syn-user-07",
+      "text": "Voice reminders in the patient's own language matter a lot here.",
+      "created_at": "2026-09-30T23:29:23Z"
+    },
+    {
+      "id": "syn-comment-011",
+      "problem_id": "syn-prob-021",
+      "author_id": "syn-user-09",
+      "text": "My father runs a shop and would never type. Voice entry would help.",
+      "created_at": "2026-09-10T01:23:27Z"
+    },
+    {
+      "id": "syn-comment-012",
+      "problem_id": "syn-prob-022",
+      "author_id": "syn-user-03",
+      "text": "Would a simple shared order form be enough for your customers?",
+      "created_at": "2026-08-10T18:28:48Z"
+    },
+    {
+      "id": "syn-comment-013",
+      "problem_id": "syn-prob-022",
+      "author_id": "syn-user-05",
+      "text": "Possibly, as long as they can still message me for changes.",
+      "created_at": "2026-10-12T11:47:16Z"
+    },
+    {
+      "id": "syn-comment-014",
+      "problem_id": "syn-prob-032",
+      "author_id": "syn-user-12",
+      "text": "I started collecting verified points for Bengaluru and can share them.",
+      "created_at": "2026-10-22T11:08:24Z"
+    },
+    {
+      "id": "syn-comment-015",
+      "problem_id": "syn-prob-033",
+      "author_id": "syn-user-13",
+      "text": "Photos with dates would make it much harder to ignore.",
+      "created_at": "2026-10-20T18:19:19Z"
+    },
+    {
+      "id": "syn-comment-016",
+      "problem_id": "syn-prob-037",
+      "author_id": "syn-user-06",
+      "text": "Food safety rules need thought. Who is responsible if something goes wrong?",
+      "created_at": "2026-10-30T09:35:33Z"
+    },
+    {
+      "id": "syn-comment-017",
+      "problem_id": "syn-prob-002",
+      "author_id": "syn-user-06",
+      "text": "Most banks can show recurring mandates. Could this start from that list?",
+      "created_at": "2026-07-22T22:19:55Z"
+    },
+    {
+      "id": "syn-comment-018",
+      "problem_id": "syn-prob-003",
+      "author_id": "syn-user-06",
+      "text": "Is Tally export needed, or would a clean spreadsheet be enough at first?",
+      "created_at": "2026-10-18T13:40:58Z"
+    },
+    {
+      "id": "syn-comment-019",
+      "problem_id": "syn-prob-026",
+      "author_id": "syn-user-03",
+      "text": "Would a shared document template do, or does this need reminders?",
+      "created_at": "2026-11-01T13:17:05Z"
+    },
+    {
+      "id": "syn-comment-020",
+      "problem_id": "syn-prob-034",
+      "author_id": "syn-user-12",
+      "text": "Manual meter readings once a week would already show the leaks.",
+      "created_at": "2026-09-15T01:04:01Z"
+    },
+    {
+      "id": "syn-comment-021",
+      "problem_id": "syn-prob-043",
+      "author_id": "syn-user-02",
+      "text": "Could students simply mark a machine as taken from their phones?",
+      "created_at": "2026-11-02T17:26:52Z"
+    },
+    {
+      "id": "syn-comment-022",
+      "problem_id": "syn-prob-044",
+      "author_id": "syn-user-04",
+      "text": "A fair rule matters as much as the seat count. Bags should not hold seats.",
+      "created_at": "2026-09-24T04:10:38Z"
+    },
+    {
+      "id": "syn-comment-023",
+      "problem_id": "syn-prob-009",
+      "author_id": "syn-user-13",
+      "text": "Please consider Tamil and Malayalam too.",
+      "created_at": "2026-10-17T09:18:08Z"
+    },
+    {
+      "id": "syn-comment-024",
+      "problem_id": "syn-prob-039",
+      "author_id": "syn-user-06",
+      "text": "An SMS service would reach many more people here than an app.",
+      "created_at": "2026-10-12T09:01:04Z"
+    },
+    {
+      "id": "syn-comment-025",
+      "problem_id": "syn-prob-017",
+      "author_id": "syn-user-09",
+      "text": "Companies could verify employees through their work email.",
+      "created_at": "2026-06-07T14:00:08Z"
+    }
+  ],
+  "solutions": [
+    {
+      "id": "syn-solution-001",
+      "problem_id": "syn-prob-006",
+      "author_id": "syn-user-02",
+      "title": "TeamUp - skill based teammate finder",
+      "description": "Students create a profile with their skills and interests, post project ideas and send join requests. Filters help find people with missing skills like design or backend.",
+      "repo_url": "https://github.com/example/teamup",
+      "tech_stack": [
+        "React",
+        "Node.js",
+        "MongoDB"
+      ],
+      "created_at": "2026-10-10T05:54:30Z"
+    },
+    {
+      "id": "syn-solution-002",
+      "problem_id": "syn-prob-016",
+      "author_id": "syn-user-06",
+      "title": "Live bus status board",
+      "description": "One volunteer on each bus shares their location, and students see the last reported stop on a very light web page that works on slow connections.",
+      "repo_url": "https://github.com/example/bus-status",
+      "tech_stack": [
+        "Python",
+        "FastAPI",
+        "Leaflet"
+      ],
+      "created_at": "2026-10-26T04:49:29Z"
+    },
+    {
+      "id": "syn-solution-003",
+      "problem_id": "syn-prob-042",
+      "author_id": "syn-user-03",
+      "title": "FixIt - QR based facility complaints",
+      "description": "Each room has a QR code. Scanning it opens a short form, and the office sees all open faults in one list until they are marked as fixed.",
+      "repo_url": "https://github.com/example/fixit",
+      "tech_stack": [
+        "React",
+        "Firebase"
+      ],
+      "created_at": "2026-09-20T23:41:58Z"
+    },
+    {
+      "id": "syn-solution-004",
+      "problem_id": "syn-prob-001",
+      "author_id": "syn-user-09",
+      "title": "SplitFair - shared flat ledger",
+      "description": "A shared ledger for flatmates. Add a bill in two taps, see who owes whom and settle with a UPI link. No bank connection needed.",
+      "repo_url": "https://github.com/example/splitfair",
+      "tech_stack": [
+        "Flutter",
+        "Supabase"
+      ],
+      "created_at": "2026-10-01T23:41:34Z"
+    },
+    {
+      "id": "syn-solution-005",
+      "problem_id": "syn-prob-011",
+      "author_id": "syn-user-06",
+      "title": "DoseCall - voice medicine reminders",
+      "description": "Automated voice reminders in the patient's language, with a missed-dose message to one family member.",
+      "repo_url": "https://github.com/example/dosecall",
+      "tech_stack": [
+        "Python",
+        "Twilio"
+      ],
+      "created_at": "2026-10-11T23:25:45Z"
+    },
+    {
+      "id": "syn-solution-006",
+      "problem_id": "syn-prob-015",
+      "author_id": "syn-user-09",
+      "title": "RedLink - private donor alerts",
+      "description": "Sends a request to nearby donors without showing anyone's phone number, and closes the request as soon as it is met.",
+      "repo_url": "https://github.com/example/redlink",
+      "tech_stack": [
+        "Kotlin",
+        "Firebase"
+      ],
+      "created_at": "2026-05-29T12:11:49Z"
+    },
+    {
+      "id": "syn-solution-007",
+      "problem_id": "syn-prob-021",
+      "author_id": "syn-user-02",
+      "title": "Khata Lite",
+      "description": "A voice-first credit notebook for shop owners, with polite payment reminders through WhatsApp links.",
+      "repo_url": "https://github.com/example/khata-lite",
+      "tech_stack": [
+        "React Native",
+        "SQLite"
+      ],
+      "created_at": "2026-10-26T10:17:08Z"
+    },
+    {
+      "id": "syn-solution-008",
+      "problem_id": "syn-prob-032",
+      "author_id": "syn-user-12",
+      "title": "E-Waste Map",
+      "description": "A community-maintained map of authorised e-waste collection points, showing what each one accepts.",
+      "repo_url": "https://github.com/example/ewaste-map",
+      "tech_stack": [
+        "Leaflet",
+        "Python",
+        "OpenStreetMap"
+      ],
+      "created_at": "2026-10-06T11:24:48Z"
+    },
+    {
+      "id": "syn-solution-009",
+      "problem_id": "syn-prob-037",
+      "author_id": "syn-user-06",
+      "title": "PlateShare",
+      "description": "Hosts post surplus food with a pickup time, and nearby verified groups claim it. Includes a food safety checklist.",
+      "repo_url": "https://github.com/example/plateshare",
+      "tech_stack": [
+        "Next.js",
+        "PostgreSQL"
+      ],
+      "created_at": "2026-11-02T23:01:44Z"
+    }
+  ],
+  "upvotes": [
+    {
+      "problem_id": "syn-prob-001",
+      "user_id": "syn-user-12",
+      "created_at": "2026-09-19T07:10:00Z"
+    },
+    {
+      "problem_id": "syn-prob-001",
+      "user_id": "syn-user-11",
+      "created_at": "2026-09-20T10:49:51Z"
+    },
+    {
+      "problem_id": "syn-prob-001",
+      "user_id": "syn-user-13",
+      "created_at": "2026-07-13T11:51:20Z"
+    },
+    {
+      "problem_id": "syn-prob-001",
+      "user_id": "syn-user-01",
+      "created_at": "2026-09-10T21:09:24Z"
+    },
+    {
+      "problem_id": "syn-prob-001",
+      "user_id": "syn-user-07",
+      "created_at": "2026-07-30T17:34:45Z"
+    },
+    {
+      "problem_id": "syn-prob-001",
+      "user_id": "syn-user-09",
+      "created_at": "2026-07-23T05:39:02Z"
+    },
+    {
+      "problem_id": "syn-prob-001",
+      "user_id": "syn-user-03",
+      "created_at": "2026-11-01T08:16:49Z"
+    },
+    {
+      "problem_id": "syn-prob-001",
+      "user_id": "syn-user-06",
+      "created_at": "2026-09-10T21:49:34Z"
+    },
+    {
+      "problem_id": "syn-prob-002",
+      "user_id": "syn-user-11",
+      "created_at": "2026-06-21T10:19:15Z"
+    },
+    {
+      "problem_id": "syn-prob-002",
+      "user_id": "syn-user-09",
+      "created_at": "2026-06-25T23:11:15Z"
+    },
+    {
+      "problem_id": "syn-prob-003",
+      "user_id": "syn-user-05",
+      "created_at": "2026-10-15T14:22:26Z"
+    },
+    {
+      "problem_id": "syn-prob-003",
+      "user_id": "syn-user-07",
+      "created_at": "2026-10-28T14:29:03Z"
+    },
+    {
+      "problem_id": "syn-prob-003",
+      "user_id": "syn-user-12",
+      "created_at": "2026-10-31T12:48:07Z"
+    },
+    {
+      "problem_id": "syn-prob-004",
+      "user_id": "syn-user-10",
+      "created_at": "2026-09-18T01:49:16Z"
+    },
+    {
+      "problem_id": "syn-prob-004",
+      "user_id": "syn-user-05",
+      "created_at": "2026-08-27T21:42:59Z"
+    },
+    {
+      "problem_id": "syn-prob-004",
+      "user_id": "syn-user-04",
+      "created_at": "2026-07-13T23:06:15Z"
+    },
+    {
+      "problem_id": "syn-prob-004",
+      "user_id": "syn-user-07",
+      "created_at": "2026-09-02T00:33:35Z"
+    },
+    {
+      "problem_id": "syn-prob-005",
+      "user_id": "syn-user-01",
+      "created_at": "2026-11-01T10:22:16Z"
+    },
+    {
+      "problem_id": "syn-prob-005",
+      "user_id": "syn-user-10",
+      "created_at": "2026-10-09T20:33:00Z"
+    },
+    {
+      "problem_id": "syn-prob-005",
+      "user_id": "syn-user-13",
+      "created_at": "2026-10-06T00:04:09Z"
+    },
+    {
+      "problem_id": "syn-prob-005",
+      "user_id": "syn-user-12",
+      "created_at": "2026-10-03T15:15:17Z"
+    },
+    {
+      "problem_id": "syn-prob-006",
+      "user_id": "syn-user-03",
+      "created_at": "2026-09-16T05:10:47Z"
+    },
+    {
+      "problem_id": "syn-prob-006",
+      "user_id": "syn-user-08",
+      "created_at": "2026-09-14T11:27:25Z"
+    },
+    {
+      "problem_id": "syn-prob-006",
+      "user_id": "syn-user-13",
+      "created_at": "2026-09-05T00:00:34Z"
+    },
+    {
+      "problem_id": "syn-prob-006",
+      "user_id": "syn-user-12",
+      "created_at": "2026-09-12T14:23:50Z"
+    },
+    {
+      "problem_id": "syn-prob-006",
+      "user_id": "syn-user-10",
+      "created_at": "2026-10-15T08:19:18Z"
+    },
+    {
+      "problem_id": "syn-prob-007",
+      "user_id": "syn-user-13",
+      "created_at": "2026-09-20T15:17:33Z"
+    },
+    {
+      "problem_id": "syn-prob-007",
+      "user_id": "syn-user-07",
+      "created_at": "2026-09-22T09:14:40Z"
+    },
+    {
+      "problem_id": "syn-prob-007",
+      "user_id": "syn-user-14",
+      "created_at": "2026-09-30T02:39:08Z"
+    },
+    {
+      "problem_id": "syn-prob-007",
+      "user_id": "syn-user-12",
+      "created_at": "2026-09-08T00:02:58Z"
+    },
+    {
+      "problem_id": "syn-prob-007",
+      "user_id": "syn-user-08",
+      "created_at": "2026-10-14T13:44:42Z"
+    },
+    {
+      "problem_id": "syn-prob-007",
+      "user_id": "syn-user-09",
+      "created_at": "2026-09-08T14:30:02Z"
+    },
+    {
+      "problem_id": "syn-prob-007",
+      "user_id": "syn-user-11",
+      "created_at": "2026-09-25T02:03:47Z"
+    },
+    {
+      "problem_id": "syn-prob-008",
+      "user_id": "syn-user-03",
+      "created_at": "2026-10-05T03:42:03Z"
+    },
+    {
+      "problem_id": "syn-prob-008",
+      "user_id": "syn-user-04",
+      "created_at": "2026-09-29T10:50:49Z"
+    },
+    {
+      "problem_id": "syn-prob-008",
+      "user_id": "syn-user-13",
+      "created_at": "2026-08-26T18:43:12Z"
+    },
+    {
+      "problem_id": "syn-prob-008",
+      "user_id": "syn-user-08",
+      "created_at": "2026-08-21T21:53:20Z"
+    },
+    {
+      "problem_id": "syn-prob-009",
+      "user_id": "syn-user-14",
+      "created_at": "2026-07-01T20:52:14Z"
+    },
+    {
+      "problem_id": "syn-prob-009",
+      "user_id": "syn-user-12",
+      "created_at": "2026-06-11T01:38:06Z"
+    },
+    {
+      "problem_id": "syn-prob-009",
+      "user_id": "syn-user-13",
+      "created_at": "2026-06-25T13:49:36Z"
+    },
+    {
+      "problem_id": "syn-prob-009",
+      "user_id": "syn-user-02",
+      "created_at": "2026-06-06T04:09:47Z"
+    },
+    {
+      "problem_id": "syn-prob-009",
+      "user_id": "syn-user-08",
+      "created_at": "2026-08-09T17:51:02Z"
+    },
+    {
+      "problem_id": "syn-prob-009",
+      "user_id": "syn-user-05",
+      "created_at": "2026-06-08T09:24:59Z"
+    },
+    {
+      "problem_id": "syn-prob-009",
+      "user_id": "syn-user-06",
+      "created_at": "2026-06-09T18:16:17Z"
+    },
+    {
+      "problem_id": "syn-prob-009",
+      "user_id": "syn-user-10",
+      "created_at": "2026-08-09T11:28:06Z"
+    },
+    {
+      "problem_id": "syn-prob-010",
+      "user_id": "syn-user-09",
+      "created_at": "2026-10-14T00:36:18Z"
+    },
+    {
+      "problem_id": "syn-prob-010",
+      "user_id": "syn-user-10",
+      "created_at": "2026-11-01T00:00:14Z"
+    },
+    {
+      "problem_id": "syn-prob-010",
+      "user_id": "syn-user-05",
+      "created_at": "2026-10-14T21:08:57Z"
+    },
+    {
+      "problem_id": "syn-prob-010",
+      "user_id": "syn-user-02",
+      "created_at": "2026-11-02T04:55:09Z"
+    },
+    {
+      "problem_id": "syn-prob-010",
+      "user_id": "syn-user-13",
+      "created_at": "2026-10-10T11:14:03Z"
+    },
+    {
+      "problem_id": "syn-prob-010",
+      "user_id": "syn-user-03",
+      "created_at": "2026-10-19T10:48:56Z"
+    },
+    {
+      "problem_id": "syn-prob-011",
+      "user_id": "syn-user-10",
+      "created_at": "2026-10-16T06:59:04Z"
+    },
+    {
+      "problem_id": "syn-prob-011",
+      "user_id": "syn-user-03",
+      "created_at": "2026-09-27T18:20:43Z"
+    },
+    {
+      "problem_id": "syn-prob-012",
+      "user_id": "syn-user-10",
+      "created_at": "2026-06-14T00:09:16Z"
+    },
+    {
+      "problem_id": "syn-prob-012",
+      "user_id": "syn-user-09",
+      "created_at": "2026-05-16T13:05:08Z"
+    },
+    {
+      "problem_id": "syn-prob-013",
+      "user_id": "syn-user-11",
+      "created_at": "2026-10-09T21:18:42Z"
+    },
+    {
+      "problem_id": "syn-prob-013",
+      "user_id": "syn-user-09",
+      "created_at": "2026-10-04T18:22:16Z"
+    },
+    {
+      "problem_id": "syn-prob-013",
+      "user_id": "syn-user-07",
+      "created_at": "2026-09-03T21:38:25Z"
+    },
+    {
+      "problem_id": "syn-prob-013",
+      "user_id": "syn-user-06",
+      "created_at": "2026-09-08T07:41:46Z"
+    },
+    {
+      "problem_id": "syn-prob-014",
+      "user_id": "syn-user-09",
+      "created_at": "2026-10-28T10:14:46Z"
+    },
+    {
+      "problem_id": "syn-prob-014",
+      "user_id": "syn-user-04",
+      "created_at": "2026-10-29T05:17:58Z"
+    },
+    {
+      "problem_id": "syn-prob-014",
+      "user_id": "syn-user-10",
+      "created_at": "2026-10-20T22:55:18Z"
+    },
+    {
+      "problem_id": "syn-prob-015",
+      "user_id": "syn-user-14",
+      "created_at": "2026-08-25T22:16:59Z"
+    },
+    {
+      "problem_id": "syn-prob-015",
+      "user_id": "syn-user-02",
+      "created_at": "2026-07-10T22:49:07Z"
+    },
+    {
+      "problem_id": "syn-prob-015",
+      "user_id": "syn-user-01",
+      "created_at": "2026-08-03T15:39:22Z"
+    },
+    {
+      "problem_id": "syn-prob-015",
+      "user_id": "syn-user-11",
+      "created_at": "2026-08-16T12:25:03Z"
+    },
+    {
+      "problem_id": "syn-prob-015",
+      "user_id": "syn-user-10",
+      "created_at": "2026-06-05T07:53:15Z"
+    },
+    {
+      "problem_id": "syn-prob-016",
+      "user_id": "syn-user-14",
+      "created_at": "2026-10-07T14:24:33Z"
+    },
+    {
+      "problem_id": "syn-prob-016",
+      "user_id": "syn-user-02",
+      "created_at": "2026-10-10T12:20:15Z"
+    },
+    {
+      "problem_id": "syn-prob-016",
+      "user_id": "syn-user-13",
+      "created_at": "2026-11-04T18:01:28Z"
+    },
+    {
+      "problem_id": "syn-prob-016",
+      "user_id": "syn-user-10",
+      "created_at": "2026-10-23T23:37:22Z"
+    },
+    {
+      "problem_id": "syn-prob-016",
+      "user_id": "syn-user-05",
+      "created_at": "2026-10-31T17:18:40Z"
+    },
+    {
+      "problem_id": "syn-prob-017",
+      "user_id": "syn-user-02",
+      "created_at": "2026-07-11T06:23:25Z"
+    },
+    {
+      "problem_id": "syn-prob-017",
+      "user_id": "syn-user-06",
+      "created_at": "2026-05-24T08:26:09Z"
+    },
+    {
+      "problem_id": "syn-prob-017",
+      "user_id": "syn-user-03",
+      "created_at": "2026-09-24T04:21:31Z"
+    },
+    {
+      "problem_id": "syn-prob-017",
+      "user_id": "syn-user-13",
+      "created_at": "2026-10-27T12:28:37Z"
+    },
+    {
+      "problem_id": "syn-prob-017",
+      "user_id": "syn-user-01",
+      "created_at": "2026-10-28T13:20:56Z"
+    },
+    {
+      "problem_id": "syn-prob-017",
+      "user_id": "syn-user-11",
+      "created_at": "2026-10-21T21:42:00Z"
+    },
+    {
+      "problem_id": "syn-prob-018",
+      "user_id": "syn-user-05",
+      "created_at": "2026-08-21T03:34:39Z"
+    },
+    {
+      "problem_id": "syn-prob-018",
+      "user_id": "syn-user-04",
+      "created_at": "2026-08-17T06:28:43Z"
+    },
+    {
+      "problem_id": "syn-prob-018",
+      "user_id": "syn-user-08",
+      "created_at": "2026-09-15T03:20:04Z"
+    },
+    {
+      "problem_id": "syn-prob-018",
+      "user_id": "syn-user-03",
+      "created_at": "2026-08-13T11:10:54Z"
+    },
+    {
+      "problem_id": "syn-prob-019",
+      "user_id": "syn-user-05",
+      "created_at": "2026-09-24T14:32:23Z"
+    },
+    {
+      "problem_id": "syn-prob-019",
+      "user_id": "syn-user-04",
+      "created_at": "2026-09-18T12:23:45Z"
+    },
+    {
+      "problem_id": "syn-prob-020",
+      "user_id": "syn-user-10",
+      "created_at": "2026-10-24T11:24:23Z"
+    },
+    {
+      "problem_id": "syn-prob-020",
+      "user_id": "syn-user-11",
+      "created_at": "2026-10-16T16:27:40Z"
+    },
+    {
+      "problem_id": "syn-prob-020",
+      "user_id": "syn-user-01",
+      "created_at": "2026-10-28T08:45:17Z"
+    },
+    {
+      "problem_id": "syn-prob-021",
+      "user_id": "syn-user-07",
+      "created_at": "2026-07-13T13:58:35Z"
+    },
+    {
+      "problem_id": "syn-prob-021",
+      "user_id": "syn-user-09",
+      "created_at": "2026-09-12T04:02:51Z"
+    },
+    {
+      "problem_id": "syn-prob-021",
+      "user_id": "syn-user-14",
+      "created_at": "2026-09-07T06:10:38Z"
+    },
+    {
+      "problem_id": "syn-prob-021",
+      "user_id": "syn-user-01",
+      "created_at": "2026-10-06T17:17:26Z"
+    },
+    {
+      "problem_id": "syn-prob-021",
+      "user_id": "syn-user-13",
+      "created_at": "2026-07-24T18:41:58Z"
+    },
+    {
+      "problem_id": "syn-prob-022",
+      "user_id": "syn-user-03",
+      "created_at": "2026-09-28T06:36:51Z"
+    },
+    {
+      "problem_id": "syn-prob-022",
+      "user_id": "syn-user-09",
+      "created_at": "2026-10-24T03:03:15Z"
+    },
+    {
+      "problem_id": "syn-prob-022",
+      "user_id": "syn-user-04",
+      "created_at": "2026-08-02T07:36:38Z"
+    },
+    {
+      "problem_id": "syn-prob-022",
+      "user_id": "syn-user-08",
+      "created_at": "2026-06-28T12:52:14Z"
+    },
+    {
+      "problem_id": "syn-prob-022",
+      "user_id": "syn-user-11",
+      "created_at": "2026-10-05T05:28:02Z"
+    },
+    {
+      "problem_id": "syn-prob-022",
+      "user_id": "syn-user-01",
+      "created_at": "2026-07-04T06:28:57Z"
+    },
+    {
+      "problem_id": "syn-prob-022",
+      "user_id": "syn-user-06",
+      "created_at": "2026-09-09T20:32:00Z"
+    },
+    {
+      "problem_id": "syn-prob-022",
+      "user_id": "syn-user-07",
+      "created_at": "2026-06-27T21:25:12Z"
+    },
+    {
+      "problem_id": "syn-prob-023",
+      "user_id": "syn-user-03",
+      "created_at": "2026-10-13T03:46:15Z"
+    },
+    {
+      "problem_id": "syn-prob-023",
+      "user_id": "syn-user-04",
+      "created_at": "2026-09-02T12:53:47Z"
+    },
+    {
+      "problem_id": "syn-prob-023",
+      "user_id": "syn-user-01",
+      "created_at": "2026-09-25T06:51:09Z"
+    },
+    {
+      "problem_id": "syn-prob-023",
+      "user_id": "syn-user-02",
+      "created_at": "2026-06-23T23:25:02Z"
+    },
+    {
+      "problem_id": "syn-prob-023",
+      "user_id": "syn-user-09",
+      "created_at": "2026-07-15T04:03:53Z"
+    },
+    {
+      "problem_id": "syn-prob-023",
+      "user_id": "syn-user-11",
+      "created_at": "2026-09-10T14:03:06Z"
+    },
+    {
+      "problem_id": "syn-prob-023",
+      "user_id": "syn-user-14",
+      "created_at": "2026-10-15T23:24:09Z"
+    },
+    {
+      "problem_id": "syn-prob-024",
+      "user_id": "syn-user-01",
+      "created_at": "2026-08-15T20:06:23Z"
+    },
+    {
+      "problem_id": "syn-prob-024",
+      "user_id": "syn-user-02",
+      "created_at": "2026-09-22T13:48:15Z"
+    },
+    {
+      "problem_id": "syn-prob-024",
+      "user_id": "syn-user-08",
+      "created_at": "2026-10-16T02:39:43Z"
+    },
+    {
+      "problem_id": "syn-prob-024",
+      "user_id": "syn-user-11",
+      "created_at": "2026-08-08T01:37:23Z"
+    },
+    {
+      "problem_id": "syn-prob-024",
+      "user_id": "syn-user-12",
+      "created_at": "2026-10-15T21:05:59Z"
+    },
+    {
+      "problem_id": "syn-prob-025",
+      "user_id": "syn-user-01",
+      "created_at": "2026-11-03T04:03:46Z"
+    },
+    {
+      "problem_id": "syn-prob-025",
+      "user_id": "syn-user-14",
+      "created_at": "2026-10-28T02:26:21Z"
+    },
+    {
+      "problem_id": "syn-prob-025",
+      "user_id": "syn-user-10",
+      "created_at": "2026-11-05T04:57:45Z"
+    },
+    {
+      "problem_id": "syn-prob-025",
+      "user_id": "syn-user-13",
+      "created_at": "2026-10-23T02:10:45Z"
+    },
+    {
+      "problem_id": "syn-prob-026",
+      "user_id": "syn-user-14",
+      "created_at": "2026-09-04T01:17:41Z"
+    },
+    {
+      "problem_id": "syn-prob-026",
+      "user_id": "syn-user-11",
+      "created_at": "2026-08-30T12:45:19Z"
+    },
+    {
+      "problem_id": "syn-prob-026",
+      "user_id": "syn-user-05",
+      "created_at": "2026-08-29T06:00:58Z"
+    },
+    {
+      "problem_id": "syn-prob-026",
+      "user_id": "syn-user-13",
+      "created_at": "2026-10-28T04:19:38Z"
+    },
+    {
+      "problem_id": "syn-prob-026",
+      "user_id": "syn-user-01",
+      "created_at": "2026-09-22T04:51:52Z"
+    },
+    {
+      "problem_id": "syn-prob-027",
+      "user_id": "syn-user-04",
+      "created_at": "2026-08-30T19:25:19Z"
+    },
+    {
+      "problem_id": "syn-prob-027",
+      "user_id": "syn-user-09",
+      "created_at": "2026-10-31T20:08:41Z"
+    },
+    {
+      "problem_id": "syn-prob-027",
+      "user_id": "syn-user-01",
+      "created_at": "2026-10-11T07:40:45Z"
+    },
+    {
+      "problem_id": "syn-prob-027",
+      "user_id": "syn-user-13",
+      "created_at": "2026-10-09T19:32:20Z"
+    },
+    {
+      "problem_id": "syn-prob-027",
+      "user_id": "syn-user-05",
+      "created_at": "2026-08-19T00:59:35Z"
+    },
+    {
+      "problem_id": "syn-prob-028",
+      "user_id": "syn-user-02",
+      "created_at": "2026-08-21T06:00:19Z"
+    },
+    {
+      "problem_id": "syn-prob-028",
+      "user_id": "syn-user-08",
+      "created_at": "2026-08-25T07:02:09Z"
+    },
+    {
+      "problem_id": "syn-prob-028",
+      "user_id": "syn-user-11",
+      "created_at": "2026-10-11T23:39:51Z"
+    },
+    {
+      "problem_id": "syn-prob-028",
+      "user_id": "syn-user-05",
+      "created_at": "2026-10-21T04:04:41Z"
+    },
+    {
+      "problem_id": "syn-prob-028",
+      "user_id": "syn-user-07",
+      "created_at": "2026-10-06T13:05:16Z"
+    },
+    {
+      "problem_id": "syn-prob-029",
+      "user_id": "syn-user-07",
+      "created_at": "2026-11-04T14:50:29Z"
+    },
+    {
+      "problem_id": "syn-prob-029",
+      "user_id": "syn-user-11",
+      "created_at": "2026-10-25T21:31:37Z"
+    },
+    {
+      "problem_id": "syn-prob-029",
+      "user_id": "syn-user-01",
+      "created_at": "2026-11-04T05:06:22Z"
+    },
+    {
+      "problem_id": "syn-prob-029",
+      "user_id": "syn-user-13",
+      "created_at": "2026-10-21T14:02:42Z"
+    },
+    {
+      "problem_id": "syn-prob-029",
+      "user_id": "syn-user-14",
+      "created_at": "2026-10-28T04:28:17Z"
+    },
+    {
+      "problem_id": "syn-prob-030",
+      "user_id": "syn-user-09",
+      "created_at": "2026-08-08T10:21:06Z"
+    },
+    {
+      "problem_id": "syn-prob-030",
+      "user_id": "syn-user-10",
+      "created_at": "2026-11-03T06:56:17Z"
+    },
+    {
+      "problem_id": "syn-prob-030",
+      "user_id": "syn-user-04",
+      "created_at": "2026-06-30T15:50:48Z"
+    },
+    {
+      "problem_id": "syn-prob-030",
+      "user_id": "syn-user-07",
+      "created_at": "2026-08-06T11:41:07Z"
+    },
+    {
+      "problem_id": "syn-prob-030",
+      "user_id": "syn-user-05",
+      "created_at": "2026-06-27T19:27:43Z"
+    },
+    {
+      "problem_id": "syn-prob-030",
+      "user_id": "syn-user-03",
+      "created_at": "2026-06-18T17:54:23Z"
+    },
+    {
+      "problem_id": "syn-prob-031",
+      "user_id": "syn-user-10",
+      "created_at": "2026-08-19T13:27:18Z"
+    },
+    {
+      "problem_id": "syn-prob-031",
+      "user_id": "syn-user-05",
+      "created_at": "2026-10-23T01:32:00Z"
+    },
+    {
+      "problem_id": "syn-prob-031",
+      "user_id": "syn-user-03",
+      "created_at": "2026-09-14T00:20:22Z"
+    },
+    {
+      "problem_id": "syn-prob-031",
+      "user_id": "syn-user-02",
+      "created_at": "2026-10-14T19:56:00Z"
+    },
+    {
+      "problem_id": "syn-prob-032",
+      "user_id": "syn-user-02",
+      "created_at": "2026-09-29T06:50:17Z"
+    },
+    {
+      "problem_id": "syn-prob-032",
+      "user_id": "syn-user-04",
+      "created_at": "2026-09-10T09:49:53Z"
+    },
+    {
+      "problem_id": "syn-prob-032",
+      "user_id": "syn-user-14",
+      "created_at": "2026-10-13T04:59:01Z"
+    },
+    {
+      "problem_id": "syn-prob-032",
+      "user_id": "syn-user-05",
+      "created_at": "2026-08-30T22:09:50Z"
+    },
+    {
+      "problem_id": "syn-prob-032",
+      "user_id": "syn-user-13",
+      "created_at": "2026-11-04T13:11:04Z"
+    },
+    {
+      "problem_id": "syn-prob-032",
+      "user_id": "syn-user-10",
+      "created_at": "2026-08-28T10:52:27Z"
+    },
+    {
+      "problem_id": "syn-prob-032",
+      "user_id": "syn-user-07",
+      "created_at": "2026-09-22T02:40:52Z"
+    },
+    {
+      "problem_id": "syn-prob-032",
+      "user_id": "syn-user-08",
+      "created_at": "2026-10-02T23:34:52Z"
+    },
+    {
+      "problem_id": "syn-prob-032",
+      "user_id": "syn-user-11",
+      "created_at": "2026-10-21T01:03:31Z"
+    },
+    {
+      "problem_id": "syn-prob-032",
+      "user_id": "syn-user-06",
+      "created_at": "2026-09-05T17:32:34Z"
+    },
+    {
+      "problem_id": "syn-prob-033",
+      "user_id": "syn-user-02",
+      "created_at": "2026-08-08T11:33:12Z"
+    },
+    {
+      "problem_id": "syn-prob-033",
+      "user_id": "syn-user-13",
+      "created_at": "2026-07-05T23:55:05Z"
+    },
+    {
+      "problem_id": "syn-prob-033",
+      "user_id": "syn-user-05",
+      "created_at": "2026-07-23T20:49:46Z"
+    },
+    {
+      "problem_id": "syn-prob-033",
+      "user_id": "syn-user-06",
+      "created_at": "2026-07-31T15:32:06Z"
+    },
+    {
+      "problem_id": "syn-prob-033",
+      "user_id": "syn-user-09",
+      "created_at": "2026-07-20T05:38:26Z"
+    },
+    {
+      "problem_id": "syn-prob-034",
+      "user_id": "syn-user-01",
+      "created_at": "2026-08-15T11:58:31Z"
+    },
+    {
+      "problem_id": "syn-prob-034",
+      "user_id": "syn-user-05",
+      "created_at": "2026-10-12T13:22:35Z"
+    },
+    {
+      "problem_id": "syn-prob-034",
+      "user_id": "syn-user-06",
+      "created_at": "2026-05-22T20:30:41Z"
+    },
+    {
+      "problem_id": "syn-prob-034",
+      "user_id": "syn-user-02",
+      "created_at": "2026-04-21T18:26:20Z"
+    },
+    {
+      "problem_id": "syn-prob-034",
+      "user_id": "syn-user-10",
+      "created_at": "2026-05-12T07:18:26Z"
+    },
+    {
+      "problem_id": "syn-prob-034",
+      "user_id": "syn-user-03",
+      "created_at": "2026-07-11T22:59:24Z"
+    },
+    {
+      "problem_id": "syn-prob-034",
+      "user_id": "syn-user-04",
+      "created_at": "2026-06-25T23:01:48Z"
+    },
+    {
+      "problem_id": "syn-prob-035",
+      "user_id": "syn-user-04",
+      "created_at": "2026-10-10T22:05:44Z"
+    },
+    {
+      "problem_id": "syn-prob-035",
+      "user_id": "syn-user-03",
+      "created_at": "2026-10-30T03:59:13Z"
+    },
+    {
+      "problem_id": "syn-prob-035",
+      "user_id": "syn-user-08",
+      "created_at": "2026-10-28T21:08:29Z"
+    },
+    {
+      "problem_id": "syn-prob-035",
+      "user_id": "syn-user-05",
+      "created_at": "2026-10-26T09:52:21Z"
+    },
+    {
+      "problem_id": "syn-prob-035",
+      "user_id": "syn-user-11",
+      "created_at": "2026-10-14T07:04:12Z"
+    },
+    {
+      "problem_id": "syn-prob-035",
+      "user_id": "syn-user-07",
+      "created_at": "2026-10-26T07:28:44Z"
+    },
+    {
+      "problem_id": "syn-prob-035",
+      "user_id": "syn-user-06",
+      "created_at": "2026-10-22T18:06:57Z"
+    },
+    {
+      "problem_id": "syn-prob-036",
+      "user_id": "syn-user-05",
+      "created_at": "2026-09-17T05:12:54Z"
+    },
+    {
+      "problem_id": "syn-prob-036",
+      "user_id": "syn-user-03",
+      "created_at": "2026-07-15T08:02:17Z"
+    },
+    {
+      "problem_id": "syn-prob-036",
+      "user_id": "syn-user-09",
+      "created_at": "2026-08-22T15:06:55Z"
+    },
+    {
+      "problem_id": "syn-prob-036",
+      "user_id": "syn-user-14",
+      "created_at": "2026-10-07T07:32:46Z"
+    },
+    {
+      "problem_id": "syn-prob-036",
+      "user_id": "syn-user-04",
+      "created_at": "2026-07-24T10:40:00Z"
+    },
+    {
+      "problem_id": "syn-prob-036",
+      "user_id": "syn-user-11",
+      "created_at": "2026-10-01T12:16:55Z"
+    },
+    {
+      "problem_id": "syn-prob-036",
+      "user_id": "syn-user-02",
+      "created_at": "2026-08-14T04:41:30Z"
+    },
+    {
+      "problem_id": "syn-prob-037",
+      "user_id": "syn-user-01",
+      "created_at": "2026-11-02T12:34:33Z"
+    },
+    {
+      "problem_id": "syn-prob-037",
+      "user_id": "syn-user-09",
+      "created_at": "2026-11-04T04:55:43Z"
+    },
+    {
+      "problem_id": "syn-prob-037",
+      "user_id": "syn-user-11",
+      "created_at": "2026-11-04T02:56:18Z"
+    },
+    {
+      "problem_id": "syn-prob-037",
+      "user_id": "syn-user-14",
+      "created_at": "2026-11-04T06:40:37Z"
+    },
+    {
+      "problem_id": "syn-prob-038",
+      "user_id": "syn-user-02",
+      "created_at": "2026-09-22T01:10:04Z"
+    },
+    {
+      "problem_id": "syn-prob-038",
+      "user_id": "syn-user-03",
+      "created_at": "2026-10-14T21:29:35Z"
+    },
+    {
+      "problem_id": "syn-prob-038",
+      "user_id": "syn-user-04",
+      "created_at": "2026-09-25T09:01:54Z"
+    },
+    {
+      "problem_id": "syn-prob-038",
+      "user_id": "syn-user-05",
+      "created_at": "2026-10-01T10:44:25Z"
+    },
+    {
+      "problem_id": "syn-prob-038",
+      "user_id": "syn-user-08",
+      "created_at": "2026-10-02T00:35:44Z"
+    },
+    {
+      "problem_id": "syn-prob-038",
+      "user_id": "syn-user-14",
+      "created_at": "2026-10-19T05:19:37Z"
+    },
+    {
+      "problem_id": "syn-prob-038",
+      "user_id": "syn-user-11",
+      "created_at": "2026-10-03T06:32:49Z"
+    },
+    {
+      "problem_id": "syn-prob-038",
+      "user_id": "syn-user-12",
+      "created_at": "2026-09-29T01:08:11Z"
+    },
+    {
+      "problem_id": "syn-prob-039",
+      "user_id": "syn-user-10",
+      "created_at": "2026-09-11T00:38:12Z"
+    },
+    {
+      "problem_id": "syn-prob-039",
+      "user_id": "syn-user-06",
+      "created_at": "2026-10-05T20:13:50Z"
+    },
+    {
+      "problem_id": "syn-prob-040",
+      "user_id": "syn-user-05",
+      "created_at": "2026-09-20T00:30:02Z"
+    },
+    {
+      "problem_id": "syn-prob-040",
+      "user_id": "syn-user-03",
+      "created_at": "2026-09-27T01:44:27Z"
+    },
+    {
+      "problem_id": "syn-prob-040",
+      "user_id": "syn-user-14",
+      "created_at": "2026-08-31T00:09:03Z"
+    },
+    {
+      "problem_id": "syn-prob-041",
+      "user_id": "syn-user-10",
+      "created_at": "2026-08-08T03:25:59Z"
+    },
+    {
+      "problem_id": "syn-prob-041",
+      "user_id": "syn-user-08",
+      "created_at": "2026-08-18T17:27:22Z"
+    },
+    {
+      "problem_id": "syn-prob-041",
+      "user_id": "syn-user-05",
+      "created_at": "2026-11-05T13:04:16Z"
+    },
+    {
+      "problem_id": "syn-prob-041",
+      "user_id": "syn-user-07",
+      "created_at": "2026-09-30T21:56:44Z"
+    },
+    {
+      "problem_id": "syn-prob-041",
+      "user_id": "syn-user-09",
+      "created_at": "2026-08-15T23:47:00Z"
+    },
+    {
+      "problem_id": "syn-prob-041",
+      "user_id": "syn-user-06",
+      "created_at": "2026-08-07T10:30:15Z"
+    },
+    {
+      "problem_id": "syn-prob-042",
+      "user_id": "syn-user-08",
+      "created_at": "2026-10-11T00:40:12Z"
+    },
+    {
+      "problem_id": "syn-prob-042",
+      "user_id": "syn-user-02",
+      "created_at": "2026-07-04T03:12:21Z"
+    },
+    {
+      "problem_id": "syn-prob-042",
+      "user_id": "syn-user-06",
+      "created_at": "2026-10-21T07:24:51Z"
+    },
+    {
+      "problem_id": "syn-prob-042",
+      "user_id": "syn-user-09",
+      "created_at": "2026-04-25T07:17:23Z"
+    },
+    {
+      "problem_id": "syn-prob-042",
+      "user_id": "syn-user-10",
+      "created_at": "2026-09-17T04:24:53Z"
+    },
+    {
+      "problem_id": "syn-prob-042",
+      "user_id": "syn-user-12",
+      "created_at": "2026-05-07T14:49:37Z"
+    },
+    {
+      "problem_id": "syn-prob-042",
+      "user_id": "syn-user-03",
+      "created_at": "2026-06-21T22:19:10Z"
+    },
+    {
+      "problem_id": "syn-prob-042",
+      "user_id": "syn-user-04",
+      "created_at": "2026-09-30T15:03:08Z"
+    },
+    {
+      "problem_id": "syn-prob-042",
+      "user_id": "syn-user-05",
+      "created_at": "2026-05-06T21:42:23Z"
+    },
+    {
+      "problem_id": "syn-prob-042",
+      "user_id": "syn-user-11",
+      "created_at": "2026-05-21T17:21:42Z"
+    },
+    {
+      "problem_id": "syn-prob-043",
+      "user_id": "syn-user-05",
+      "created_at": "2026-10-27T03:04:42Z"
+    },
+    {
+      "problem_id": "syn-prob-043",
+      "user_id": "syn-user-02",
+      "created_at": "2026-10-30T21:05:25Z"
+    },
+    {
+      "problem_id": "syn-prob-043",
+      "user_id": "syn-user-14",
+      "created_at": "2026-11-03T22:45:20Z"
+    },
+    {
+      "problem_id": "syn-prob-044",
+      "user_id": "syn-user-04",
+      "created_at": "2026-09-04T02:38:26Z"
+    },
+    {
+      "problem_id": "syn-prob-044",
+      "user_id": "syn-user-07",
+      "created_at": "2026-08-06T05:08:00Z"
+    },
+    {
+      "problem_id": "syn-prob-044",
+      "user_id": "syn-user-13",
+      "created_at": "2026-10-04T17:10:36Z"
+    },
+    {
+      "problem_id": "syn-prob-044",
+      "user_id": "syn-user-09",
+      "created_at": "2026-05-21T14:06:36Z"
+    }
+  ],
+  "labelled_pairs": [
+    {
+      "id": "syn-pair-001",
+      "left": {
+        "title": "Flatmates lose track of who owes what for shared bills",
+        "description": "Four of us share rent, electricity, groceries and the internet bill. Someone always pays first and we try to settle at the end of the month from memory and WhatsApp messages. We regularly argue about small amounts because nobody has a clear record of who paid for what.",
+        "tags": [
+          "expenses",
+          "shared-bills",
+          "flatmates"
+        ]
+      },
+      "right": {
+        "title": "Roommate bill splitting is a nightmare",
+        "description": "There are three of us in a rented flat. Every month we fight about electricity and groceries because one person pays and the others forget. I keep a note on my phone but nobody trusts it, and small debts just pile up.",
+        "tags": [
+          "expenses",
+          "shared-bills"
+        ]
+      },
+      "label": "same_underlying",
+      "rationale": "A community report describing the same underlying need in different words.",
+      "source": "synthetic"
+    },
+    {
+      "id": "syn-pair-002",
+      "left": {
+        "title": "Flatmates lose track of who owes what for shared bills",
+        "description": "Four of us share rent, electricity, groceries and the internet bill. Someone always pays first and we try to settle at the end of the month from memory and WhatsApp messages. We regularly argue about small amounts because nobody has a clear record of who paid for what.",
+        "tags": [
+          "expenses",
+          "shared-bills",
+          "flatmates"
+        ]
+      },
+      "right": {
+        "title": "Need a way to settle shared flat costs",
+        "description": "Whoever pays the gas and wifi never gets paid back on time. We have tried a spreadsheet but stopped updating it after a month. It would be great to see the balance between us at any time.",
+        "tags": [
+          "expenses",
+          "shared-bills"
+        ]
+      },
+      "label": "same_underlying",
+      "rationale": "A community report describing the same underlying need in different words.",
+      "source": "synthetic"
+    },
+    {
+      "id": "syn-pair-003",
+      "left": {
+        "title": "Flatmates lose track of who owes what for shared bills",
+        "description": "Four of us share rent, electricity, groceries and the internet bill. Someone always pays first and we try to settle at the end of the month from memory and WhatsApp messages. We regularly argue about small amounts because nobody has a clear record of who paid for what.",
+        "tags": [
+          "expenses",
+          "shared-bills",
+          "flatmates"
+        ]
+      },
+      "right": {
+        "title": "Friends never pay me back for group expenses",
+        "description": "I keep paying for trips and dinners with friends and then have to send awkward reminders. It is impossible to remember who paid what across a whole month.",
+        "tags": [
+          "expenses",
+          "shared-bills"
+        ]
+      },
+      "label": "same_underlying",
+      "rationale": "A community report describing the same underlying need in different words.",
+      "source": "synthetic"
+    },
+    {
+      "id": "syn-pair-004",
+      "left": {
+        "title": "Small monthly subscriptions quietly drain my salary",
+        "description": "I pay for music, cloud storage, two streaming apps and a gym app, all on different dates and different cards. I only notice how much is going out when my account runs low near the end of the month, and I often forget free trials until they have already renewed.",
+        "tags": [
+          "subscriptions",
+          "budgeting",
+          "reminders"
+        ]
+      },
+      "right": {
+        "title": "Forgot to cancel a free trial again",
+        "description": "I signed up for a free trial and it silently charged me for a whole year. I have no list of what I am subscribed to and what is about to renew.",
+        "tags": [
+          "subscriptions",
+          "budgeting"
+        ]
+      },
+      "label": "same_underlying",
+      "rationale": "A community report describing the same underlying need in different words.",
+      "source": "synthetic"
+    },
+    {
+      "id": "syn-pair-005",
+      "left": {
+        "title": "Employees wait weeks for travel expense reimbursement",
+        "description": "At our company of forty people, field staff submit paper bills to the office once a month. Receipts get lost, managers approve them late and accounts re-enters everything by hand. Staff end up carrying thousands of rupees of company costs on their own cards for weeks.",
+        "tags": [
+          "reimbursement",
+          "receipts",
+          "small-teams"
+        ]
+      },
+      "right": {
+        "title": "Getting paid back for work travel takes forever",
+        "description": "Our sales team has to keep paper bills and hand them in at month end. Half of them fade or get lost, and I am still waiting for money from August.",
+        "tags": [
+          "reimbursement",
+          "receipts"
+        ]
+      },
+      "label": "same_underlying",
+      "rationale": "A community report describing the same underlying need in different words.",
+      "source": "synthetic"
+    },
+    {
+      "id": "syn-pair-006",
+      "left": {
+        "title": "Students struggle to find teammates for college projects",
+        "description": "Every semester we have to form teams for projects and hackathons. Most students only know people from their own section, so teams are formed randomly and skilled students from other sections never meet. There is no place to see who is looking for a team and what skills they have.",
+        "tags": [
+          "teamwork",
+          "projects",
+          "hackathon"
+        ]
+      },
+      "right": {
+        "title": "Can't find project partners outside my class",
+        "description": "I have an idea for the hackathon but I only know people in my own batch. I need a designer and a backend developer, and there is no way of finding them.",
+        "tags": [
+          "teamwork",
+          "projects"
+        ]
+      },
+      "label": "same_underlying",
+      "rationale": "A community report describing the same underlying need in different words.",
+      "source": "synthetic"
+    },
+    {
+      "id": "syn-pair-007",
+      "left": {
+        "title": "Students struggle to find teammates for college projects",
+        "description": "Every semester we have to form teams for projects and hackathons. Most students only know people from their own section, so teams are formed randomly and skilled students from other sections never meet. There is no place to see who is looking for a team and what skills they have.",
+        "tags": [
+          "teamwork",
+          "projects",
+          "hackathon"
+        ]
+      },
+      "right": {
+        "title": "Group projects always end up with random teams",
+        "description": "Teachers ask us to form teams and we end up with whoever sits nearby. Some teams have no one who can code. A board showing who needs a team would really help.",
+        "tags": [
+          "teamwork",
+          "projects"
+        ]
+      },
+      "label": "same_underlying",
+      "rationale": "A community report describing the same underlying need in different words.",
+      "source": "synthetic"
+    },
+    {
+      "id": "syn-pair-008",
+      "left": {
+        "title": "Seniors' books and notes go to waste every year",
+        "description": "Each year final-year students throw away or sell textbooks and carefully written notes to scrap dealers, while juniors buy the same books new at full price. There is no reliable way for juniors to find what seniors are giving away.",
+        "tags": [
+          "books",
+          "notes",
+          "reuse"
+        ]
+      },
+      "right": {
+        "title": "Juniors keep buying books seniors are throwing out",
+        "description": "I sold all of my second-year textbooks for almost nothing to the scrap shop. A week later I saw a junior paying full price for the same book.",
+        "tags": [
+          "books",
+          "notes"
+        ]
+      },
+      "label": "same_underlying",
+      "rationale": "A community report describing the same underlying need in different words.",
+      "source": "synthetic"
+    },
+    {
+      "id": "syn-pair-009",
+      "left": {
+        "title": "Elderly patients forget medicines and doses at home",
+        "description": "Many of the older patients at our clinic take five or more medicines at different times. They forget doses or take them twice, and family members who live elsewhere have no way of knowing. We see the results when they come back unwell.",
+        "tags": [
+          "medicine",
+          "elderly",
+          "reminders"
+        ]
+      },
+      "right": {
+        "title": "My grandmother keeps missing her tablets",
+        "description": "She takes tablets three times a day and gets confused about whether she has taken them. I live in another city and only find out when she feels ill.",
+        "tags": [
+          "medicine",
+          "elderly"
+        ]
+      },
+      "label": "same_underlying",
+      "rationale": "A community report describing the same underlying need in different words.",
+      "source": "synthetic"
+    },
+    {
+      "id": "syn-pair-010",
+      "left": {
+        "title": "Elderly patients forget medicines and doses at home",
+        "description": "Many of the older patients at our clinic take five or more medicines at different times. They forget doses or take them twice, and family members who live elsewhere have no way of knowing. We see the results when they come back unwell.",
+        "tags": [
+          "medicine",
+          "elderly",
+          "reminders"
+        ]
+      },
+      "right": {
+        "title": "No way to know if my mother took her medicine",
+        "description": "Mum has diabetes and high blood pressure. I call her every day to ask about her tablets, but she often says yes without being sure.",
+        "tags": [
+          "medicine",
+          "elderly"
+        ]
+      },
+      "label": "same_underlying",
+      "rationale": "A community report describing the same underlying need in different words.",
+      "source": "synthetic"
+    },
+    {
+      "id": "syn-pair-011",
+      "left": {
+        "title": "Patients wait for hours with no idea of their turn at the clinic",
+        "description": "At our community clinic people arrive at 7 am to get a token and then wait the whole morning in a crowded room. Nobody knows how long it will take, and daily wage workers lose a full day's income for a ten-minute consultation.",
+        "tags": [
+          "queues",
+          "clinics",
+          "waiting"
+        ]
+      },
+      "right": {
+        "title": "Whole day lost in the hospital OPD line",
+        "description": "I took leave and stood in the OPD line from early morning. The token number barely moved and nobody could tell me if it would be one hour or five.",
+        "tags": [
+          "queues",
+          "clinics"
+        ]
+      },
+      "label": "same_underlying",
+      "rationale": "A community report describing the same underlying need in different words.",
+      "source": "synthetic"
+    },
+    {
+      "id": "syn-pair-012",
+      "left": {
+        "title": "College bus timings are unpredictable",
+        "description": "Students wait at the stop every morning with no idea whether the bus has already left or is running late. Some miss the first lecture, others leave home far too early. The drivers are helpful but nobody can tell us where the bus is.",
+        "tags": [
+          "bus",
+          "commute",
+          "tracking"
+        ]
+      },
+      "right": {
+        "title": "Never know if the campus bus has left",
+        "description": "I reach the stop at 7:40 and sometimes wait thirty minutes. Other days the bus has gone early. Just knowing where it is right now would save so much time.",
+        "tags": [
+          "bus",
+          "commute"
+        ]
+      },
+      "label": "same_underlying",
+      "rationale": "A community report describing the same underlying need in different words.",
+      "source": "synthetic"
+    },
+    {
+      "id": "syn-pair-013",
+      "left": {
+        "title": "College bus timings are unpredictable",
+        "description": "Students wait at the stop every morning with no idea whether the bus has already left or is running late. Some miss the first lecture, others leave home far too early. The drivers are helpful but nobody can tell us where the bus is.",
+        "tags": [
+          "bus",
+          "commute",
+          "tracking"
+        ]
+      },
+      "right": {
+        "title": "Shuttle arrival time is a mystery",
+        "description": "The university shuttle has no fixed schedule that it follows. We stand in the sun guessing. Can there be something showing where it has reached?",
+        "tags": [
+          "bus",
+          "commute"
+        ]
+      },
+      "label": "same_underlying",
+      "rationale": "A community report describing the same underlying need in different words.",
+      "source": "synthetic"
+    },
+    {
+      "id": "syn-pair-014",
+      "left": {
+        "title": "College bus timings are unpredictable",
+        "description": "Students wait at the stop every morning with no idea whether the bus has already left or is running late. Some miss the first lecture, others leave home far too early. The drivers are helpful but nobody can tell us where the bus is.",
+        "tags": [
+          "bus",
+          "commute",
+          "tracking"
+        ]
+      },
+      "right": {
+        "title": "Missed my first lecture again because of the bus",
+        "description": "There is no information about delays, so I either get to class late or leave an hour earlier than needed.",
+        "tags": [
+          "bus",
+          "commute"
+        ]
+      },
+      "label": "same_underlying",
+      "rationale": "A community report describing the same underlying need in different words.",
+      "source": "synthetic"
+    },
+    {
+      "id": "syn-pair-015",
+      "left": {
+        "title": "Small shops have no easy way to track credit given to customers",
+        "description": "Our neighbourhood kirana store keeps a notebook of customers who pay at the end of the month. Pages get lost, amounts are disputed and customers forget what they bought. Chasing payments is awkward for everyone.",
+        "tags": [
+          "credit",
+          "khata",
+          "retail"
+        ]
+      },
+      "right": {
+        "title": "Tired of keeping customer dues in a notebook",
+        "description": "I own a small stationery shop and give credit to regular customers. I keep it all in a diary and lost one last year, along with everything customers owed me.",
+        "tags": [
+          "credit",
+          "khata"
+        ]
+      },
+      "label": "same_underlying",
+      "rationale": "A community report describing the same underlying need in different words.",
+      "source": "synthetic"
+    },
+    {
+      "id": "syn-pair-016",
+      "left": {
+        "title": "Home food businesses take orders across chats and lose track",
+        "description": "I run a tiffin service from home. Orders arrive through WhatsApp, calls and Instagram. I miss changes, forget who has paid and sometimes cook the wrong number of meals, which wastes food and money.",
+        "tags": [
+          "orders",
+          "home-business",
+          "food"
+        ]
+      },
+      "right": {
+        "title": "Tiffin orders get mixed up on WhatsApp",
+        "description": "Customers change their orders by message at the last minute, and I lose track while cooking. Last week I sent ten meals to the wrong addresses.",
+        "tags": [
+          "orders",
+          "home-business"
+        ]
+      },
+      "label": "same_underlying",
+      "rationale": "A community report describing the same underlying need in different words.",
+      "source": "synthetic"
+    },
+    {
+      "id": "syn-pair-017",
+      "left": {
+        "title": "Meeting decisions disappear and nobody remembers action items",
+        "description": "Our small team has plenty of meetings, but a week later nobody remembers what was decided or who agreed to do what. Notes end up in personal notebooks, and the same discussion happens again.",
+        "tags": [
+          "meetings",
+          "action-items",
+          "teams"
+        ]
+      },
+      "right": {
+        "title": "Nobody remembers what we decided in the meeting",
+        "description": "We spend an hour talking, everyone agrees, and two weeks later the same topic comes up because nothing was written down or assigned.",
+        "tags": [
+          "meetings",
+          "action-items"
+        ]
+      },
+      "label": "same_underlying",
+      "rationale": "A community report describing the same underlying need in different words.",
+      "source": "synthetic"
+    },
+    {
+      "id": "syn-pair-018",
+      "left": {
+        "title": "Residents do not know when waste collection will come",
+        "description": "The garbage truck in our area comes at different times each day and sometimes skips a day. People either miss it or leave bags on the road, where dogs tear them open.",
+        "tags": [
+          "waste",
+          "municipal",
+          "notifications"
+        ]
+      },
+      "right": {
+        "title": "Garbage truck timing changes every day",
+        "description": "I leave for work at 8 and the truck may come at 7 or 11. I have no way of knowing, so the waste sits at home for days.",
+        "tags": [
+          "waste",
+          "municipal"
+        ]
+      },
+      "label": "same_underlying",
+      "rationale": "A community report describing the same underlying need in different words.",
+      "source": "synthetic"
+    },
+    {
+      "id": "syn-pair-019",
+      "left": {
+        "title": "Nobody knows where to recycle e-waste safely",
+        "description": "Old phones, chargers and batteries pile up in drawers because the local scrap dealer will not take them and there is no information about authorised collection points. A lot of it ends up in ordinary rubbish.",
+        "tags": [
+          "e-waste",
+          "recycling",
+          "maps"
+        ]
+      },
+      "right": {
+        "title": "What do I do with old batteries and chargers?",
+        "description": "I have a box of dead batteries, old chargers and a broken phone. The waste collector refused them, and I cannot find any official place to drop them off.",
+        "tags": [
+          "e-waste",
+          "recycling"
+        ]
+      },
+      "label": "same_underlying",
+      "rationale": "A community report describing the same underlying need in different words.",
+      "source": "synthetic"
+    },
+    {
+      "id": "syn-pair-020",
+      "left": {
+        "title": "Food donors and shelters cannot find each other in time",
+        "description": "After weddings and events, good food is left over and hosts would gladly donate it, but they do not know who can collect it within a couple of hours. Shelters want the food but only hear about it too late.",
+        "tags": [
+          "food-donation",
+          "shelters",
+          "volunteers"
+        ]
+      },
+      "right": {
+        "title": "Leftover wedding food goes in the bin",
+        "description": "We had food for a hundred more guests left after a function. We called two NGOs but nobody could come that night, and it all went to waste.",
+        "tags": [
+          "food-donation",
+          "shelters"
+        ]
+      },
+      "label": "same_underlying",
+      "rationale": "A community report describing the same underlying need in different words.",
+      "source": "synthetic"
+    },
+    {
+      "id": "syn-pair-021",
+      "left": {
+        "title": "Volunteers sign up for causes but are never contacted",
+        "description": "Our NGO collects volunteer forms at every event. The sheets sit in a file, coordinators do not know who is free or skilled at what, and people lose interest when they never hear back.",
+        "tags": [
+          "volunteers",
+          "ngos",
+          "coordination"
+        ]
+      },
+      "right": {
+        "title": "Signed up to volunteer and heard nothing",
+        "description": "I filled out a volunteer form at a college event months ago. Nobody ever contacted me, though I am still happy to help on weekends.",
+        "tags": [
+          "volunteers",
+          "ngos"
+        ]
+      },
+      "label": "same_underlying",
+      "rationale": "A community report describing the same underlying need in different words.",
+      "source": "synthetic"
+    },
+    {
+      "id": "syn-pair-022",
+      "left": {
+        "title": "Apartment residents cannot track complaints to the society office",
+        "description": "Lift faults, leaks and security issues are reported in a paper register or the residents' WhatsApp group. Nothing shows whether anyone has taken action, and the same complaint gets raised several times.",
+        "tags": [
+          "complaints",
+          "housing-societies",
+          "maintenance"
+        ]
+      },
+      "right": {
+        "title": "Society ignores complaints about the lift",
+        "description": "We have complained about the lift three times in the group and the register. Nobody can say whether anyone has called the technician.",
+        "tags": [
+          "complaints",
+          "housing-societies"
+        ]
+      },
+      "label": "same_underlying",
+      "rationale": "A community report describing the same underlying need in different words.",
+      "source": "synthetic"
+    },
+    {
+      "id": "syn-pair-023",
+      "left": {
+        "title": "No single place to find campus events and workshops",
+        "description": "Club events, workshops and seminars are announced in different WhatsApp groups and notice boards. Students regularly miss useful events because they are not in the right group or see the notice too late.",
+        "tags": [
+          "events",
+          "clubs",
+          "notifications"
+        ]
+      },
+      "right": {
+        "title": "Keep missing workshops because I'm not in the right group",
+        "description": "I found out about a really useful machine learning workshop the day after it finished, because it was only posted in a club's WhatsApp group.",
+        "tags": [
+          "events",
+          "clubs"
+        ]
+      },
+      "label": "same_underlying",
+      "rationale": "A community report describing the same underlying need in different words.",
+      "source": "synthetic"
+    },
+    {
+      "id": "syn-pair-024",
+      "left": {
+        "title": "Hostel laundry machines are always occupied",
+        "description": "Our hostel has six machines for three hundred students. People carry heavy baskets down four floors only to find them all busy, and clothes get left in machines for hours.",
+        "tags": [
+          "hostel",
+          "laundry",
+          "queues"
+        ]
+      },
+      "right": {
+        "title": "Hostel washing machines are never free",
+        "description": "I have gone down three times today with my laundry and every machine was taken. Someone's wet clothes had been sitting in one for hours.",
+        "tags": [
+          "hostel",
+          "laundry"
+        ]
+      },
+      "label": "same_underlying",
+      "rationale": "A community report describing the same underlying need in different words.",
+      "source": "synthetic"
+    },
+    {
+      "id": "syn-pair-025",
+      "left": {
+        "title": "Flatmates lose track of who owes what for shared bills",
+        "description": "Four of us share rent, electricity, groceries and the internet bill. Someone always pays first and we try to settle at the end of the month from memory and WhatsApp messages. We regularly argue about small amounts because nobody has a clear record of who paid for what.",
+        "tags": [
+          "expenses",
+          "shared-bills",
+          "flatmates"
+        ]
+      },
+      "right": {
+        "title": "Splitting rent and utilities between housemates",
+        "description": "We are four housemates and it is always unclear who has covered which bill this month. We need a running balance so that nobody keeps paying more than their share.",
+        "tags": []
+      },
+      "label": "same_underlying",
+      "rationale": "A paraphrase of the same underlying need.",
+      "source": "synthetic"
+    },
+    {
+      "id": "syn-pair-026",
+      "left": {
+        "title": "Tracking cash spending is impossible in budgeting apps",
+        "description": "Most of my daily spending at vegetable markets, autos and tea stalls is in cash. Budgeting apps read SMS or bank data, so a large part of my real spending never appears and the totals are wrong.",
+        "tags": [
+          "cash",
+          "budgeting",
+          "offline"
+        ]
+      },
+      "right": {
+        "title": "Logging small cash purchases",
+        "description": "I pay cash for almost everything small during the day. No expense app notices any of it, so I never see what I really spend.",
+        "tags": []
+      },
+      "label": "same_underlying",
+      "rationale": "A paraphrase of the same underlying need.",
+      "source": "synthetic"
+    },
+    {
+      "id": "syn-pair-027",
+      "left": {
+        "title": "Patients wait for hours with no idea of their turn at the clinic",
+        "description": "At our community clinic people arrive at 7 am to get a token and then wait the whole morning in a crowded room. Nobody knows how long it will take, and daily wage workers lose a full day's income for a ten-minute consultation.",
+        "tags": [
+          "queues",
+          "clinics",
+          "waiting"
+        ]
+      },
+      "right": {
+        "title": "No idea how long the doctor's queue is",
+        "description": "I sit in the waiting room for most of the morning. If I could see how many patients are ahead of me I could wait at home and keep working.",
+        "tags": []
+      },
+      "label": "same_underlying",
+      "rationale": "A paraphrase of the same underlying need.",
+      "source": "synthetic"
+    },
+    {
+      "id": "syn-pair-028",
+      "left": {
+        "title": "Hard to find which pharmacy has a medicine in stock",
+        "description": "When a less common medicine is prescribed, family members go from one pharmacy to the next asking if it is available. For urgent medicines at night this can take hours and there is no way to check beforehand.",
+        "tags": [
+          "pharmacy",
+          "stock",
+          "availability"
+        ]
+      },
+      "right": {
+        "title": "Searching shop to shop for a prescription drug",
+        "description": "My father's medicine is out of stock often. We phone or visit many chemists to find it, which is very stressful late at night.",
+        "tags": []
+      },
+      "label": "same_underlying",
+      "rationale": "A paraphrase of the same underlying need.",
+      "source": "synthetic"
+    },
+    {
+      "id": "syn-pair-029",
+      "left": {
+        "title": "Repair shops cannot tell customers when a device is ready",
+        "description": "People call our shop several times a day asking whether their phone is ready. We write jobs on paper slips, and sometimes a customer turns up for a device that is still waiting for a part.",
+        "tags": [
+          "repairs",
+          "customer-updates",
+          "retail"
+        ]
+      },
+      "right": {
+        "title": "Customers keep phoning about their repairs",
+        "description": "Our phone never stops with people asking if their laptop is fixed yet. We would like them to be told automatically.",
+        "tags": []
+      },
+      "label": "same_underlying",
+      "rationale": "A paraphrase of the same underlying need.",
+      "source": "synthetic"
+    },
+    {
+      "id": "syn-pair-030",
+      "left": {
+        "title": "Local lakes are polluted and complaints go nowhere",
+        "description": "Residents around our lake keep seeing sewage inflows and dumped debris. Complaints are made by phone, then nothing is visible and nobody can show how long the problem has been going on.",
+        "tags": [
+          "lakes",
+          "pollution",
+          "civic-reporting"
+        ]
+      },
+      "right": {
+        "title": "Reporting sewage flowing into the lake",
+        "description": "We can see dirty water going into our lake every week, but our calls to the corporation vanish without any record.",
+        "tags": []
+      },
+      "label": "same_underlying",
+      "rationale": "A paraphrase of the same underlying need.",
+      "source": "synthetic"
+    },
+    {
+      "id": "syn-pair-031",
+      "left": {
+        "title": "Library seats fill up and students walk across campus for nothing",
+        "description": "During exams the reading room fills by 9 am. Students walk across campus only to find no seats, and some people hold a place with a bag for hours.",
+        "tags": [
+          "library",
+          "seats",
+          "exams"
+        ]
+      },
+      "right": {
+        "title": "Walking to the reading room to find it full",
+        "description": "Every morning during exams I go all the way to the library and there is nowhere to sit. I wish I could check first.",
+        "tags": []
+      },
+      "label": "same_underlying",
+      "rationale": "A paraphrase of the same underlying need.",
+      "source": "synthetic"
+    },
+    {
+      "id": "syn-pair-032",
+      "left": {
+        "title": "Flatmates lose track of who owes what for shared bills",
+        "description": "Four of us share rent, electricity, groceries and the internet bill. Someone always pays first and we try to settle at the end of the month from memory and WhatsApp messages. We regularly argue about small amounts because nobody has a clear record of who paid for what.",
+        "tags": [
+          "expenses",
+          "shared-bills",
+          "flatmates"
+        ]
+      },
+      "right": {
+        "title": "Household chores are unfairly split and always forgotten",
+        "description": "In our flat nobody remembers whose turn it is to clean, buy gas or pay the maid. One person ends up doing everything and resentment builds until there is an argument.",
+        "tags": [
+          "chores",
+          "flatmates",
+          "reminders"
+        ]
+      },
+      "label": "related_different",
+      "rationale": "Both come from living in a shared flat, but one is about money and the other about chores.",
+      "source": "synthetic"
+    },
+    {
+      "id": "syn-pair-033",
+      "left": {
+        "title": "Small monthly subscriptions quietly drain my salary",
+        "description": "I pay for music, cloud storage, two streaming apps and a gym app, all on different dates and different cards. I only notice how much is going out when my account runs low near the end of the month, and I often forget free trials until they have already renewed.",
+        "tags": [
+          "subscriptions",
+          "budgeting",
+          "reminders"
+        ]
+      },
+      "right": {
+        "title": "Students have no simple way to budget a monthly allowance",
+        "description": "My parents send a fixed amount each month for food, travel and books. By the third week it is mostly gone and I cannot say where it went. Finance apps assume salaries and investments, which is not how a student's money works.",
+        "tags": [
+          "budgeting",
+          "students",
+          "allowance"
+        ]
+      },
+      "label": "related_different",
+      "rationale": "Both concern personal budgeting, but subscriptions and student allowances need different tools.",
+      "source": "synthetic"
+    },
+    {
+      "id": "syn-pair-034",
+      "left": {
+        "title": "Students have no simple way to budget a monthly allowance",
+        "description": "My parents send a fixed amount each month for food, travel and books. By the third week it is mostly gone and I cannot say where it went. Finance apps assume salaries and investments, which is not how a student's money works.",
+        "tags": [
+          "budgeting",
+          "students",
+          "allowance"
+        ]
+      },
+      "right": {
+        "title": "Tracking cash spending is impossible in budgeting apps",
+        "description": "Most of my daily spending at vegetable markets, autos and tea stalls is in cash. Budgeting apps read SMS or bank data, so a large part of my real spending never appears and the totals are wrong.",
+        "tags": [
+          "cash",
+          "budgeting",
+          "offline"
+        ]
+      },
+      "label": "related_different",
+      "rationale": "Both are budgeting needs, but one is about limits and the other about capturing cash.",
+      "source": "synthetic"
+    },
+    {
+      "id": "syn-pair-035",
+      "left": {
+        "title": "Students struggle to find teammates for college projects",
+        "description": "Every semester we have to form teams for projects and hackathons. Most students only know people from their own section, so teams are formed randomly and skilled students from other sections never meet. There is no place to see who is looking for a team and what skills they have.",
+        "tags": [
+          "teamwork",
+          "projects",
+          "hackathon"
+        ]
+      },
+      "right": {
+        "title": "No single place to find campus events and workshops",
+        "description": "Club events, workshops and seminars are announced in different WhatsApp groups and notice boards. Students regularly miss useful events because they are not in the right group or see the notice too late.",
+        "tags": [
+          "events",
+          "clubs",
+          "notifications"
+        ]
+      },
+      "label": "related_different",
+      "rationale": "Both help students find people and activities across campus, but they are different products.",
+      "source": "synthetic"
+    },
+    {
+      "id": "syn-pair-036",
+      "left": {
+        "title": "Teachers spend hours every week making attendance registers",
+        "description": "In our government school each teacher marks paper registers, then copies totals into monthly statements for the office. It takes hours, mistakes are common and parents only hear about a child's long absence weeks later.",
+        "tags": [
+          "attendance",
+          "schools",
+          "teachers"
+        ]
+      },
+      "right": {
+        "title": "Parents cannot follow what their child is learning at school",
+        "description": "Homework and notices reach us through a child's diary and several WhatsApp groups. Working parents miss messages and only learn about a test or a missing assignment when it is too late to help.",
+        "tags": [
+          "parents",
+          "homework",
+          "notices"
+        ]
+      },
+      "label": "related_different",
+      "rationale": "Both connect schools with families, but attendance records and homework summaries differ.",
+      "source": "synthetic"
+    },
+    {
+      "id": "syn-pair-037",
+      "left": {
+        "title": "Elderly patients forget medicines and doses at home",
+        "description": "Many of the older patients at our clinic take five or more medicines at different times. They forget doses or take them twice, and family members who live elsewhere have no way of knowing. We see the results when they come back unwell.",
+        "tags": [
+          "medicine",
+          "elderly",
+          "reminders"
+        ]
+      },
+      "right": {
+        "title": "Elderly residents living alone have no daily check-in",
+        "description": "Several elderly neighbours live alone. If one of them falls or becomes unwell, nobody may know for a day or more. Neighbours want to help but there is no routine or shared responsibility.",
+        "tags": [
+          "elderly",
+          "safety",
+          "neighbours"
+        ]
+      },
+      "label": "related_different",
+      "rationale": "Both concern older people's safety at home, one for medicines and one for daily wellbeing.",
+      "source": "synthetic"
+    },
+    {
+      "id": "syn-pair-038",
+      "left": {
+        "title": "Hostel laundry machines are always occupied",
+        "description": "Our hostel has six machines for three hundred students. People carry heavy baskets down four floors only to find them all busy, and clothes get left in machines for hours.",
+        "tags": [
+          "hostel",
+          "laundry",
+          "queues"
+        ]
+      },
+      "right": {
+        "title": "Library seats fill up and students walk across campus for nothing",
+        "description": "During exams the reading room fills by 9 am. Students walk across campus only to find no seats, and some people hold a place with a bag for hours.",
+        "tags": [
+          "library",
+          "seats",
+          "exams"
+        ]
+      },
+      "label": "related_different",
+      "rationale": "Both are about seeing whether a shared campus resource is free, for machines and for seats.",
+      "source": "synthetic"
+    },
+    {
+      "id": "syn-pair-039",
+      "left": {
+        "title": "Medical records are scattered across hospitals and paper files",
+        "description": "My father has seen four hospitals in three years. Every new doctor asks for old reports, and we carry a plastic bag of papers that are often incomplete. Tests get repeated because nobody can find the earlier result.",
+        "tags": [
+          "records",
+          "hospitals",
+          "families"
+        ]
+      },
+      "right": {
+        "title": "Hard to find which pharmacy has a medicine in stock",
+        "description": "When a less common medicine is prescribed, family members go from one pharmacy to the next asking if it is available. For urgent medicines at night this can take hours and there is no way to check beforehand.",
+        "tags": [
+          "pharmacy",
+          "stock",
+          "availability"
+        ]
+      },
+      "label": "related_different",
+      "rationale": "Both help families manage health care, but records and stock are separate problems.",
+      "source": "synthetic"
+    },
+    {
+      "id": "syn-pair-040",
+      "left": {
+        "title": "College bus timings are unpredictable",
+        "description": "Students wait at the stop every morning with no idea whether the bus has already left or is running late. Some miss the first lecture, others leave home far too early. The drivers are helpful but nobody can tell us where the bus is.",
+        "tags": [
+          "bus",
+          "commute",
+          "tracking"
+        ]
+      },
+      "right": {
+        "title": "Wheelchair users cannot tell which bus routes are accessible",
+        "description": "Only some city buses have low floors and ramps, and the schedule does not say which ones. A wheelchair user can wait an hour and still not be able to board, and many stops have broken pavements.",
+        "tags": [
+          "accessibility",
+          "bus",
+          "public-transport"
+        ]
+      },
+      "label": "related_different",
+      "rationale": "Both concern knowing about buses before travelling, but with different users and data.",
+      "source": "synthetic"
+    },
+    {
+      "id": "syn-pair-041",
+      "left": {
+        "title": "Small shops have no easy way to track credit given to customers",
+        "description": "Our neighbourhood kirana store keeps a notebook of customers who pay at the end of the month. Pages get lost, amounts are disputed and customers forget what they bought. Chasing payments is awkward for everyone.",
+        "tags": [
+          "credit",
+          "khata",
+          "retail"
+        ]
+      },
+      "right": {
+        "title": "Home food businesses take orders across chats and lose track",
+        "description": "I run a tiffin service from home. Orders arrive through WhatsApp, calls and Instagram. I miss changes, forget who has paid and sometimes cook the wrong number of meals, which wastes food and money.",
+        "tags": [
+          "orders",
+          "home-business",
+          "food"
+        ]
+      },
+      "label": "related_different",
+      "rationale": "Both are small business record-keeping problems, for credit and for orders.",
+      "source": "synthetic"
+    },
+    {
+      "id": "syn-pair-042",
+      "left": {
+        "title": "Small restaurants throw away food because demand is a guess",
+        "description": "We prepare based on feeling. Some days we run out by 2 pm, other days a third of the food goes in the bin. We have no record of what sold on similar days.",
+        "tags": [
+          "food-waste",
+          "forecasting",
+          "restaurants"
+        ]
+      },
+      "right": {
+        "title": "Food donors and shelters cannot find each other in time",
+        "description": "After weddings and events, good food is left over and hosts would gladly donate it, but they do not know who can collect it within a couple of hours. Shelters want the food but only hear about it too late.",
+        "tags": [
+          "food-donation",
+          "shelters",
+          "volunteers"
+        ]
+      },
+      "label": "related_different",
+      "rationale": "Both reduce food waste, one by preparing less and one by redistributing surplus.",
+      "source": "synthetic"
+    },
+    {
+      "id": "syn-pair-043",
+      "left": {
+        "title": "Residents do not know when waste collection will come",
+        "description": "The garbage truck in our area comes at different times each day and sometimes skips a day. People either miss it or leave bags on the road, where dogs tear them open.",
+        "tags": [
+          "waste",
+          "municipal",
+          "notifications"
+        ]
+      },
+      "right": {
+        "title": "Nobody knows where to recycle e-waste safely",
+        "description": "Old phones, chargers and batteries pile up in drawers because the local scrap dealer will not take them and there is no information about authorised collection points. A lot of it ends up in ordinary rubbish.",
+        "tags": [
+          "e-waste",
+          "recycling",
+          "maps"
+        ]
+      },
+      "label": "related_different",
+      "rationale": "Both concern household waste, but regular collection and e-waste disposal differ.",
+      "source": "synthetic"
+    },
+    {
+      "id": "syn-pair-044",
+      "left": {
+        "title": "Trees planted in drives die because nobody looks after them",
+        "description": "Every monsoon our area has a planting drive with photographs. A few months later most saplings are dead because nobody was responsible for watering them.",
+        "tags": [
+          "trees",
+          "volunteers",
+          "community"
+        ]
+      },
+      "right": {
+        "title": "Volunteers sign up for causes but are never contacted",
+        "description": "Our NGO collects volunteer forms at every event. The sheets sit in a file, coordinators do not know who is free or skilled at what, and people lose interest when they never hear back.",
+        "tags": [
+          "volunteers",
+          "ngos",
+          "coordination"
+        ]
+      },
+      "label": "related_different",
+      "rationale": "Both depend on organising volunteers, but for very different work.",
+      "source": "synthetic"
+    },
+    {
+      "id": "syn-pair-045",
+      "left": {
+        "title": "Apartment residents cannot track complaints to the society office",
+        "description": "Lift faults, leaks and security issues are reported in a paper register or the residents' WhatsApp group. Nothing shows whether anyone has taken action, and the same complaint gets raised several times.",
+        "tags": [
+          "complaints",
+          "housing-societies",
+          "maintenance"
+        ]
+      },
+      "right": {
+        "title": "Housing societies cannot measure how much water they waste",
+        "description": "Our society of 120 flats runs out of water every summer and pays for tankers. We have one bill and no idea which blocks are using the most or where leaks are.",
+        "tags": [
+          "water",
+          "housing-societies",
+          "leaks"
+        ]
+      },
+      "label": "related_different",
+      "rationale": "Both concern housing societies, but one tracks complaints and the other water use.",
+      "source": "synthetic"
+    },
+    {
+      "id": "syn-pair-046",
+      "left": {
+        "title": "Elderly patients forget medicines and doses at home",
+        "description": "Many of the older patients at our clinic take five or more medicines at different times. They forget doses or take them twice, and family members who live elsewhere have no way of knowing. We see the results when they come back unwell.",
+        "tags": [
+          "medicine",
+          "elderly",
+          "reminders"
+        ]
+      },
+      "right": {
+        "title": "Seniors' books and notes go to waste every year",
+        "description": "Each year final-year students throw away or sell textbooks and carefully written notes to scrap dealers, while juniors buy the same books new at full price. There is no reliable way for juniors to find what seniors are giving away.",
+        "tags": [
+          "books",
+          "notes",
+          "reuse"
+        ]
+      },
+      "label": "unrelated",
+      "rationale": "Medicine reminders and book exchange share no need.",
+      "source": "synthetic"
+    },
+    {
+      "id": "syn-pair-047",
+      "left": {
+        "title": "College bus timings are unpredictable",
+        "description": "Students wait at the stop every morning with no idea whether the bus has already left or is running late. Some miss the first lecture, others leave home far too early. The drivers are helpful but nobody can tell us where the bus is.",
+        "tags": [
+          "bus",
+          "commute",
+          "tracking"
+        ]
+      },
+      "right": {
+        "title": "Auto drivers refuse trips and there is no fair fare reference",
+        "description": "Auto drivers regularly refuse short trips or quote double the fare, especially near stations. Tourists and new residents have no idea what a fair price is and no quick way to check.",
+        "tags": [
+          "auto-rickshaw",
+          "fares",
+          "commute"
+        ]
+      },
+      "label": "unrelated",
+      "rationale": "Both involve commuting vehicles, but tracking a bus differs from fair auto fares.",
+      "source": "synthetic"
+    },
+    {
+      "id": "syn-pair-048",
+      "left": {
+        "title": "Employees wait weeks for travel expense reimbursement",
+        "description": "At our company of forty people, field staff submit paper bills to the office once a month. Receipts get lost, managers approve them late and accounts re-enters everything by hand. Staff end up carrying thousands of rupees of company costs on their own cards for weeks.",
+        "tags": [
+          "reimbursement",
+          "receipts",
+          "small-teams"
+        ]
+      },
+      "right": {
+        "title": "Household chores are unfairly split and always forgotten",
+        "description": "In our flat nobody remembers whose turn it is to clean, buy gas or pay the maid. One person ends up doing everything and resentment builds until there is an argument.",
+        "tags": [
+          "chores",
+          "flatmates",
+          "reminders"
+        ]
+      },
+      "label": "unrelated",
+      "rationale": "Both track who did what, but staff reimbursement and household chores have nothing in common.",
+      "source": "synthetic"
+    },
+    {
+      "id": "syn-pair-049",
+      "left": {
+        "title": "Wheelchair users cannot tell which bus routes are accessible",
+        "description": "Only some city buses have low floors and ramps, and the schedule does not say which ones. A wheelchair user can wait an hour and still not be able to board, and many stops have broken pavements.",
+        "tags": [
+          "accessibility",
+          "bus",
+          "public-transport"
+        ]
+      },
+      "right": {
+        "title": "Finding parking near the market wastes half an hour",
+        "description": "On weekends people circle the market area for twenty to thirty minutes looking for a spot, which adds to the traffic. Paid lots exist but nobody knows which ones have space.",
+        "tags": [
+          "parking",
+          "traffic",
+          "markets"
+        ]
+      },
+      "label": "unrelated",
+      "rationale": "Accessible buses and market parking both mention transport only loosely.",
+      "source": "synthetic"
+    },
+    {
+      "id": "syn-pair-050",
+      "left": {
+        "title": "Patients wait for hours with no idea of their turn at the clinic",
+        "description": "At our community clinic people arrive at 7 am to get a token and then wait the whole morning in a crowded room. Nobody knows how long it will take, and daily wage workers lose a full day's income for a ten-minute consultation.",
+        "tags": [
+          "queues",
+          "clinics",
+          "waiting"
+        ]
+      },
+      "right": {
+        "title": "Hostel laundry machines are always occupied",
+        "description": "Our hostel has six machines for three hundred students. People carry heavy baskets down four floors only to find them all busy, and clothes get left in machines for hours.",
+        "tags": [
+          "hostel",
+          "laundry",
+          "queues"
+        ]
+      },
+      "label": "unrelated",
+      "rationale": "Both mention waiting, but clinic queues and laundry machines are unrelated.",
+      "source": "synthetic"
+    },
+    {
+      "id": "syn-pair-051",
+      "left": {
+        "title": "Nobody knows where to recycle e-waste safely",
+        "description": "Old phones, chargers and batteries pile up in drawers because the local scrap dealer will not take them and there is no information about authorised collection points. A lot of it ends up in ordinary rubbish.",
+        "tags": [
+          "e-waste",
+          "recycling",
+          "maps"
+        ]
+      },
+      "right": {
+        "title": "Local artisans cannot reach customers beyond their own town",
+        "description": "Weavers and potters in our district sell only at weekly markets and to middlemen who take most of the margin. Big marketplaces are complicated, charge high fees and need photographs and listings they do not know how to make.",
+        "tags": [
+          "artisans",
+          "marketplace",
+          "rural"
+        ]
+      },
+      "label": "unrelated",
+      "rationale": "Both mention electronics or crafts in passing, with no shared need.",
+      "source": "synthetic"
+    },
+    {
+      "id": "syn-pair-052",
+      "left": {
+        "title": "Residents do not know when waste collection will come",
+        "description": "The garbage truck in our area comes at different times each day and sometimes skips a day. People either miss it or leave bags on the road, where dogs tear them open.",
+        "tags": [
+          "waste",
+          "municipal",
+          "notifications"
+        ]
+      },
+      "right": {
+        "title": "Small monthly subscriptions quietly drain my salary",
+        "description": "I pay for music, cloud storage, two streaming apps and a gym app, all on different dates and different cards. I only notice how much is going out when my account runs low near the end of the month, and I often forget free trials until they have already renewed.",
+        "tags": [
+          "subscriptions",
+          "budgeting",
+          "reminders"
+        ]
+      },
+      "label": "unrelated",
+      "rationale": "Reminders appear in both, for garbage trucks and for subscriptions.",
+      "source": "synthetic"
+    },
+    {
+      "id": "syn-pair-053",
+      "left": {
+        "title": "Teachers spend hours every week making attendance registers",
+        "description": "In our government school each teacher marks paper registers, then copies totals into monthly statements for the office. It takes hours, mistakes are common and parents only hear about a child's long absence weeks later.",
+        "tags": [
+          "attendance",
+          "schools",
+          "teachers"
+        ]
+      },
+      "right": {
+        "title": "Small shops have no easy way to track credit given to customers",
+        "description": "Our neighbourhood kirana store keeps a notebook of customers who pay at the end of the month. Pages get lost, amounts are disputed and customers forget what they bought. Chasing payments is awkward for everyone.",
+        "tags": [
+          "credit",
+          "khata",
+          "retail"
+        ]
+      },
+      "label": "unrelated",
+      "rationale": "Both are registers kept by hand, but school attendance and shop credit are unrelated.",
+      "source": "synthetic"
+    },
+    {
+      "id": "syn-pair-054",
+      "left": {
+        "title": "Commuters cannot find safe shared rides at night",
+        "description": "After late shifts many women in our office have no safe way to get home. Cabs are expensive and refuse short trips, and informal car pools are arranged in chat groups with no way to know who you are travelling with.",
+        "tags": [
+          "ride-sharing",
+          "safety",
+          "night-shift"
+        ]
+      },
+      "right": {
+        "title": "Housing societies cannot measure how much water they waste",
+        "description": "Our society of 120 flats runs out of water every summer and pays for tankers. We have one bill and no idea which blocks are using the most or where leaks are.",
+        "tags": [
+          "water",
+          "housing-societies",
+          "leaks"
+        ]
+      },
+      "label": "unrelated",
+      "rationale": "Safety and community words overlap, but ride sharing and water use do not.",
+      "source": "synthetic"
+    },
+    {
+      "id": "syn-pair-055",
+      "left": {
+        "title": "Repair shops cannot tell customers when a device is ready",
+        "description": "People call our shop several times a day asking whether their phone is ready. We write jobs on paper slips, and sometimes a customer turns up for a device that is still waiting for a part.",
+        "tags": [
+          "repairs",
+          "customer-updates",
+          "retail"
+        ]
+      },
+      "right": {
+        "title": "Hard to find which pharmacy has a medicine in stock",
+        "description": "When a less common medicine is prescribed, family members go from one pharmacy to the next asking if it is available. For urgent medicines at night this can take hours and there is no way to check beforehand.",
+        "tags": [
+          "pharmacy",
+          "stock",
+          "availability"
+        ]
+      },
+      "label": "unrelated",
+      "rationale": "Both ask whether something is ready or in stock, for repairs and for medicine.",
+      "source": "synthetic"
+    },
+    {
+      "id": "syn-pair-056",
+      "left": {
+        "title": "Freelancers lose track of hours across several clients",
+        "description": "I work with four clients and switch between them all day. At the end of the month I rebuild my hours from memory and calendar entries, so I undercharge and clients question my invoices.",
+        "tags": [
+          "freelancing",
+          "time-tracking",
+          "invoices"
+        ]
+      },
+      "right": {
+        "title": "Blood donors are hard to reach in an emergency",
+        "description": "When someone needs a rare blood group, families post frantic messages in every group they know. The messages get forwarded for days after the need has passed, and willing donors often do not see them in time.",
+        "tags": [
+          "blood-donation",
+          "emergency",
+          "volunteers"
+        ]
+      },
+      "label": "unrelated",
+      "rationale": "Freelance hours and blood donors share only the idea of keeping a record.",
+      "source": "synthetic"
+    },
+    {
+      "id": "syn-pair-057",
+      "left": {
+        "title": "Residents never hear about local government services they can use",
+        "description": "Many older people and migrant workers in our ward do not know about ration changes, pension camps or free health check-ups. Notices are put on one wall, and by the time word spreads the camp is over.",
+        "tags": [
+          "government-services",
+          "notices",
+          "ward"
+        ]
+      },
+      "right": {
+        "title": "Broken classroom projectors take weeks to get repaired",
+        "description": "When a projector or fan stops working, students tell the teacher, who tells the office, and then nothing happens. There is no way to report the fault or see whether anyone is working on it, so we sit through lectures without slides for weeks.",
+        "tags": [
+          "maintenance",
+          "classrooms",
+          "reporting"
+        ]
+      },
+      "label": "unrelated",
+      "rationale": "Both involve an institution and a notice or report, in unrelated settings.",
+      "source": "synthetic"
+    },
+    {
+      "id": "syn-pair-058",
+      "left": {
+        "title": "Tracking cash spending is impossible in budgeting apps",
+        "description": "Most of my daily spending at vegetable markets, autos and tea stalls is in cash. Budgeting apps read SMS or bank data, so a large part of my real spending never appears and the totals are wrong.",
+        "tags": [
+          "cash",
+          "budgeting",
+          "offline"
+        ]
+      },
+      "right": {
+        "title": "Local lakes are polluted and complaints go nowhere",
+        "description": "Residents around our lake keep seeing sewage inflows and dumped debris. Complaints are made by phone, then nothing is visible and nobody can show how long the problem has been going on.",
+        "tags": [
+          "lakes",
+          "pollution",
+          "civic-reporting"
+        ]
+      },
+      "label": "unrelated",
+      "rationale": "Offline use is the only link between cash tracking and lake pollution.",
+      "source": "synthetic"
+    },
+    {
+      "id": "syn-pair-059",
+      "left": {
+        "title": "Volunteers sign up for causes but are never contacted",
+        "description": "Our NGO collects volunteer forms at every event. The sheets sit in a file, coordinators do not know who is free or skilled at what, and people lose interest when they never hear back.",
+        "tags": [
+          "volunteers",
+          "ngos",
+          "coordination"
+        ]
+      },
+      "right": {
+        "title": "Medical records are scattered across hospitals and paper files",
+        "description": "My father has seen four hospitals in three years. Every new doctor asks for old reports, and we carry a plastic bag of papers that are often incomplete. Tests get repeated because nobody can find the earlier result.",
+        "tags": [
+          "records",
+          "hospitals",
+          "families"
+        ]
+      },
+      "label": "unrelated",
+      "rationale": "Both involve keeping records, for volunteers and for patients.",
+      "source": "synthetic"
+    }
+  ]
+}
