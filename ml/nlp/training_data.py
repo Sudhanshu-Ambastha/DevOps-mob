@@ -1,6 +1,6 @@
 from typing import Any
 
-from .features import FEATURE_SCHEMA_VERSION, compute_pair_features
+from features import FEATURE_SCHEMA_VERSION, compute_pair_features
 
 LABEL_SAME="same_underlying"
 LABEL_RELATED="related_different"

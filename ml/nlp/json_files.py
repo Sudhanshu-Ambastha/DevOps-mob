@@ -5,7 +5,6 @@ import time
 from pathlib import Path
 from typing import Any
 
-# Antivirus and OneDrive can briefly lock files on Windows.
 REPLACE_ATTEMPTS=8
 REPLACE_DELAY_SECONDS=0.05
 

@@ -8,8 +8,7 @@ try:
 except ImportError:
     from text import extract_keywords, normalize_text
 
-# Bump when the meaning of a feature changes.
-FEATURE_SCHEMA_VERSION="1.0.0"
+FEATURE_SCHEMA_VERSION="1.1.0"
 
 
 def jaccard(left:set[str], right:set[str])->float:

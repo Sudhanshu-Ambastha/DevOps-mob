@@ -27,8 +27,21 @@ class DecisionPlan:
 
 
 class Repository(ABC):
+    async def prepare(self)->None:
+        pass
+
+    async def close(self)->None:
+        pass
+
+    async def is_empty(self)->bool:
+        return False
+
     @abstractmethod
     async def list_users(self)->list[Record]:
+        pass
+
+    @abstractmethod
+    async def find_user_by_email(self, email:str)->Record|None:
         pass
 
     @abstractmethod

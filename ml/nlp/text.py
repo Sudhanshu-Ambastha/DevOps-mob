@@ -1,8 +1,14 @@
 import hashlib
 import re
 
-# Bump to invalidate cached embeddings.
+import simplemma
+
 TEXT_PREP_VERSION="1"
+
+WORD=re.compile(r"[a-z0-9]+")
+HYPHENATED_WORD=re.compile(r"[a-z0-9]+(?:-[a-z0-9]+)*")
+
+LEMMA_OVERRIDES={"fixes":"fix","fixed":"fix"}
 
 STOPWORDS=frozenset("""
 a about after again all also am an and any are as at be because been before being but by can cannot could
@@ -19,27 +25,39 @@ def normalize_text(text:str)->str:
 
 
 def tokenize(text:str)->list[str]:
-    return re.findall(r"[a-z0-9]+", text.lower())
+    return WORD.findall(text.lower())
 
 
 def extract_keywords(text:str)->set[str]:
     keywords=set()
 
-    for token in tokenize(text):
-        if len(token) > 2 and token not in STOPWORDS:
-            keywords.add(_light_stem(token))
+    for word in HYPHENATED_WORD.findall(text.lower()):
+        tokens=word.split("-")
+
+        if len(tokens) > 1:
+            tokens.append(word)
+
+        for token in tokens:
+            if _is_keyword(token.replace("-", "")):
+                lemma=lemmatize(token)
+
+                if _is_keyword(lemma):
+                    keywords.add(lemma)
 
     return keywords
 
 
-def _light_stem(token:str)->str:
-    if len(token) > 4 and token.endswith("ies"):
-        return token[:-3]+"y"
+def _is_keyword(token:str)->bool:
+    return len(token) > 2 and token not in STOPWORDS
 
-    if len(token) > 3 and token.endswith("s") and not token.endswith("ss"):
-        return token[:-1]
 
-    return token
+def lemmatize(token:str)->str:
+    if token in LEMMA_OVERRIDES:
+        return LEMMA_OVERRIDES[token]
+
+    lemma=simplemma.lemmatize(token, lang="en").lower()
+
+    return "".join(WORD.findall(lemma)) or "".join(WORD.findall(token))
 
 
 def build_embedding_text(title:str, description:str, max_chars:int)->str:

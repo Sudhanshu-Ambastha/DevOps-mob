@@ -20,7 +20,6 @@ function Stop-Install {
 
     Write-Host $message -ForegroundColor Red
 
-    # Exiting a dot-sourced script would close the terminal.
     if ($dotSourced) {
         throw $message
     }

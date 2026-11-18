@@ -208,7 +208,7 @@ def test_edit_and_review_flow(client):
     assert reviewed.json()["document"]["status"] == "reviewed"
 
 
-def test_edit_needs_a_demo_profile(client):
+def test_edit_needs_sign_in(client):
     generate(client)
 
     assert client.put(f"{PROBLEM}/srs/1", json={"markdown":"# Edit"}).status_code == 401

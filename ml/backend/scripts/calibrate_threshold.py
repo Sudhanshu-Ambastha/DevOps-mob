@@ -1,5 +1,4 @@
 import asyncio
-import os
 import statistics
 import sys
 from collections import defaultdict
@@ -10,7 +9,6 @@ from nlp.errors import AIProviderError
 from nlp.features import cosine_similarity
 from nlp.json_files import read_json
 from nlp.providers.cloudflare import CloudflareEmbeddingProvider
-from nlp.providers.local import LocalEmbeddingProvider
 from nlp.text import build_embedding_text
 from nlp.usage_guard import UsageGuard
 
@@ -21,17 +19,14 @@ async def run()->int:
     settings = get_settings()
     guard = UsageGuard(settings.usage_path, {"cloudflare": settings.cloudflare_daily_neuron_budget})
     
-    if settings.ai_provider_mode.strip().lower() == "local":
-        embedder = LocalEmbeddingProvider(model_path=os.getenv("MODEL_PATH"))
-    else:
-        embedder = CloudflareEmbeddingProvider(
-            settings.cloudflare_account_id,
-            settings.cloudflare_api_token,
-            settings.cloudflare_embedding_model,
-            settings.ai_request_timeout,
-            settings.embedding_batch_size,
-            guard
-        )
+    embedder = CloudflareEmbeddingProvider(
+        settings.cloudflare_account_id,
+        settings.cloudflare_api_token,
+        settings.cloudflare_embedding_model,
+        settings.ai_request_timeout,
+        settings.embedding_batch_size,
+        guard
+    )
 
     pairs = read_json(settings.dataset_path, default={}).get("labelled_pairs", [])
     texts = []
