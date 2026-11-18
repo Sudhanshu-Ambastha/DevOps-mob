@@ -8,8 +8,8 @@ router=APIRouter(prefix="/api", tags=["System"])
 
 
 @router.get("/health")
-async def health():
-    return {"status":"ok","storage":"json","database_required":False}
+async def health(settings:SettingsDep):
+    return {"status":"ok","storage":"mongodb" if settings.uses_mongodb else "json","database_required":settings.uses_mongodb}
 
 
 @router.get("/meta")

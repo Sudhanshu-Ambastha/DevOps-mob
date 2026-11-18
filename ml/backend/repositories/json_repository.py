@@ -43,6 +43,15 @@ class JsonRepository(Repository):
     async def get_user(self, user_id:str)->Record|None:
         return await self._read(lambda state:find_by_id(state["users"], user_id))
 
+    async def find_user_by_email(self, email:str)->Record|None:
+        def reader(state:Record)->Record|None:
+            return next((user for user in state["users"] if user.get("email") == email), None)
+
+        return await self._read(reader)
+
+    async def is_empty(self)->bool:
+        return not self.store.exists()
+
     async def create_user(self, user:Record)->Record:
         def mutate(state:Record)->Record:
             state["users"].append(user)

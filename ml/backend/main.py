@@ -1,4 +1,6 @@
+import os
 import logging
+import secrets
 from contextlib import asynccontextmanager
 
 from fastapi import FastAPI, Request
@@ -6,20 +8,24 @@ from fastapi.exceptions import RequestValidationError
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi.responses import JSONResponse
 
-from nlp.json_files import read_json
+from pymongo.errors import PyMongoError
+
 from nlp.embedding_cache import EmbeddingCache
 from nlp.errors import AIProviderError
 from nlp.matcher import SemanticMatcher
 from nlp.providers.cloudflare import CloudflareEmbeddingProvider
 from nlp.providers.openrouter import OpenRouterTextProvider
+from nlp.providers.local import LocalEmbeddingProvider
 from nlp.srs import SrsGenerator
 from nlp.usage_guard import UsageGuard
 
 from .config.settings import Settings, get_settings
 from .errors import AppError
 from .repositories.base import Repository
-from .repositories.json_repository import JsonRepository, RecordNotFound
+from .repositories.factory import build_repository
+from .repositories.json_repository import RecordNotFound
 from .repositories.json_store import StoreBusyError, StoreCorruptedError
+from .services.seed_service import ensure_demo_accounts, load_seed_dataset
 from .routes import problem_routes, submission_routes, system_routes, user_routes
 
 logger=logging.getLogger("devbridge")
@@ -70,6 +76,12 @@ def register_error_handlers(app:FastAPI)->None:
 
         return error_response(500, "store_corrupted", "The local data file is damaged. See the server log.")
 
+    @app.exception_handler(PyMongoError)
+    async def handle_database_error(_:Request, error:PyMongoError):
+        logger.error("Database problem: %s", error)
+
+        return error_response(503, "database_unavailable", "The database is not available right now.", retry_after=5)
+
 
 def build_providers(settings:Settings, guard:UsageGuard)->tuple:
     if settings.ai_provider_mode.strip().lower() == "local":
@@ -97,6 +109,18 @@ def build_providers(settings:Settings, guard:UsageGuard)->tuple:
     return (embedding_provider, text_provider)
 
 
+def resolve_auth_secret(settings:Settings)->str:
+    if settings.auth_secret:
+        return settings.auth_secret
+
+    if settings.is_production:
+        raise RuntimeError("AUTH_SECRET must be set when APP_ENV is production.")
+
+    logger.warning("AUTH_SECRET is not set, so sign-ins will reset when the server restarts.")
+
+    return secrets.token_urlsafe(32)
+
+
 def create_app(
     settings:Settings|None=None,
     repository:Repository|None=None,
@@ -104,7 +128,7 @@ def create_app(
     text_provider=None
 )->FastAPI:
     active_settings=settings or get_settings()
-    active_repository=repository or JsonRepository(active_settings.runtime_store_path)
+    active_repository=repository or build_repository(active_settings)
 
     guard=UsageGuard(active_settings.usage_path, {
         "cloudflare":active_settings.cloudflare_daily_neuron_budget,
@@ -116,18 +140,23 @@ def create_app(
 
     @asynccontextmanager
     async def lifespan(_:FastAPI):
-        store=getattr(active_repository, "store", None)
+        await active_repository.prepare()
 
-        if store is not None and not store.exists():
-            dataset=read_json(active_settings.dataset_path, default={})
-            summary=await active_repository.seed(dataset)
-            logger.info("Seeded the demo store: %s", summary["added"])
+        if await active_repository.is_empty():
+            summary=await active_repository.seed(load_seed_dataset(active_settings))
+            logger.info("Seeded the demo data: %s", summary["added"])
+
+            if active_settings.app_env.strip().lower() == "development":
+                await ensure_demo_accounts(active_repository, active_settings)
 
         yield
+
+        await active_repository.close()
 
     app=FastAPI(title="DevBridge API", version="1.0.0", lifespan=lifespan)
 
     app.state.settings=active_settings
+    app.state.auth_secret=resolve_auth_secret(active_settings)
     app.state.repository=active_repository
     app.state.usage_guard=guard
     app.state.embedding_provider=active_embedding

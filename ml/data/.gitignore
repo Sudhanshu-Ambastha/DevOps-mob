@@ -1,3 +1,4 @@
 *
 !.gitignore
 !synthetic_dataset.json
+!demo_problems.json

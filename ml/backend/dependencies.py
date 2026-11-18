@@ -1,4 +1,3 @@
-import os
 from typing import Annotated, Any
 
 from fastapi import Depends, Header, Request
@@ -6,9 +5,8 @@ from fastapi import Depends, Header, Request
 from nlp.matcher import SemanticMatcher
 from nlp.srs import SrsGenerator
 from nlp.providers.base import EmbeddingProvider
-from nlp.providers.local import LocalEmbeddingProvider
-from nlp.providers.cloudflare import CloudflareEmbeddingProvider
 
+from .auth import read_token
 from .config.settings import Settings
 from .errors import sign_in_required
 from .repositories.base import Repository
@@ -23,22 +21,7 @@ def get_app_settings(request: Request) -> Settings:
 
 
 def get_embedding_provider(request: Request) -> EmbeddingProvider:
-    if hasattr(request.app.state, "embedding_provider") and request.app.state.embedding_provider:
-        return request.app.state.embedding_provider
-
-    settings = request.app.state.settings
-    
-    if settings.ai_provider_mode.strip().lower() == "local":
-        return LocalEmbeddingProvider(model_path=os.getenv("MODEL_PATH"))
-
-    return CloudflareEmbeddingProvider(
-        account_id=settings.cloudflare_account_id,
-        api_token=settings.cloudflare_api_token,
-        model_id=settings.cloudflare_embedding_model,
-        timeout=settings.ai_request_timeout,
-        batch_size=settings.embedding_batch_size,
-        guard=request.app.state.usage_guard
-    )
+    return request.app.state.embedding_provider
 
 
 def get_matcher(request: Request) -> SemanticMatcher:
@@ -57,13 +40,19 @@ SrsGeneratorDep = Annotated[SrsGenerator, Depends(get_srs_generator)]
 
 
 async def get_actor(
+    request: Request,
     repository: RepositoryDep,
-    x_demo_user_id: Annotated[str | None, Header()] = None
+    authorization: Annotated[str | None, Header()] = None
 ) -> dict[str, Any] | None:
-    if not x_demo_user_id:
+    if not authorization or not authorization.startswith("Bearer "):
         return None
 
-    return await repository.get_user(x_demo_user_id)
+    user_id = read_token(authorization.removeprefix("Bearer ").strip(), request.app.state.auth_secret)
+
+    if user_id is None:
+        return None
+
+    return await repository.get_user(user_id)
 
 
 ActorDep = Annotated[dict[str, Any] | None, Depends(get_actor)]
