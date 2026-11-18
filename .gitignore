@@ -1,3 +1,6 @@
+.gradle/
+local.properties
+
 .env
 .env.*
 !.env.example
@@ -14,5 +17,4 @@ Thumbs.db
 .vscode/
 venv/
 __pycache__/
-.gradle/
-local.properties
+local.properties.gradle/
