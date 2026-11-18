@@ -37,9 +37,31 @@ class Settings(BaseSettings):
     cors_origins:str="http://localhost:5173,http://127.0.0.1:5173"
     data_dir:Path=ML_ROOT/"data"
 
+    app_env:str="development"
+    data_store:str="mongodb"
+    mongodb_uri:str="mongodb://localhost:27017"
+    mongodb_database:str="devbridge"
+    mongodb_timeout_ms:int=5000
+
+    auth_secret:str=""
+    auth_token_hours:float=12
+    demo_account_password:str="DevBridge@2026"
+
     @property
     def ai_enabled(self)->bool:
         return self.ai_provider_mode.strip().lower() in ("cloud", "local")
+
+    @property
+    def is_production(self)->bool:
+        return self.app_env.strip().lower() == "production"
+
+    @property
+    def uses_mongodb(self)->bool:
+        return self.data_store.strip().lower() == "mongodb"
+
+    @property
+    def demo_problems_path(self)->Path:
+        return self.data_dir/"demo_problems.json"
 
     @property
     def allowed_origins(self)->list[str]:

@@ -1,40 +1,38 @@
 from typing import Any
 
+from ..auth import create_token, hash_password, verify_password
+from ..config.settings import Settings
 from ..errors import AppError, not_found
-from ..models.schemas import UserCreate, UserUpdate
+from ..models.schemas import LoginRequest, UserCreate, UserUpdate
 from ..repositories.base import Repository
-from ..services.serializers import problem_summary, public_user, solution_view, users_index
+from ..services.serializers import private_user, problem_summary, solution_view, users_index
 from ..utils import new_id, utc_now_iso
 
 Record=dict[str, Any]
 
+DEMO_ACCOUNT_IDS=("syn-user-01", "syn-user-02", "syn-user-03")
 
-async def list_demo_profiles(repository:Repository)->list[Record]:
-    users=await repository.list_users()
-
-    return [public_user(user) for user in users if user.get("demo_profile")]
-
-
-async def start_demo_session(user_id:str, repository:Repository)->Record:
-    user=await repository.get_user(user_id)
-
-    if user is None:
-        raise not_found("This demo profile")
-
-    return public_user(user)
+# Keeps the response time similar whether or not the email exists.
+_UNKNOWN_USER_HASH=hash_password("unknown-user-placeholder")
 
 
-async def register_demo_user(payload:UserCreate, repository:Repository)->Record:
+def _session(user:Record, settings:Settings, secret:str)->Record:
+    token=create_token(user["id"], secret, settings.auth_token_hours)
+
+    return {"user":private_user(user),"token":token,"expires_in_hours":settings.auth_token_hours}
+
+
+async def register_user(payload:UserCreate, repository:Repository, settings:Settings, secret:str)->Record:
     email=payload.email.strip().lower()
-    users=await repository.list_users()
 
-    if any(user.get("email") == email for user in users):
-        raise AppError(409, "email_in_use", "A demo profile already uses this email address.")
+    if await repository.find_user_by_email(email) is not None:
+        raise AppError(409, "email_in_use", "An account already uses this email address.")
 
     user=await repository.create_user({
         "id":new_id("user"),
         "name":payload.name.strip(),
         "email":email,
+        "password_hash":hash_password(payload.password),
         "role":payload.role,
         "bio":"",
         "skills":[],
@@ -42,12 +40,37 @@ async def register_demo_user(payload:UserCreate, repository:Repository)->Record:
         "created_at":utc_now_iso()
     })
 
-    return public_user(user)
+    return _session(user, settings, secret)
+
+
+async def login(payload:LoginRequest, repository:Repository, settings:Settings, secret:str)->Record:
+    user=await repository.find_user_by_email(payload.email.strip().lower())
+    stored=user.get("password_hash") if user else _UNKNOWN_USER_HASH
+
+    if not verify_password(payload.password, stored) or user is None:
+        raise AppError(401, "invalid_credentials", "The email or password is incorrect.")
+
+    return _session(user, settings, secret)
+
+
+async def list_demo_accounts(repository:Repository, settings:Settings)->list[Record]:
+    if settings.is_production:
+        return []
+
+    accounts=[]
+
+    for user_id in DEMO_ACCOUNT_IDS:
+        user=await repository.get_user(user_id)
+
+        if user and user.get("password_hash"):
+            accounts.append({"name":user["name"],"email":user["email"],"role":user.get("role", "user")})
+
+    return accounts
 
 
 async def update_profile(user_id:str, payload:UserUpdate, actor:Record, repository:Repository)->Record:
     if actor["id"] != user_id:
-        raise AppError(403, "not_your_profile", "You can only edit your own demo profile.")
+        raise AppError(403, "not_your_profile", "You can only edit your own profile.")
 
     changes={
         "name":payload.name.strip(),
@@ -58,9 +81,9 @@ async def update_profile(user_id:str, payload:UserUpdate, actor:Record, reposito
     user=await repository.update_user(user_id, changes)
 
     if user is None:
-        raise not_found("This demo profile")
+        raise not_found("This profile")
 
-    return public_user(user)
+    return private_user(user)
 
 
 async def get_workspace(actor:Record, repository:Repository)->Record:
@@ -81,3 +104,4 @@ async def get_workspace(actor:Record, repository:Repository)->Record:
         "followed":summaries([problem for problem in problems if problem["id"] in followed]),
         "solutions":[solution_view(item, users, by_id.get(item["problem_id"])) for item in solutions]
     }
+

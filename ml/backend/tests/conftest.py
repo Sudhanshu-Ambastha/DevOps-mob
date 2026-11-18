@@ -5,6 +5,7 @@ from pathlib import Path
 import pytest
 from fastapi.testclient import TestClient
 
+from backend.auth import create_token
 from backend.config.settings import ML_ROOT, Settings
 from backend.main import create_app
 from nlp.errors import AIProviderError
@@ -13,6 +14,7 @@ from nlp.srs import REQUIRED_SECTIONS
 from nlp.text import extract_keywords
 
 VECTOR_SIZE=512
+TEST_SECRET="test-secret"
 
 
 def bag_of_words_vector(text:str)->list[float]:
@@ -77,6 +79,9 @@ def settings(tmp_path:Path)->Settings:
     return Settings(
         _env_file=None,
         data_dir=tmp_path,
+        data_store="json",
+        app_env="test",
+        auth_secret=TEST_SECRET,
         cloudflare_account_id="",
         cloudflare_api_token="",
         openrouter_api_key="",
@@ -102,8 +107,12 @@ def client(settings:Settings, embedder:FakeEmbedder, text_provider:FakeTextProvi
         yield test_client
 
 
-DEVELOPER={"X-Demo-User-Id":"syn-user-02"}
-MEMBER={"X-Demo-User-Id":"syn-user-01"}
+def bearer(user_id:str)->dict:
+    return {"Authorization":f"Bearer {create_token(user_id, TEST_SECRET, 1)}"}
+
+
+DEVELOPER=bearer("syn-user-02")
+MEMBER=bearer("syn-user-01")
 
 
 def draft(**changes)->dict:

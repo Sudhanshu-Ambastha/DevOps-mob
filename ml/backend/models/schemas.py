@@ -12,6 +12,13 @@ CATEGORIES=[
     "Environment",
     "Community services",
     "Campus life",
+    "Software development",
+    "Web applications",
+    "Mobile applications",
+    "Networking",
+    "Security",
+    "Accessibility",
+    "Hardware and IoT",
     "Other"
 ]
 
@@ -118,7 +125,13 @@ class SolutionCreate(BaseModel):
 class UserCreate(BaseModel):
     name:str=Field(min_length=2, max_length=80)
     email:str=Field(pattern=r"^[^\s@]+@[^\s@]+\.[^\s@]+$", max_length=160)
+    password:str=Field(min_length=8, max_length=128)
     role:Literal["user","developer"]="user"
+
+
+class LoginRequest(BaseModel):
+    email:str=Field(min_length=3, max_length=160)
+    password:str=Field(min_length=1, max_length=128)
 
 
 class UserUpdate(BaseModel):
@@ -126,10 +139,6 @@ class UserUpdate(BaseModel):
     bio:str=Field(default="", max_length=500)
     skills:list[str]=Field(default_factory=list)
     role:Literal["user","developer"]="user"
-
-
-class DemoSessionRequest(BaseModel):
-    user_id:str
 
 
 class SrsGenerateRequest(BaseModel):

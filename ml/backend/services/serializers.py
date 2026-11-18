@@ -17,6 +17,10 @@ def public_user(user:Record)->Record:
     }
 
 
+def private_user(user:Record)->Record:
+    return {**public_user(user),"email":user.get("email", "")}
+
+
 def users_index(users:list[Record])->dict[str, Record]:
     return {user["id"]:user for user in users}
 

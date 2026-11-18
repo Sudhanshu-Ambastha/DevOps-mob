@@ -15,7 +15,7 @@ def not_found(what:str)->AppError:
 
 
 def sign_in_required()->AppError:
-    return AppError(401, "sign_in_required", "Sign in with a demo profile to do this.")
+    return AppError(401, "sign_in_required", "Please sign in to do this.")
 
 
 def consent_required()->AppError:

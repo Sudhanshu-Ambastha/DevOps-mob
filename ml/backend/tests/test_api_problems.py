@@ -146,19 +146,6 @@ def test_solved_problem_stays_solved_when_a_solution_is_added(client):
     assert client.get("/api/problems/syn-prob-015").json()["status"] == "solved"
 
 
-def test_demo_profiles_and_registration_never_expose_email(client):
-    profiles=client.get("/api/demo-profiles").json()
-    assert {profile["name"] for profile in profiles} == {"Riya Sharma","Arjun Mehta"}
-    assert all("email" not in profile for profile in profiles)
-
-    created=client.post("/api/users", json={"name":"Test Person","email":"Test@Example.com","role":"developer"})
-    assert created.status_code == 201
-    assert "email" not in created.json()
-
-    duplicate=client.post("/api/users", json={"name":"Other Person","email":"test@example.com"})
-    assert duplicate.status_code == 409
-
-
 def test_profile_can_only_be_edited_by_its_owner(client):
     body={"name":"Riya S","bio":"Updated","skills":["Python"],"role":"developer"}
 
