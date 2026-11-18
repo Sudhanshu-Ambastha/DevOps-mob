@@ -1,3 +1,6 @@
+DevBridge/
+.idea/
+modernize/
 .gradle/
 local.properties
 
