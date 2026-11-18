@@ -15,6 +15,10 @@ __pycache__/
 .pytest_cache/
 .gradle/
 local.properties
+<<<<<<< HEAD
 DevBridge/
 .idea/
 modernize/
+=======
+build/
+>>>>>>> upstream/main
