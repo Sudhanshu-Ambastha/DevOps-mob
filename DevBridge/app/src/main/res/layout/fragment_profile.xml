@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent" android:layout_height="match_parent"
+    android:orientation="vertical" android:padding="24dp">
+
+    <!-- Avatar and Role Info -->
+    <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content"
+        android:orientation="horizontal" android:gravity="center_vertical">
+        <TextView android:id="@+id/pAvatar" android:layout_width="56dp" android:layout_height="56dp"
+            android:background="@drawable/pill_bg" android:gravity="center"
+            android:textColor="@color/pill_text" android:textSize="24sp" android:textStyle="bold"/>
+        <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content"
+            android:orientation="vertical" android:layout_marginStart="16dp">
+            <TextView android:id="@+id/pRole" android:layout_width="match_parent" android:layout_height="wrap_content"
+                android:textSize="22sp" android:textStyle="bold"/>
+            <TextView android:id="@+id/pSub" android:layout_width="match_parent" android:layout_height="wrap_content"
+                android:textColor="?attr/colorSecondary" android:textSize="14sp"/>
+        </LinearLayout>
+    </LinearLayout>
+
+    <!-- Stats Row -->
+    <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content"
+        android:orientation="horizontal" android:layout_marginTop="24dp" android:weightSum="3">
+        <LinearLayout android:layout_width="0dp" android:layout_weight="1" android:layout_height="wrap_content" android:orientation="vertical" android:gravity="center">
+            <TextView android:id="@+id/pProblems" android:layout_width="wrap_content" android:layout_height="wrap_content" android:textSize="20sp" android:textStyle="bold"/>
+            <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Problems" android:textSize="12sp"/>
+        </LinearLayout>
+        <LinearLayout android:layout_width="0dp" android:layout_weight="1" android:layout_height="wrap_content" android:orientation="vertical" android:gravity="center">
+            <TextView android:id="@+id/pVotes" android:layout_width="wrap_content" android:layout_height="wrap_content" android:textSize="20sp" android:textStyle="bold"/>
+            <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Votes" android:textSize="12sp"/>
+        </LinearLayout>
+        <LinearLayout android:layout_width="0dp" android:layout_weight="1" android:layout_height="wrap_content" android:orientation="vertical" android:gravity="center">
+            <TextView android:id="@+id/pSolved" android:layout_width="wrap_content" android:layout_height="wrap_content" android:textSize="20sp" android:textStyle="bold"/>
+            <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Solved" android:textSize="12sp"/>
+        </LinearLayout>
+    </LinearLayout>
+
+    <!-- Toggles and Buttons -->
+    <com.google.android.material.materialswitch.MaterialSwitch android:id="@+id/pDark"
+        android:layout_width="match_parent" android:layout_height="wrap_content"
+        android:layout_marginTop="32dp" android:text="Dark mode"/>
+    <com.google.android.material.button.MaterialButton android:id="@+id/pSwitch"
+        style="@style/Widget.Material3.Button.TonalButton"
+        android:layout_width="match_parent" android:layout_height="wrap_content"
+        android:layout_marginTop="16dp" android:text="Switch role (User / Developer)"/>
+    <com.google.android.material.button.MaterialButton android:id="@+id/pLogout"
+        style="@style/Widget.Material3.Button.OutlinedButton"
+        android:layout_width="match_parent" android:layout_height="wrap_content"
+        android:layout_marginTop="12dp" android:text="Log out"/>
+</LinearLayout>

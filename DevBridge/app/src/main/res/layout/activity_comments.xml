@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/cRoot" android:layout_width="match_parent" android:layout_height="match_parent"
+    android:orientation="vertical">
+    <LinearLayout android:id="@+id/cBar" android:layout_width="match_parent" android:layout_height="wrap_content"
+        android:background="@drawable/header_bg" android:gravity="center_vertical" android:orientation="horizontal"
+        android:paddingStart="8dp" android:paddingEnd="16dp" android:paddingTop="8dp" android:paddingBottom="24dp">
+        <com.google.android.material.button.MaterialButton android:id="@+id/cBack"
+            style="@style/Widget.Material3.Button.TextButton"
+            android:layout_width="wrap_content" android:layout_height="wrap_content"
+            android:minWidth="0dp" android:text="←" android:textColor="#FFFFFF" android:textSize="24sp"/>
+        <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+            android:text="Comments" android:textColor="#FFFFFF" android:textSize="20sp" android:textStyle="bold"/>
+    </LinearLayout>
+    <TextView android:id="@+id/cSub" android:layout_width="match_parent" android:layout_height="wrap_content"
+        android:paddingStart="20dp" android:paddingEnd="20dp" android:paddingTop="16dp"
+        android:textSize="16sp" android:textStyle="bold"/>
+    <FrameLayout android:layout_width="match_parent" android:layout_height="0dp" android:layout_weight="1">
+        <ListView android:id="@+id/cList" android:layout_width="match_parent" android:layout_height="match_parent"
+            android:clipToPadding="false" android:divider="@null" android:dividerHeight="0dp" android:padding="16dp"/>
+        <TextView android:id="@+id/cEmpty" android:layout_width="wrap_content" android:layout_height="wrap_content"
+            android:layout_gravity="center" android:alpha="0.6" android:gravity="center"
+            android:text="No comments yet.\nAsk a question or request a change."/>
+    </FrameLayout>
+    <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content"
+        android:gravity="center_vertical" android:orientation="horizontal" android:padding="12dp">
+        <com.google.android.material.textfield.TextInputLayout android:layout_width="0dp"
+            android:layout_height="wrap_content" android:layout_weight="1" android:hint="Write a comment"
+            style="@style/Widget.Material3.TextInputLayout.OutlinedBox">
+            <com.google.android.material.textfield.TextInputEditText android:id="@+id/cInput"
+                android:layout_width="match_parent" android:layout_height="wrap_content"/>
+        </com.google.android.material.textfield.TextInputLayout>
+        <com.google.android.material.button.MaterialButton android:id="@+id/cSend"
+            android:layout_width="wrap_content" android:layout_height="wrap_content"
+            android:layout_marginStart="8dp" android:text="Send"/>
+    </LinearLayout>
+</LinearLayout>

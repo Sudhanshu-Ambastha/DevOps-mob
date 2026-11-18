@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/wRoot"
+    android:layout_width="match_parent" android:layout_height="match_parent"
+    android:orientation="vertical" android:padding="32dp">
+
+    <!-- Top Hero Section -->
+    <LinearLayout
+        android:id="@+id/wHero"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:gravity="center"
+        android:orientation="vertical">
+
+        <TextView android:id="@+id/wTitle" android:layout_width="wrap_content" android:layout_height="wrap_content"
+            android:text="Welcome" android:textSize="34sp" android:textStyle="bold"/>
+
+        <TextView android:id="@+id/wSub" android:layout_width="wrap_content" android:layout_height="wrap_content"
+            android:layout_marginTop="8dp" android:layout_marginBottom="40dp"
+            android:text="How would you like to use DevBridge?"/>
+    </LinearLayout>
+
+    <!-- Bottom Content Section -->
+    <LinearLayout
+        android:id="@+id/wContent"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:paddingBottom="16dp">
+
+        <com.google.android.material.button.MaterialButton android:id="@+id/btnUser"
+            android:layout_width="match_parent" android:layout_height="64dp" android:text="I have a problem (User)"/>
+
+        <com.google.android.material.button.MaterialButton android:id="@+id/btnDev"
+            style="@style/Widget.Material3.Button.OutlinedButton"
+            android:layout_width="match_parent" android:layout_height="64dp"
+            android:layout_marginTop="16dp" android:text="I build solutions (Developer)"/>
+    </LinearLayout>
+
+</LinearLayout>
