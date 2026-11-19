@@ -12,7 +12,7 @@ public class CommentsActivity extends AppCompatActivity {
         setContentView(R.layout.activity_comments);
         Ui.lightIcons(this);
         Ui.top(findViewById(R.id.cBar));
-        Ui.bottom(findViewById(R.id.cRoot));   // lifts the input above the keyboard
+        Ui.bottom(findViewById(R.id.cRoot));
 
         Problem p = Repo.I.byId(getIntent().getIntExtra("id", -1));
         if (p == null) { finish(); return; }

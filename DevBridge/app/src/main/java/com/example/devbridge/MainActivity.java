@@ -22,7 +22,6 @@ public class MainActivity extends AppCompatActivity {
         View header = findViewById(R.id.header);
         Ui.top(header);
 
-        // When the keyboard opens: lift content above it and hide the bottom bar
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.mRoot), (v, w) -> {
             boolean kb = w.isVisible(WindowInsetsCompat.Type.ime());
             int imeH = w.getInsets(WindowInsetsCompat.Type.ime()).bottom;

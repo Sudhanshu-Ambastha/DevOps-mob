@@ -30,7 +30,7 @@ public class FeedFragment extends Fragment {
     @Override public void onResume() {
         super.onResume();
         data.clear(); data.addAll(Repo.I.items);
-        Collections.sort(data, (a, b2) -> b2.votes - a.votes);   // most demanded first
+        Collections.sort(data, (a, b2) -> b2.votes - a.votes);
         ad.notifyDataSetChanged();
         rv.scheduleLayoutAnimation();
     }

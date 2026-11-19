@@ -1,6 +1,8 @@
 package com.example.devbridge;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.content.res.Configuration;
 import android.os.Bundle;
 import android.view.*;
@@ -12,6 +14,9 @@ import com.google.android.material.button.MaterialButton;
 import com.google.android.material.materialswitch.MaterialSwitch;
 
 public class ProfileFragment extends Fragment {
+    public static final String PREFS_NAME = "devbridge_prefs";
+    public static final String KEY_DARK_MODE = "dark_mode";
+
     @Nullable @Override
     public View onCreateView(@NonNull LayoutInflater i, @Nullable ViewGroup c, @Nullable Bundle b) {
         View v = i.inflate(R.layout.fragment_profile, c, false);
@@ -40,11 +45,17 @@ public class ProfileFragment extends Fragment {
             paint.run();
         });
 
+        SharedPreferences prefs = requireContext().getSharedPreferences(PREFS_NAME, Context.MODE_PRIVATE);
         boolean isDark = (getResources().getConfiguration().uiMode & Configuration.UI_MODE_NIGHT_MASK)
                 == Configuration.UI_MODE_NIGHT_YES;
+
+        dark.setOnCheckedChangeListener(null);
         dark.setChecked(isDark);
-        dark.setOnCheckedChangeListener((btn, on) -> AppCompatDelegate.setDefaultNightMode(
-                on ? AppCompatDelegate.MODE_NIGHT_YES : AppCompatDelegate.MODE_NIGHT_NO));
+        dark.setOnCheckedChangeListener((btn, on) -> {
+            prefs.edit().putBoolean(KEY_DARK_MODE, on).apply();
+            AppCompatDelegate.setDefaultNightMode(
+                    on ? AppCompatDelegate.MODE_NIGHT_YES : AppCompatDelegate.MODE_NIGHT_NO);
+        });
 
         logout.setOnClickListener(x -> {
             Intent in = new Intent(getContext(), WelcomeActivity.class);

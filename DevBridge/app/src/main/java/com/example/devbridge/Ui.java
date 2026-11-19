@@ -7,7 +7,6 @@ import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowCompat;
 import androidx.core.view.WindowInsetsCompat;
 
-/** Edge-to-edge helpers (required because targetSdk is 35+). */
 public class Ui {
     public static void top(View v) { pad(v, true, false); }
     public static void bottom(View v) { pad(v, false, true); }
@@ -24,7 +23,6 @@ public class Ui {
         });
     }
 
-    /** White status-bar icons, for screens with a dark gradient at the top. */
     public static void lightIcons(Activity a) {
         WindowCompat.getInsetsController(a.getWindow(), a.getWindow().getDecorView())
                 .setAppearanceLightStatusBars(false);
