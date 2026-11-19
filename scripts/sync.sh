@@ -1,83 +1,47 @@
-#!/usr/bin/env bash
-set -euo pipefail
+set -e
 
-SRC_REF="${SRC_REF:-origin/main}"          # where ml/ + .gitignore come from
-SYNC_DIR="${SYNC_DIR:-ml}"
-read -ra TARGETS <<< "${TARGETS:-web-dev}" # space-separated target branches
-BRIDGE_FROM="${BRIDGE_FROM:-}"             # e.g. mob-dev   (optional)
-BRIDGE_TO="${BRIDGE_TO:-}"                 # e.g. mob-dev2  (optional)
-BRIDGE_DIR="${BRIDGE_DIR:-DevBridge}"      
-MSG_TAG="chore(sync)"
+echo "Starting Fork-Side Mobile Sync (mob-dev & mob-dev2)..."
 
-git config user.name  "DevBridge Main Sync Bot"
-git config user.email "bot@devbridge.main"
+git config --global user.name "DevBridge Mobile Sync Bot"
+git config --global user.email "bot@devbridge.fork"
+
+git stash --include-untracked || true
+
 git fetch origin --prune
 
-branch_exists() { git ls-remote --exit-code --heads origin "$1" >/dev/null 2>&1; }
+TARGET_MOB="mob-dev"
 
-# Union of target's rules + main's rules: keeps order, drops duplicate lines,
-# keeps blank lines (squeezed), never sorts (negation rules depend on order).
-merge_gitignore() {
-  {
-    cat .gitignore 2>/dev/null || true
-    echo
-    git show "$SRC_REF:.gitignore" 2>/dev/null || true
-  } | awk '/^[[:space:]]*$/ || !seen[$0]++' | cat -s > .gitignore.tmp
-  mv .gitignore.tmp .gitignore
-}
-
-# Mirror one directory exactly (adds, updates AND deletions) from a ref.
-mirror_dir() {
-  local ref="$1" dir="$2"
-  git rm -r -q --ignore-unmatch -- "$dir" 2>/dev/null || true
-  rm -rf -- "$dir"
-  if git cat-file -e "$ref:$dir" 2>/dev/null; then
-    git checkout "$ref" -- "$dir"
-  fi
-}
-
-commit_push() {
-  local branch="$1" msg="$2"
-  if git diff --cached --quiet; then
-    echo "No changes for $branch"
-  else
-    git commit -q -m "$msg"
-    git push origin "HEAD:$branch"
-    echo "Pushed $branch"
-  fi
-}
-
-# ---- 1. ml/ + .gitignore -> every target branch -----------------------
-for T in "${TARGETS[@]}"; do
-  echo "---- $T"
-  if ! branch_exists "$T"; then
-    echo "Skipping: $T not on origin (create/push branch to origin first)"
-    continue
-  fi
-
-  git checkout -q -B "$T" "origin/$T"
-  mirror_dir "$SRC_REF" "$SYNC_DIR"
-  merge_gitignore
-  git add -A -- "$SYNC_DIR" .gitignore      # nothing else is staged
-  commit_push "$T" "$MSG_TAG: update $SYNC_DIR/ and merge .gitignore from main"
-done
-
-# ---- 2. DevBridge/ : mob-dev -> mob-dev2 (only if mob-dev2 has no own changes)
-if [[ -n "$BRIDGE_FROM" && -n "$BRIDGE_TO" ]] \
-   && branch_exists "$BRIDGE_FROM" && branch_exists "$BRIDGE_TO"; then
-  git fetch origin --prune
-  # Commits on BRIDGE_TO (not in BRIDGE_FROM) touching DevBridge/, ignoring our own sync commits
-  OWN=$(git log --oneline "origin/$BRIDGE_FROM..origin/$BRIDGE_TO" \
-          --grep="$MSG_TAG" --invert-grep -- "$BRIDGE_DIR" || true)
-  if [[ -z "$OWN" ]]; then
-    echo "---- $BRIDGE_TO has no own $BRIDGE_DIR changes; mirroring from $BRIDGE_FROM"
-    git checkout -q -B "$BRIDGE_TO" "origin/$BRIDGE_TO"
-    mirror_dir "origin/$BRIDGE_FROM" "$BRIDGE_DIR"
-    git add -A -- "$BRIDGE_DIR"
-    commit_push "$BRIDGE_TO" "$MSG_TAG: mirror $BRIDGE_DIR/ from $BRIDGE_FROM"
-  else
-    echo "Skipping DevBridge: $BRIDGE_TO has its own changes:"; echo "$OWN"
-  fi
+if ! git ls-remote --exit-code --heads origin $TARGET_MOB; then
+  echo "Creating remote $TARGET_MOB from main..."
+  git checkout main
+  git checkout -b $TARGET_MOB
+  git push origin $TARGET_MOB
 fi
 
-echo "Done."
+git checkout -b temp-mob-sync origin/$TARGET_MOB || git checkout -b temp-mob-sync origin/$TARGET_MOB 2>/dev/null || git checkout -b temp-mob-sync
+git checkout main -- ml/ 2>/dev/null || true
+
+git add ml/ mobile/ 2>/dev/null || true
+git commit -m "chore(sync): updated shared ml/ core for mob-dev" || echo "No changes for mob-dev"
+git push origin temp-mob-sync:$TARGET_MOB --force
+
+TARGET_MOB2="mob-dev2"
+
+if ! git ls-remote --exit-code --heads origin $TARGET_MOB2; then
+  echo "Creating remote $TARGET_MOB2 from $TARGET_MOB..."
+  git checkout -b $TARGET_MOB origin/$TARGET_MOB || git checkout $TARGET_MOB
+  git checkout -b $TARGET_MOB2
+  git push origin $TARGET_MOB2
+fi
+
+git checkout -b temp-mob2-sync origin/$TARGET_MOB2 || git checkout -b temp-mob2-sync origin/$TARGET_MOB2 2>/dev/null || git checkout -b temp-mob2-sync
+git checkout main -- ml/ 2>/dev/null || true
+
+git add ml/ mobile/ 2>/dev/null || true
+git commit -m "chore(sync): updated shared ml/ core for mob-dev2 (preserving unique UI & features)" || echo "No changes for mob-dev2"
+git push origin temp-mob2-sync:$TARGET_MOB2 --force
+
+git checkout main
+git branch -D temp-mob-sync temp-mob2-sync 2>/dev/null || true
+
+echo "Fork-side sync completed successfully! Only mob-dev and mob-dev2 are active."

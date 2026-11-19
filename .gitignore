@@ -1,24 +1,26 @@
-build/
+<<<<<<< HEAD
 DevBridge/
 .idea/
 modernize/
-.gradle/
-local.properties
+=======
+>>>>>>> upstream/main
 
+node_modules/
+dist/
+*.env
 .env
 .env.*
 !.env.example
 *.pem
 *.key
-.pytest_cache/
-
-node_modules/
-dist/
-*.env
 *.log
 .DS_Store
 Thumbs.db
 .vscode/
 venv/
 __pycache__/
+.pytest_cache/
+.gradle/
+local.properties
+build/
 
