@@ -8,12 +8,12 @@ param (
     [switch]$Test
 )
 
-$PytestVersion="9.2.0"
-$venv=Join-Path $PSScriptRoot "venv"
-$python=Join-Path $venv "Scripts\python.exe"
-$activate=Join-Path $venv "Scripts\Activate.ps1"
-$reqPath=Join-Path $PSScriptRoot "requirements.txt"
-$dotSourced=$MyInvocation.InvocationName -eq "."
+$PytestVersion = "9.2.0"
+$venv = Join-Path $PSScriptRoot "venv"
+$python = Join-Path $venv "Scripts\python.exe"
+$activate = Join-Path $venv "Scripts\Activate.ps1"
+$reqPath = Join-Path $PSScriptRoot "requirements.txt"
+$dotSourced = $MyInvocation.InvocationName -eq "."
 
 function Stop-Install {
     param([string]$message)
@@ -51,8 +51,8 @@ if (Test-Path $python) {
 Invoke-Checked $python @("-m", "pip", "install", "--upgrade", "pip", "--quiet")
 
 if ($packages.Count -gt 0) {
-    $action=if ($Uninstall) { "uninstall" } else { "install" }
-    $extra=if ($Uninstall) { @("-y") } else { @() }
+    $action = if ($Uninstall) { "uninstall" } else { "install" }
+    $extra = if ($Uninstall) { @("-y") } else { @() }
 
     foreach ($package in $packages) {
         Write-Host "${action}: $package" -ForegroundColor Yellow
@@ -80,10 +80,27 @@ if ($packages.Count -gt 0) {
     }
 }
 
+$env:PYTHONPATH = $PSScriptRoot
+
 if ($dotSourced) {
-    . $activate
-    Write-Host "Done. The virtual environment is active in this terminal." -ForegroundColor Green
+    if (Test-Path $activate) {
+        . $activate
+    } else {
+        $venvScripts = Join-Path $venv "Scripts"
+        if ($env:PATH -notlike "*$venvScripts*") {
+            $env:PATH = "$venvScripts;$env:PATH"
+        }
+        $env:VIRTUAL_ENV = $venv
+        Write-Host "Activate.ps1 not found; prepended $venvScripts to PATH and set VIRTUAL_ENV." -ForegroundColor Yellow
+    }
+    Write-Host "Done. Environment ready in this terminal (PYTHONPATH=$env:PYTHONPATH)." -ForegroundColor Green
 } else {
-    Write-Host "Done. Activate the virtual environment with:" -ForegroundColor Green
-    Write-Host "    & `"$activate`""
+    Write-Host "Done." -ForegroundColor Green
+    if (Test-Path $activate) {
+        Write-Host "Activate the virtual environment with:" -ForegroundColor Green
+        Write-Host "    & `"$activate`""
+    } else {
+        Write-Host "Run Python directly with:" -ForegroundColor Green
+        Write-Host "    & `"$python`""
+    }
 }

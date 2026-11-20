@@ -6,6 +6,8 @@ import java.util.List;
 public class Problem {
     public int id, votes, merged = 1;
     public String title, desc, category, solution;
+    public String tags = "";
+    public String author = "System";
     public boolean voted;
     public boolean synced = true;
     public double similarityScore;

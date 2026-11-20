@@ -8,6 +8,7 @@ import android.os.Handler;
 import android.os.Looper;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -54,7 +55,6 @@ public class Repo {
         notifications.add("Welcome to DevBridge! Submit a problem or upvote existing ones.");
     }
 
-    /** Call once in SplashActivity / MainActivity with any Context. */
     public void init(Context context) {
         if (context == null || this.db != null) return;
         this.db = new DbHelper(context.getApplicationContext());
@@ -91,27 +91,66 @@ public class Repo {
         return null;
     }
 
+    public void deleteProblem(Context context, int id) {
+        if (db != null) {
+            db.deleteProblem(id);
+        }
+        for (int i = items.size() - 1; i >= 0; i--) {
+            if (items.get(i).id == id) {
+                items.remove(i);
+                break;
+            }
+        }
+        if (context != null) {
+            syncPending(context);
+        }
+    }
+
     public void addNote(String s) {
         notifications.add(0, s);
         if (db != null) db.insertNotification(s);
     }
 
     public void addComment(Problem p, String commentText) {
+        addComment(null, p, commentText);
+    }
+
+    public void addComment(Context context, Problem p, String commentText) {
         if (p == null) return;
         p.comments.add(commentText);
-        if (db != null) db.insertComment(p.id, commentText, false);
+        p.synced = false;
+        if (db != null) {
+            db.insertComment(p.id, commentText, false);
+            db.updateProblem(p);
+        }
+        if (context != null) syncPending(context);
     }
 
     public void toggleVote(Problem p) {
+        toggleVote(null, p);
+    }
+
+    public void toggleVote(Context context, Problem p) {
         if (p == null) return;
         p.voted = !p.voted;
         p.votes += p.voted ? 1 : -1;
         p.synced = false;
         if (db != null) db.updateProblem(p);
+        if (context != null) syncPending(context);
+    }
+
+    public void publishSolution(Context context, Problem p, String solutionText) {
+        if (p == null) return;
+        p.solution = solutionText;
+        p.synced = false;
+        if (db != null) db.updateProblem(p);
+        addNote("A developer posted a solution for: " + p.title);
+        if (context != null) syncPending(context);
     }
 
     private Set<String> tokens(String s) {
         Set<String> t = new HashSet<>();
+        if (s == null) return t;
         for (String w : s.toLowerCase().split("[^a-z]+")) if (w.length() > 3) t.add(w);
         return t;
     }
@@ -122,7 +161,7 @@ public class Repo {
         Problem best = null;
         double bestScore = 0.2;
         for (Problem p : items) {
-            Set<String> b = tokens(p.title + " " + p.desc);
+            Set<String> b = tokens(p.title + " " + p.desc + " " + (p.tags != null ? p.tags : ""));
             Set<String> inter = new HashSet<>(a);
             inter.retainAll(b);
             Set<String> union = new HashSet<>(a);
@@ -137,21 +176,67 @@ public class Repo {
     }
 
     public boolean submit(String title, String desc) {
-        Problem m = findSimilar(title + " " + desc);
-        if (m != null) {
+        return submit(null, title, desc, "", false);
+    }
+
+    public boolean submit(Context context, String title, String desc, String tags, boolean forceNewContext) {
+        String cleanTags = normalizeTags(tags);
+        Problem m = forceNewContext ? null : findSimilar(title + " " + desc + " " + cleanTags);
+
+        if (m != null && !hasConflictingTags(cleanTags, m.tags)) {
             m.votes++;
             m.merged++;
+            if (!cleanTags.isEmpty()) {
+                m.tags = mergeTagStrings(m.tags, cleanTags);
+            }
             m.synced = false;
             if (db != null) db.updateProblem(m);
             addNote("Your report was merged into: " + m.title);
+            if (context != null) syncPending(context);
             return true;
         }
+
         Problem created = new Problem(next++, title, desc, "General", 1);
+        created.tags = cleanTags;
+        created.author = role;
         created.synced = false;
         if (db != null) db.insertProblem(created);
         items.add(created);
-        addNote("Problem submitted: " + title);
+        addNote("Problem submitted" + (cleanTags.isEmpty() ? "" : " [" + cleanTags + "]") + ": " + title);
+        if (context != null) syncPending(context);
         return false;
+    }
+
+    private String normalizeTags(String raw) {
+        if (raw == null || raw.trim().isEmpty()) return "";
+        String[] parts = raw.toLowerCase().split("[,#\\s]+");
+        Set<String> clean = new HashSet<>();
+        for (String part : parts) {
+            String trimmed = part.trim();
+            if (!trimmed.isEmpty()) clean.add(trimmed);
+        }
+        return String.join(", ", clean);
+    }
+
+    private String mergeTagStrings(String existing, String added) {
+        Set<String> merged = new HashSet<>();
+        if (existing != null && !existing.isEmpty()) {
+            merged.addAll(Arrays.asList(existing.split("\\s*,\\s*")));
+        }
+        if (added != null && !added.isEmpty()) {
+            merged.addAll(Arrays.asList(added.split("\\s*,\\s*")));
+        }
+        return String.join(", ", merged);
+    }
+
+    private boolean hasConflictingTags(String userTags, String existingTags) {
+        if (userTags == null || userTags.isEmpty() || existingTags == null || existingTags.isEmpty()) {
+            return false;
+        }
+        Set<String> uSet = new HashSet<>(Arrays.asList(userTags.split("\\s*,\\s*")));
+        Set<String> eSet = new HashSet<>(Arrays.asList(existingTags.split("\\s*,\\s*")));
+        uSet.retainAll(eSet);
+        return uSet.isEmpty();
     }
 
     public boolean isOnline(Context context) {
